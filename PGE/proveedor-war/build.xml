@@ -1,0 +1,26 @@
+<project name="proveedorSOAP" default="war" basedir=".">
+
+	<description> 
+			${ant.project.name}
+			${line.separator}
+		</description>
+				
+		
+		
+	    <target name="war">
+	        <!-- Overriden from the target of the same name in base-build.xml. -->
+	        <!-- Called by the "deploy" target.  Don't call directly!! -->
+
+	        <!-- Build the webservice... -->
+	        <war warfile="D:/ProyectoDeGrado/jbossesb-server-4.12/server/default/deploy/${ant.project.name}.war"
+	             webxml="${basedir}/esbcontent/WEB-INF/web.xml">
+	        	<classes dir="${basedir}/build/classes" />
+				<webinf dir="${basedir}/esbcontent/WEB-INF">
+	                <include name="jboss-web.xml"/>
+	            </webinf>
+	            <fileset dir="${basedir}/esbcontent/WEB-INF/view">
+	                <include name="**/*"/>
+	            </fileset>
+	        </war>
+	    </target>
+</project>

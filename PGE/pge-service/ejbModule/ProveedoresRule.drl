@@ -1,0 +1,31 @@
+#created on: 28/05/2011
+package edu.pge_gis.pge_service
+
+import org.jboss.soa.esb.message.Message;
+import org.jboss.soa.esb.message.format.MessageType;
+import org.jboss.soa.esb.http.HttpRequest;
+
+#declare any global variables here
+global java.util.List destinations;
+
+rule "GetRequest"
+	when
+		msg : Message()
+	then
+		HttpRequest request = HttpRequest.getRequest(msg);
+		insert(request);
+end
+
+rule "GetFeatureInfo"
+	when
+		HttpRequest(queryParams['REQUEST'][0] == "GetFeatureInfo")
+	then
+		destinations.add("soap");
+end
+
+rule "Otros"
+	when
+		HttpRequest(queryParams['REQUEST'][0] != "GetFeatureInfo")
+	then
+		destinations.add("rest");
+end

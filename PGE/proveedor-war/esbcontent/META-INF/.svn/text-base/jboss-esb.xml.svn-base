@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+ xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd">
+ <providers>
+  <jms-provider connection-factory="ConnectionFactory" name="JBossMQ">
+   <jms-bus busid="GwChannel">
+    <jms-message-filter dest-name="queue/webservice_producer_gw" dest-type="QUEUE"/>
+   </jms-bus>
+   <jms-bus busid="EsbChannel">
+    <jms-message-filter dest-name="queue/webservice_producer_esb" dest-type="QUEUE"/>
+   </jms-bus>
+  </jms-provider>
+ </providers>
+ <services>
+  <service category="WebService" description="WS" name="WmsSoap">
+   <listeners>
+    <jms-listener busidref="GwChannel" is-gateway="true" name="JMS-Gateway"/>
+    <jms-listener busidref="EsbChannel" name="JMS-ESBListener"/>
+   </listeners>
+   <actions>
+    <action class="org.jboss.soa.esb.actions.soap.SOAPProcessor" name="JBossWSAdapter">
+     <property name="jbossws-endpoint" value="WmsSoap"/>
+    </action>
+   </actions>
+  </service>
+ </services>
+</jbossesb>
