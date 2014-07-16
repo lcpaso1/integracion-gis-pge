@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="proveedor SOAP" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WSProveedorBinding" type="wsdl" bindingName="{http://proveedor.pge_service.pge_gis.edu/}WSProveedorBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/proveedorSOAP/WSProveedor?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/proveedorSOAP/WSProveedor?wsdl"><con:part><con:url>http://localhost:8080/proveedorSOAP/WSProveedor?wsdl</con:url><con:content><![CDATA[<definitions name="WSProveedorEJBService" targetNamespace="http://proveedor.pge_service.pge_gis.edu/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://proveedor.pge_service.pge_gis.edu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+    <xs:schema targetNamespace="http://proveedor.pge_service.pge_gis.edu/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="sumar" type="tns:sumar"/>
+      <xs:element name="sumarResponse" type="tns:sumarResponse"/>
+      <xs:complexType name="sumar">
+        <xs:sequence>
+          <xs:element name="a" type="xs:int"/>
+          <xs:element name="b" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="sumarResponse">
+        <xs:sequence>
+          <xs:element name="return" type="xs:int"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="WSProveedor_sumarResponse">
+    <part element="tns:sumarResponse" name="sumarResponse"/>
+  </message>
+  <message name="WSProveedor_sumar">
+    <part element="tns:sumar" name="sumar"/>
+  </message>
+  <portType name="WSProveedor">
+    <operation name="sumar" parameterOrder="sumar">
+      <input message="tns:WSProveedor_sumar"/>
+      <output message="tns:WSProveedor_sumarResponse"/>
+    </operation>
+  </portType>
+  <binding name="WSProveedorBinding" type="tns:WSProveedor">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="sumar">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="WSProveedorEJBService">
+    <port binding="tns:WSProveedorBinding" name="WSProveedorPort">
+      <soap:address location="http://localhost:8080/proveedorSOAP/WSProveedor"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/pge-service/http/soap</con:endpoint><con:endpoint>http://localhost:8080/proveedorSOAP/WSProveedor</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="sumar" bindingOperationName="sumar" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/pge-service/http/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prov="http://proveedor.pge_service.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <prov:sumar>
+         <a>5</a>
+         <b>5</b>
+      </prov:sumar>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://proveedor.pge_service.pge_gis.edu/WSProveedor/sumarRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>

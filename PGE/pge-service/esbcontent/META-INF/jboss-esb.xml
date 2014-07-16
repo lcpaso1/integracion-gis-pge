@@ -24,6 +24,20 @@
 	</providers>
 	
 	<services>
+		<!-- servicio de prueba de pasaje del xml del soap, que entra por http y sale por http hacia un endpoint real -->
+		<service category="PGE" description=" invocacion de un servicio soap por http "
+			invmScope="GLOBAL" name="SoapHTTP_Service">
+			<listeners>
+				<http-gateway name="soapHttp_service" urlPattern="soap/*" />
+				
+			</listeners>
+			<actions mep="RequestResponse">
+				<!-- invoca siempre el ws del proveedorSOAP -->
+				<action class="edu.pge_gis.pge_service.ws.SoapHTTPClient" name="hacia_proveedor" process="process" />
+				
+			</actions>
+		</service>
+	
 		<service category="PGE" description=" invocacion de un servicio de la pge "
 			invmScope="GLOBAL" name="PGE_Service">
 			<listeners>

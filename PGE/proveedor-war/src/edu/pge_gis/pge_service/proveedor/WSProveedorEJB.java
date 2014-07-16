@@ -20,6 +20,7 @@ public class WSProveedorEJB {
     
     @WebMethod
     public int sumar(@WebParam(name="a")int a, @WebParam(name="b")int b){
+    	System.out.println("llega a:"+a);
     	return a+b;
     }
 
