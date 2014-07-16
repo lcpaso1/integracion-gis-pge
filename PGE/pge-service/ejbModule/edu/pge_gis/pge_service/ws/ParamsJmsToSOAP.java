@@ -25,10 +25,10 @@ public class ParamsJmsToSOAP implements ActionPipelineProcessor {
 	}
 
 	public Message process(Message msg) throws ActionProcessingException {
-		HashMap<String, String> params = new HashMap<String, String>();
+		HashMap<String, Integer> params = new HashMap<String, Integer>();
 		/*---------------*/
-		params.put("a", "2");
-		params.put("b", "5");
+		params.put("a", 2);
+		params.put("b", 5);
 		/*----------------*/
 		msg.getBody().add("request-params", params);
 		return msg;
