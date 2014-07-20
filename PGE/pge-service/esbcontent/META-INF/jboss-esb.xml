@@ -24,6 +24,21 @@
 	</providers>
 	
 	<services>
+	
+		<!-- este servicio tiene un cliente ws generado con jbossws, pero invoca al tunel soap anterior -->
+		<service category="PGE" description=" invocacion de un servicio soap por http "
+			invmScope="GLOBAL" name="ClienteWS_Service">
+			<listeners>
+				<http-gateway name="clienteWS_service" urlPattern="clientews/*" />
+				
+			</listeners>
+			<actions mep="RequestResponse">
+				<!-- invoca siempre el ws del proveedorSOAP -->
+				<action class="edu.pge_gis.pge_service.ClienteWS" name="cliente_proveedor" process="process" />
+				
+			</actions>
+		</service>
+	
 		<!-- servicio de prueba de pasaje del xml del soap, que entra por http y sale por http hacia un endpoint real -->
 		<service category="PGE" description=" invocacion de un servicio soap por http "
 			invmScope="GLOBAL" name="SoapHTTP_Service">
