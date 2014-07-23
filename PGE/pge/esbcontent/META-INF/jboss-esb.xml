@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<jbossesb parameterReloadSecs="5"
+	xmlns="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://anonsvn.labs.jboss.com/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd http://anonsvn.jboss.org/repos/labs/labs/jbossesb/trunk/product/etc/schemas/xml/jbossesb-1.3.0.xsd">
+	
+	<providers>
+		
+		<jms-provider name="JBossMQ" connection-factory="ConnectionFactory">
+			<jms-bus busid="Aggregator_ToWS">
+				<jms-message-filter dest-type="QUEUE"
+					dest-name="queue/Aggregator_ToWS" />
+			</jms-bus>
+			<jms-bus busid="Aggregator_ToNoDestination">
+				<jms-message-filter dest-type="QUEUE"
+					dest-name="queue/Aggregator_ToNoDestination" />
+			</jms-bus>
+			<jms-bus busid="AggregatorListenQueue">
+				<jms-message-filter dest-type="QUEUE"
+					dest-name="queue/Aggregator_Service" />
+			</jms-bus>
+		</jms-provider>
+		 
+	</providers>
+	
+	<services>
+	
+		<!-- este servicio tiene un cliente ws generado con jbossws, pero invoca al tunel soap anterior -->
+		<service category="PGE" description=" invocacion de un servicio soap por http "
+			invmScope="GLOBAL" name="ClienteWS_Service">
+			<listeners>
+				<http-gateway name="clienteWS_service" urlPattern="clientews/*" />
+				
+			</listeners>
+			<actions mep="RequestResponse">
+				<!-- invoca siempre el ws del proveedorSOAP -->
+				<action class="edu.pge_gis.pge_service.ClienteWS" name="cliente_proveedor" process="process" />
+				
+			</actions>
+		</service>
+	
+		<!-- servicio de prueba de pasaje del xml del soap, que entra por http y sale por http hacia un endpoint real -->
+		<service category="PGE" description=" invocacion de un servicio soap por http "
+			invmScope="GLOBAL" name="SoapHTTP_Service">
+			<listeners>
+				<http-gateway name="soapHttp_service" urlPattern="soap/*" />
+				
+			</listeners>
+			<actions mep="RequestResponse">
+				<!-- invoca siempre el ws del proveedorSOAP -->
+				<action class="edu.pge_gis.pge_service.ws.SoapHTTPClient" name="hacia_proveedor" process="process" />
+				
+			</actions>
+		</service>
+	
+		<service category="PGE" description=" invocacion de un servicio de la pge "
+			invmScope="GLOBAL" name="PGE_Service">
+			<listeners>
+				<http-gateway name="pge_service" urlPattern="pge/*" />
+				
+			</listeners>
+			<actions mep="RequestResponse">
+				<!-- primer acceso puede ser un ws soap con la seguridad, por ahora procesa un mensaje -->
+				<action class="edu.pge_gis.pge_service.PGESecurity" name="pge_sec" process="process" />
+				
+				<!-- segundo ruteamos a un servicio que es el catalogo -->
+				<action class="edu.pge_gis.pge_service.PGESecurity" name="pge_cat" process="process" />
+				
+				<!-- ruteo estatico a invocar el ws del proveedor -->
+				<action class="org.jboss.soa.esb.actions.StaticRouter" name="invocarProveedorSOAP">
+					<property name="destinations">
+						<route-to destination-name="soap" service-category="WebServices"
+							service-name="ProveedorSOAP" />
+					</property>
+				</action>
+				
+				
+				<!-- tercero usamos drools para elegir el destino del proveedor 
+				<action name="ContentBasedRouter" class="org.jboss.soa.esb.actions.ContentBasedRouter">
+
+					<property name="cbrAlias" value="Drools" />
+					<property name="ruleSet" value="ProveedoresRule.drl" />
+					<property name="ruleReload" value="true" />
+					<property name="destinations">
+						<route-to destination-name="soap" service-category="WebServices"
+							service-name="ProveedorSOAP" />
+					</property>
+				</action>
+				-->
+			</actions>
+		</service>
+		
+		<service category="WebServices" name="ProveedorSOAP" description="Cliente WS">
+			<listeners>
+				<jms-listener name="Aggregator_ToWS" busidref="Aggregator_ToWS" />
+			</listeners>
+			<actions mep="RequestResponse">
+				<action name="parametersWS" class="edu.pge_gis.pge_service.ws.ParamsJmsToSOAP" />
+				
+				<action name="cliente-soap" class="org.jboss.soa.esb.actions.soap.SOAPClient">
+					<property name="wsdl" value="http://localhost:8080/proveedorSOAP/WSProveedor?wsdl" />
+					<property name="responseAsOgnlMap" value="true" />
+					<property name="LoggingMessages" value="true"></property>
+					<property name="SOAPAction" value="sumar" />
+					<property name="get-payload-location" value="request-params" />
+    				<property name="set-payload-location" value="response" />
+					
+				</action>
+				<!-- invoco post procesor para loguear el resultado -->
+				<action name="postProcesor" class="edu.pge_gis.pge_service.ws.LogueoResultado" />
+				 
+			</actions>
+		</service>
+		
+	</services>
+</jbossesb>
