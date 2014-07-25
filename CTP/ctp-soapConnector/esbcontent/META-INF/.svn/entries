@@ -2,14 +2,14 @@
 
 dir
 1078
-https://maferoga.googlecode.com/svn/trunk/tsig/proyecto/wms-rest/esbcontent/META-INF
+https://maferoga.googlecode.com/svn/trunk/tsig/proyecto/wms-soap/esbcontent/META-INF
 https://maferoga.googlecode.com/svn
 
 
 
-2011-06-04T22:59:54.682315Z
-1071
-maxielcata
+2011-06-04T23:02:40.612612Z
+1072
+gccomputos
 
 
 
@@ -32,11 +32,11 @@ file
 
 
 
-2011-06-07T21:49:31.662109Z
-6734345ea98160a74ea4a3dafb48429f
-2011-06-04T22:59:54.682315Z
-1071
-maxielcata
+2011-06-07T21:49:32.729492Z
+50db3bbddeebb0c936e61af9e9d72c3c
+2011-06-04T23:02:40.612612Z
+1072
+gccomputos
 
 
 
@@ -58,5 +58,5 @@ maxielcata
 
 
 
-5085
+1309
 

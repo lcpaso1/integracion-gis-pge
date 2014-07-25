@@ -1,6 +1,0 @@
-<jbossesb-deployment>
-    <depends>jboss.esb:deployment=soap.esb</depends>
-    <depends>jboss.esb.quickstart.destination:service=Queue,name=quickstart_webservice_producer_gw</depends>
-    <depends>jboss.esb.quickstart.destination:service=Queue,name=quickstart_webservice_producer_esb</depends>
-    <depends>jboss.esb.quickstart.destination:service=Queue,name=quickstart_webservice_producer_esb_reply</depends>
-</jbossesb-deployment>
