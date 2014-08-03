@@ -1,4 +1,4 @@
-<project name="gis-ws" default="war" basedir=".">
+<project name="ctp-soapConnector" default="war" basedir=".">
 
 	<description> 
 			${ant.project.name}

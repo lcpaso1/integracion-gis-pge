@@ -16,7 +16,7 @@ public class GISWSwmsYwfs {
 	
 	// response es una imagen
 	@WebMethod
-	public String getMap(GISParams params){
+	public byte[] getMap(GISParams params){
 		return null;
 	}
 	

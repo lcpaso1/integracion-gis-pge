@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>GISWSwmsYwfs</servlet-name>
-        <servlet-class>edu.pge_gis.gis_ws.GISWSwmsYwfs</servlet-class>
+        <servlet-class>edu.pge_gis.ctp.sc.GISWSwmsYwfs</servlet-class>
     </servlet>
 
     <servlet-mapping>
