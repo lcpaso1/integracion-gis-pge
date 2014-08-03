@@ -1,0 +1,6 @@
+keystore password ? 
+
+
+key password : proy2014
+
+url : http://localhost:8080/STSServer/NewSTSWizardService?wsdl

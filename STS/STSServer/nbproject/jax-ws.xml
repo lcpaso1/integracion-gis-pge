@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jax-ws xmlns="http://www.netbeans.org/ns/jax-ws/1">
+  <services>
+    <service name="NewSTSWizard">
+      <implementation-class>edu.pge.sts.NewSTSWizard</implementation-class>
+      <wsdl-url>file:/C:/Users/Alejandro/AppData/Roaming/NetBeans/8.0/config/WebServices/NewSTSWizard.wsdl</wsdl-url>
+      <local-wsdl-file>NewSTSWizard.wsdl</local-wsdl-file>
+      <service-name>NewSTSWizard</service-name>
+      <port-name>INewSTSWizard_Port</port-name>
+      <package-name>javax.xml.ws</package-name>
+      <catalog-file>catalog.xml</catalog-file>
+      <use-provider>true</use-provider>
+      <wsimport-options>
+        <wsimport-option>
+          <wsimport-option-name>extension</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>verbose</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>fork</wsimport-option-name>
+          <wsimport-option-value>false</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xnocompile</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+        <wsimport-option>
+          <wsimport-option-name>xendorsed</wsimport-option-name>
+          <wsimport-option-value>true</wsimport-option-value>
+        </wsimport-option>
+      </wsimport-options>
+    </service>
+  </services>
+  <clients/>
+  <jsr109>true</jsr109>
+</jax-ws>
