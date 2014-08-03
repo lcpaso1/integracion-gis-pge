@@ -86,8 +86,8 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 	}
 	
 	private GisParams armarParametros(Message msg) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return (GisParams)msg.getBody().get("params");
 	}
 	private GISWS agregarCabezalesAddressing(String serviceName, String method, GISWS port){
 		List<Handler> customHandlerChain =	new	ArrayList<Handler>();

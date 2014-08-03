@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<con:soapui-project activeEnvironment="Default" name="proveedor SOAP" soapui-version="5.0.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WSProveedorBinding" type="wsdl" bindingName="{http://proveedor.pge_service.pge_gis.edu/}WSProveedorBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/proveedorSOAP/WSProveedor?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/proveedorSOAP/WSProveedor?wsdl"><con:part><con:url>http://localhost:8080/proveedorSOAP/WSProveedor?wsdl</con:url><con:content><![CDATA[<definitions name="WSProveedorEJBService" targetNamespace="http://proveedor.pge_service.pge_gis.edu/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://proveedor.pge_service.pge_gis.edu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<con:soapui-project activeEnvironment="Default" name="proveedor SOAP" soapui-version="5.0.0" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WSProveedorBinding" type="wsdl" bindingName="{http://proveedor.pge_service.pge_gis.edu/}WSProveedorBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/proveedorSOAP/WSProveedor?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/proveedorSOAP/WSProveedor?wsdl"><con:part><con:url>http://localhost:8080/proveedorSOAP/WSProveedor?wsdl</con:url><con:content><![CDATA[<definitions name="WSProveedorEJBService" targetNamespace="http://proveedor.pge_service.pge_gis.edu/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://proveedor.pge_service.pge_gis.edu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <types>
     <xs:schema targetNamespace="http://proveedor.pge_service.pge_gis.edu/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
       <xs:element name="sumar" type="tns:sumar"/>
@@ -46,7 +46,7 @@
       <soap:address location="http://localhost:8080/proveedorSOAP/WSProveedor"/>
     </port>
   </service>
-</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/pge-service/http/soap</con:endpoint><con:endpoint>http://localhost:8080/proveedorSOAP/WSProveedor</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="sumar" bindingOperationName="sumar" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/pge-service/http/soap</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prov="http://proveedor.pge_service.pge_gis.edu/">
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/pge-service/http/soap</con:endpoint><con:endpoint>http://localhost:8080/pge/http/pge</con:endpoint><con:endpoint>http://localhost:8080/proveedorSOAP/WSProveedor</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="sumar" bindingOperationName="sumar" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/pge/http/pge</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prov="http://proveedor.pge_service.pge_gis.edu/">
    <soapenv:Header/>
    <soapenv:Body>
       <prov:sumar>
@@ -54,4 +54,334 @@
          <b>5</b>
       </prov:sumar>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://proveedor.pge_service.pge_gis.edu/WSProveedor/sumarRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://proveedor.pge_service.pge_gis.edu/WSProveedor/sumarRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="GISWSBinding" type="wsdl" bindingName="{http://sc.ctp.pge_gis.edu/}GISWSBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs?wsdl"><con:part><con:url>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs?wsdl</con:url><con:content><![CDATA[<definitions name="GISWSwmsYwfsService" targetNamespace="http://sc.ctp.pge_gis.edu/" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://sc.ctp.pge_gis.edu/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <types>
+    <xs:schema targetNamespace="http://sc.ctp.pge_gis.edu/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="describeFeatureType" type="tns:describeFeatureType"/>
+      <xs:element name="describeFeatureTypeResponse" type="tns:describeFeatureTypeResponse"/>
+      <xs:element name="getCapabilities" type="tns:getCapabilities"/>
+      <xs:element name="getCapabilitiesResponse" type="tns:getCapabilitiesResponse"/>
+      <xs:element name="getFeature" type="tns:getFeature"/>
+      <xs:element name="getFeatureInfo" type="tns:getFeatureInfo"/>
+      <xs:element name="getFeatureInfoResponse" type="tns:getFeatureInfoResponse"/>
+      <xs:element name="getFeatureResponse" type="tns:getFeatureResponse"/>
+      <xs:element name="getGmlObject" type="tns:getGmlObject"/>
+      <xs:element name="getGmlObjectResponse" type="tns:getGmlObjectResponse"/>
+      <xs:element name="getMap" type="tns:getMap"/>
+      <xs:element name="getMapResponse" type="tns:getMapResponse"/>
+      <xs:element name="lockFeature" type="tns:lockFeature"/>
+      <xs:element name="lockFeatureResponse" type="tns:lockFeatureResponse"/>
+      <xs:element name="transaction" type="tns:transaction"/>
+      <xs:element name="transactionResponse" type="tns:transactionResponse"/>
+      <xs:complexType name="getMap">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="gisParams">
+        <xs:sequence/>
+      </xs:complexType>
+      <xs:complexType name="getMapResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:base64Binary"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getFeature">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getFeatureResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="transaction">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="transactionResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockFeature">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="lockFeatureResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getGmlObject">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getGmlObjectResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCapabilities">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getCapabilitiesResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="describeFeatureType">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="describeFeatureTypeResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getFeatureInfo">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="arg0" type="tns:gisParams"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="getFeatureInfoResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="return" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </types>
+  <message name="GISWS_getGmlObject">
+    <part element="tns:getGmlObject" name="getGmlObject"/>
+  </message>
+  <message name="GISWS_lockFeatureResponse">
+    <part element="tns:lockFeatureResponse" name="lockFeatureResponse"/>
+  </message>
+  <message name="GISWS_getGmlObjectResponse">
+    <part element="tns:getGmlObjectResponse" name="getGmlObjectResponse"/>
+  </message>
+  <message name="GISWS_transaction">
+    <part element="tns:transaction" name="transaction"/>
+  </message>
+  <message name="GISWS_getFeature">
+    <part element="tns:getFeature" name="getFeature"/>
+  </message>
+  <message name="GISWS_describeFeatureType">
+    <part element="tns:describeFeatureType" name="describeFeatureType"/>
+  </message>
+  <message name="GISWS_getFeatureInfo">
+    <part element="tns:getFeatureInfo" name="getFeatureInfo"/>
+  </message>
+  <message name="GISWS_getMapResponse">
+    <part element="tns:getMapResponse" name="getMapResponse"/>
+  </message>
+  <message name="GISWS_getFeatureInfoResponse">
+    <part element="tns:getFeatureInfoResponse" name="getFeatureInfoResponse"/>
+  </message>
+  <message name="GISWS_lockFeature">
+    <part element="tns:lockFeature" name="lockFeature"/>
+  </message>
+  <message name="GISWS_describeFeatureTypeResponse">
+    <part element="tns:describeFeatureTypeResponse" name="describeFeatureTypeResponse"/>
+  </message>
+  <message name="GISWS_transactionResponse">
+    <part element="tns:transactionResponse" name="transactionResponse"/>
+  </message>
+  <message name="GISWS_getCapabilities">
+    <part element="tns:getCapabilities" name="getCapabilities"/>
+  </message>
+  <message name="GISWS_getCapabilitiesResponse">
+    <part element="tns:getCapabilitiesResponse" name="getCapabilitiesResponse"/>
+  </message>
+  <message name="GISWS_getFeatureResponse">
+    <part element="tns:getFeatureResponse" name="getFeatureResponse"/>
+  </message>
+  <message name="GISWS_getMap">
+    <part element="tns:getMap" name="getMap"/>
+  </message>
+  <portType name="GISWS">
+    <operation name="describeFeatureType" parameterOrder="describeFeatureType">
+      <input message="tns:GISWS_describeFeatureType"/>
+      <output message="tns:GISWS_describeFeatureTypeResponse"/>
+    </operation>
+    <operation name="getCapabilities" parameterOrder="getCapabilities">
+      <input message="tns:GISWS_getCapabilities"/>
+      <output message="tns:GISWS_getCapabilitiesResponse"/>
+    </operation>
+    <operation name="getFeature" parameterOrder="getFeature">
+      <input message="tns:GISWS_getFeature"/>
+      <output message="tns:GISWS_getFeatureResponse"/>
+    </operation>
+    <operation name="getFeatureInfo" parameterOrder="getFeatureInfo">
+      <input message="tns:GISWS_getFeatureInfo"/>
+      <output message="tns:GISWS_getFeatureInfoResponse"/>
+    </operation>
+    <operation name="getGmlObject" parameterOrder="getGmlObject">
+      <input message="tns:GISWS_getGmlObject"/>
+      <output message="tns:GISWS_getGmlObjectResponse"/>
+    </operation>
+    <operation name="getMap" parameterOrder="getMap">
+      <input message="tns:GISWS_getMap"/>
+      <output message="tns:GISWS_getMapResponse"/>
+    </operation>
+    <operation name="lockFeature" parameterOrder="lockFeature">
+      <input message="tns:GISWS_lockFeature"/>
+      <output message="tns:GISWS_lockFeatureResponse"/>
+    </operation>
+    <operation name="transaction" parameterOrder="transaction">
+      <input message="tns:GISWS_transaction"/>
+      <output message="tns:GISWS_transactionResponse"/>
+    </operation>
+  </portType>
+  <binding name="GISWSBinding" type="tns:GISWS">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <operation name="describeFeatureType">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getCapabilities">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getFeature">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getFeatureInfo">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getGmlObject">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="getMap">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="lockFeature">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+    <operation name="transaction">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
+  </binding>
+  <service name="GISWSwmsYwfsService">
+    <port binding="tns:GISWSBinding" name="GISWSPort">
+      <soap:address location="http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs"/>
+    </port>
+  </service>
+</definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:endpoint>http://localhost:8080/pge/http/pge</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="describeFeatureType" bindingOperationName="describeFeatureType" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:describeFeatureType>
+         <!--Optional:-->
+         <arg0/>
+      </sc:describeFeatureType>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/describeFeatureTypeRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getCapabilities" bindingOperationName="getCapabilities" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:getCapabilities>
+         <!--Optional:-->
+         <arg0/>
+      </sc:getCapabilities>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/getCapabilitiesRequest"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getFeature" bindingOperationName="getFeature" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:getFeature>
+         <!--Optional:-->
+         <arg0/>
+      </sc:getFeature>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/getFeatureRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getFeatureInfo" bindingOperationName="getFeatureInfo" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:getFeatureInfo>
+         <!--Optional:-->
+         <arg0/>
+      </sc:getFeatureInfo>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/getFeatureInfoRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getGmlObject" bindingOperationName="getGmlObject" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:getGmlObject>
+         <!--Optional:-->
+         <arg0/>
+      </sc:getGmlObject>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/getGmlObjectRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="getMap" bindingOperationName="getMap" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:getMap>
+         <!--Optional:-->
+         <arg0/>
+      </sc:getMap>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/getMapRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="lockFeature" bindingOperationName="lockFeature" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:lockFeature>
+         <!--Optional:-->
+         <arg0/>
+      </sc:lockFeature>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/lockFeatureRequest"/></con:call></con:operation><con:operation isOneWay="false" action="" name="transaction" bindingOperationName="transaction" type="Request-Response" inputName="" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:sc="http://sc.ctp.pge_gis.edu/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <sc:transaction>
+         <!--Optional:-->
+         <arg0/>
+      </sc:transaction>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://sc.ctp.pge_gis.edu/GISWS/transactionRequest"/></con:call></con:operation></con:interface><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/></con:soapui-project>
