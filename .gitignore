@@ -7,3 +7,11 @@ proyecto.vpp~5
 proyecto.vpp~6
 proyecto.vpp~7
 proyecto.vpp~8
+CTP/ctp-restConnector/build.xml
+CTP/ctp-restConnector/build.xml
+CTP/ctp-soapConnector/build.xml
+CTP/ctp-utils/build.xml
+*.xml
+PGE/pge-service/.classpath
+PGE/proveedor-war/.classpath
+*.xml
