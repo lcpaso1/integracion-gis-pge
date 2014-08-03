@@ -27,6 +27,9 @@ public class PGEXmlValidator implements ActionPipelineProcessor {
 	@Override
 	public Message process(Message msg) throws ActionProcessingException {
 		// Este valida el xml que sea soap, NO ES OBLIGATORIO, por ahroa no hace nada.
+		//y lo cambiamos de lugar para poder agregar mas cosas al mensaje
+		String xml = new String(msg.getBody().get().toString());
+		msg.getBody().add("xmlSoap",xml);
 		return msg;
 	}
 

@@ -47,4 +47,148 @@ public class GISParams implements Serializable {
 	private int j; //j coordinate in pixels of feature in Map CS
 	
 	// faltan parametros de los metodos de WFS
+	
+	public String getVersion() {
+		return version;
+	}
+	public void setVersion(String version) {
+		this.version = version;
+	}
+	public String getService() {
+		return service;
+	}
+	public void setService(String service) {
+		this.service = service;
+	}
+	public String getRequest() {
+		return request;
+	}
+	public void setRequest(String request) {
+		this.request = request;
+	}
+	public String getFormat() {
+		return format;
+	}
+	public void setFormat(String format) {
+		this.format = format;
+	}
+	public String getUpdateSequence() {
+		return updateSequence;
+	}
+	public void setUpdateSequence(String updateSequence) {
+		this.updateSequence = updateSequence;
+	}
+	public String getLayers() {
+		return layers;
+	}
+	public void setLayers(String layers) {
+		this.layers = layers;
+	}
+	public String getStyles() {
+		return styles;
+	}
+	public void setStyles(String styles) {
+		this.styles = styles;
+	}
+	public String getCrs() {
+		return crs;
+	}
+	public void setCrs(String crs) {
+		this.crs = crs;
+	}
+	public String getBbox() {
+		return bbox;
+	}
+	public void setBbox(String bbox) {
+		this.bbox = bbox;
+	}
+	public int getWidth() {
+		return width;
+	}
+	public void setWidth(int width) {
+		this.width = width;
+	}
+	public int getHeigth() {
+		return heigth;
+	}
+	public void setHeigth(int heigth) {
+		this.heigth = heigth;
+	}
+	public String getTransparent() {
+		return transparent;
+	}
+	public void setTransparent(String transparent) {
+		this.transparent = transparent;
+	}
+	public String getBgcolor() {
+		return bgcolor;
+	}
+	public void setBgcolor(String bgcolor) {
+		this.bgcolor = bgcolor;
+	}
+	public String getExceptions() {
+		return exceptions;
+	}
+	public void setExceptions(String exceptions) {
+		this.exceptions = exceptions;
+	}
+	public String getTime() {
+		return time;
+	}
+	public void setTime(String time) {
+		this.time = time;
+	}
+	public String getElevation() {
+		return elevation;
+	}
+	public void setElevation(String elevation) {
+		this.elevation = elevation;
+	}
+	public String getOtherSampleDimensions() {
+		return otherSampleDimensions;
+	}
+	public void setOtherSampleDimensions(String otherSampleDimensions) {
+		this.otherSampleDimensions = otherSampleDimensions;
+	}
+	public String getMapRequestPart() {
+		return mapRequestPart;
+	}
+	public void setMapRequestPart(String mapRequestPart) {
+		this.mapRequestPart = mapRequestPart;
+	}
+	public String getQueryLayers() {
+		return queryLayers;
+	}
+	public void setQueryLayers(String queryLayers) {
+		this.queryLayers = queryLayers;
+	}
+	public String getInfoFormat() {
+		return infoFormat;
+	}
+	public void setInfoFormat(String infoFormat) {
+		this.infoFormat = infoFormat;
+	}
+	public int getFeatureCount() {
+		return featureCount;
+	}
+	public void setFeatureCount(int featureCount) {
+		this.featureCount = featureCount;
+	}
+	public int getI() {
+		return i;
+	}
+	public void setI(int i) {
+		this.i = i;
+	}
+	public int getJ() {
+		return j;
+	}
+	public void setJ(int j) {
+		this.j = j;
+	}
+	
+
+	
+	
+	
 }

@@ -39,14 +39,14 @@ public class PGESOAPClient implements ActionPipelineProcessor {
 		// obtenemos el request, o sea el request http del cliente
 				HttpRequest request = HttpRequest.getRequest(msg);
 				//por ahora ese request no sirve para nada, el body del reuqest http viene cargado en el body del mensaje esb
-				String xml = new String(msg.getBody().get().toString());
+				String xml = msg.getBody().get("xmlSoap").toString();
 				System.out.println(request.getMethod());
 				System.out.println(xml); //excelente funciona!!!
 				//ahora hacemos invocacion http hacia el verdadero endpoint del webservice, o sea el proveedor.
 				
 				HttpClient httpClient = new HttpClient();
 				/* TODO esta url la debe tomar desde lo que dice el PGEcatalog */
-				PostMethod method = new PostMethod("http://localhost:8080/proveedorSOAP/WSProveedor");
+				PostMethod method = new PostMethod(msg.getBody().get("urlProvider").toString());
 				int httpStatusCode;
 				try {
 					//antes de ejecutar, ponemos en el body el xml del soap

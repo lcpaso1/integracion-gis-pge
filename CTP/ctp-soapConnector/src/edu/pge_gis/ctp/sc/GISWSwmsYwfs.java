@@ -17,6 +17,7 @@ public class GISWSwmsYwfs {
 	// response es una imagen
 	@WebMethod
 	public byte[] getMap(GISParams params){
+		System.out.println(params.getLayers());
 		return null;
 	}
 	

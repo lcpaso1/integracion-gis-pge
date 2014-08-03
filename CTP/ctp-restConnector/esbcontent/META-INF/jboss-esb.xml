@@ -36,9 +36,9 @@
 				
 				<action class="edu.pge_gis.ctp.rc.GISRestService" name="gisRest" process="process" />
 				
-				<action class="edu.pge_gis.ctp.rc.SecurityAggregator" name="gisRest" process="process" />
+				<action class="edu.pge_gis.ctp.rc.SecurityAggregator" name="sec_Aggr" process="process" />
 				
-				<action class="edu.pge_gis.ctp.rc.CTPSOAPClient" name="gisRest" process="process" />
+				<action class="edu.pge_gis.ctp.rc.CTPSOAPClient" name="soapClient" process="process" />
 				
 			</actions>
 		</service>

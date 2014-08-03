@@ -27,6 +27,11 @@ public class PGECatalog implements ActionPipelineProcessor {
 	@Override
 	public Message process(Message msg) throws ActionProcessingException {
 		// Este define el proveedor y agrega o quita cabezales ws-addressing del xml soap
+		//en base a los cabezales addressing, sacamos la url del proveedor
+		String xml = msg.getBody().get("xmlSoap").toString();
+		
+		//por ahora solo agrego una
+		msg.getBody().add("urlProvider", "http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs");
 		return msg;
 	}
 

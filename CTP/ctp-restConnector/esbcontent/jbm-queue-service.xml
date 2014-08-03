@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <server>
+<!-- 
 	<mbean code="org.jboss.jms.server.destination.QueueService"
 		name="tsig.server.destination:service=Queue,name=Aggregator_ToWS"
 		xmbean-dd="xmdesc/Queue-xmbean.xml">
@@ -21,5 +22,6 @@
 		</depends>
 		<depends>jboss.messaging:service=PostOffice</depends>
 	</mbean>
+	 -->
 </server>
 
