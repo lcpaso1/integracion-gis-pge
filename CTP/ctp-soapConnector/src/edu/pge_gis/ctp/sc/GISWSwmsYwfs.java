@@ -1,9 +1,11 @@
 package edu.pge_gis.ctp.sc;
 
+import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 @WebService(name="GISWS")
+@HandlerChain(file="soap-handlers.xml")
 public class GISWSwmsYwfs {
 	
 	private static String URLTEST = "http://localhost:8081/geoserver/integraciongispge/wms?";
