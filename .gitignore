@@ -11,7 +11,5 @@ CTP/ctp-restConnector/build.xml
 CTP/ctp-restConnector/build.xml
 CTP/ctp-soapConnector/build.xml
 CTP/ctp-utils/build.xml
-*.xml
 PGE/pge-service/.classpath
 PGE/proveedor-war/.classpath
-*.xml
