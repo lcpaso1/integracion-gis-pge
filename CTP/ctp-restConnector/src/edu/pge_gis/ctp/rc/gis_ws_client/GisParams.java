@@ -18,7 +18,7 @@ import javax.xml.bind.annotation.XmlType;
  *       &lt;sequence>
  *         &lt;element name="bbox" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="bgcolor" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
- *         &lt;element name="crs" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="srs" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="elevation" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="exceptions" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="featureCount" type="{http://www.w3.org/2001/XMLSchema}int"/>
@@ -51,7 +51,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "gisParams", propOrder = {
     "bbox",
     "bgcolor",
-    "crs",
+    "srs",
     "elevation",
     "exceptions",
     "featureCount",
@@ -77,7 +77,7 @@ public class GisParams {
 
     protected String bbox;
     protected String bgcolor;
-    protected String crs;
+    protected String srs;
     protected String elevation;
     protected String exceptions;
     protected int featureCount;
@@ -155,8 +155,8 @@ public class GisParams {
      *     {@link String }
      *     
      */
-    public String getCrs() {
-        return crs;
+    public String getSrs() {
+        return srs;
     }
 
     /**
@@ -167,8 +167,8 @@ public class GisParams {
      *     {@link String }
      *     
      */
-    public void setCrs(String value) {
-        this.crs = value;
+    public void setSrs(String value) {
+        this.srs = value;
     }
 
     /**

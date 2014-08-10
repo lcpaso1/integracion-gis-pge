@@ -47,14 +47,11 @@ public class GISRestService implements ActionPipelineProcessor {
 	}
 
 	private GisParams parsearParametros(HttpRequest request) {
-		GisParams params = new GisParams();
 		System.out.println(request.getQueryParams());
-		params.setService(request.getQueryParams().get("service")[0].toString());
-		params.setLayers(request.getQueryParams().get("layers")[0].toString());
-		params.setWidth(Integer.parseInt(request.getQueryParams().get("width")[0].toString()));
-		params.setHeigth(Integer.parseInt(request.getQueryParams().get("height")[0].toString()));
-		//etc....
-		return params;
+		if (request.getQueryParams().get("request")[0].toString().equalsIgnoreCase("GetMap"))
+			return getMap(request);
+		else
+			return null;
 	}
 	@Override
 	public void processException(Message arg0, Throwable arg1) {
@@ -66,6 +63,39 @@ public class GISRestService implements ActionPipelineProcessor {
 	public void processSuccess(Message arg0) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	private GisParams getMap(HttpRequest request){
+		GisParams params = new GisParams();
+		//obligatorios: service, version, request, layers, styles, srs, bbox, width, heigth, format
+		params.setService(request.getQueryParams().get("service")[0].toString());
+		params.setVersion(request.getQueryParams().get("version")[0].toString());
+		params.setRequest("GetMap");
+		params.setLayers(request.getQueryParams().get("layers")[0].toString());
+		params.setStyles(request.getQueryParams().get("styles")[0].toString());
+		params.setSrs(request.getQueryParams().get("srs")[0].toString());
+		params.setBbox(request.getQueryParams().get("bbox")[0].toString());
+		params.setWidth(Integer.parseInt(request.getQueryParams().get("width")[0].toString()));
+		params.setHeigth(Integer.parseInt(request.getQueryParams().get("height")[0].toString()));
+		params.setFormat(request.getQueryParams().get("format")[0].toString());
+		
+		//opcionales: transparent, bgcolor, exceptions, time, elevation, otherSampleDimensions
+		if (request.getQueryParams().get("transparent") != null)
+			params.setTransparent(request.getQueryParams().get("transparent")[0].toString());
+		
+		if (request.getQueryParams().get("bgcolor") != null)
+			params.setBgcolor(request.getQueryParams().get("bgcolor")[0].toString());
+		
+		if (request.getQueryParams().get("exceptions") != null)
+			params.setExceptions(request.getQueryParams().get("exceptions")[0].toString());
+		
+		if (request.getQueryParams().get("time") != null)
+			params.setTime(request.getQueryParams().get("time")[0].toString());
+		
+		if (request.getQueryParams().get("elevation") != null)
+			params.setElevation(request.getQueryParams().get("elevation")[0].toString());
+		
+		return params;
 	}
 
 }
