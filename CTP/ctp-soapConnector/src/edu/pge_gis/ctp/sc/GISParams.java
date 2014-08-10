@@ -13,7 +13,7 @@ public class GISParams implements Serializable {
 	 */
 	
 	/** getMap
-	 * 	obligatorios: version, request, layers, styles, crs, bbox, width, heigth, format 
+	 * 	obligatorios: service, version, request, layers, styles, srs, bbox, width, heigth, format 
 	 * 	opcionales: transparent, bgcolor, exceptions, time, elevation, otherSampleDimensions
 	 */
 	
@@ -29,8 +29,8 @@ public class GISParams implements Serializable {
 	private String updateSequence; //??????
 	private String layers;  //comma-separated list of one or more valid layer names
 	private String styles; //comma-separated list of one or more valid style names
-	private String crs; //ej: EPSG:31370
-	private String bbox; //ej: minx,miny,maxx,maxy bounding box corners (lower left, upper rigth) in CRS units
+	private String srs; //ej: EPSG:31370
+	private String bbox; //ej: minx,miny,maxx,maxy bounding box corners (lower left, upper rigth) in SRS units
 	private int width; //width in pixels of map picture
 	private int heigth; //heigth in pixels of map picture
 	private String transparent; //los string "TRUE" o "FALSE"
@@ -90,11 +90,11 @@ public class GISParams implements Serializable {
 	public void setStyles(String styles) {
 		this.styles = styles;
 	}
-	public String getCrs() {
-		return crs;
+	public String getSrs() {
+		return srs;
 	}
-	public void setCrs(String crs) {
-		this.crs = crs;
+	public void setSrs(String srs) {
+		this.srs = srs;
 	}
 	public String getBbox() {
 		return bbox;
