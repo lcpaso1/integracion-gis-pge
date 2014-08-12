@@ -14,7 +14,25 @@ public class GISWSwmsYwfs {
 	// response es un documento XML
 	@WebMethod
 	public String getCapabilities(GISParams params){
-		return null;
+		StringBuffer url = new StringBuffer(URLTEST);
+		
+		// obligatorios: service, request 
+		url.append("service="); url.append(params.getService()); url.append("&");
+		url.append("request="); url.append(params.getRequest());
+		
+		// opcionales: version, format, updateSequence
+		if ((params.getVersion() != null) && !params.getVersion().equals("")){
+			url.append("&version="); url.append(params.getVersion());
+		}
+		if ((params.getFormat() != null) && !params.getFormat().equals("")){
+			url.append("&format="); url.append(params.getFormat());
+		}
+		if ((params.getUpdateSequence() != null) && !params.getUpdateSequence().equals("")){
+			url.append("&updatesequence="); url.append(params.getUpdateSequence());
+		}
+		
+		RESTInvoker invoker = new RESTInvoker();
+		return invoker.invokeRestService(url.toString());
 	}
 	
 	// response es una imagen
@@ -42,19 +60,15 @@ public class GISWSwmsYwfs {
 		if ((params.getTransparent() != null) && !params.getTransparent().equals("")){
 			url.append("&transparent="); url.append(params.getTransparent());
 		}
-			
 		if ((params.getBgcolor() != null) && !params.getBgcolor().equals("")){
 			url.append("&bgcolor="); url.append(params.getBgcolor());
 		}
-			
 		if ((params.getExceptions() != null) && !params.getExceptions().equals("")){
 			url.append("&exceptions="); url.append(params.getExceptions());
 		}
-			
 		if ((params.getTime() != null) && !params.getTime().equals("")){
 			url.append("&time="); url.append(params.getTime());
 		}
-			
 		if ((params.getElevation() != null) && !params.getElevation().equals("")){
 			url.append("&elevation="); url.append(params.getElevation());
 		}
@@ -67,6 +81,24 @@ public class GISWSwmsYwfs {
 	@WebMethod
 	public String getFeatureInfo(GISParams params){
 		StringBuffer url = new StringBuffer(URLTEST);
+		
+		// obligatorios: version, request, mapRequestPart, queryLayers, infoFormat, i, j
+		url.append("version="); url.append(params.getVersion()); url.append("&");
+		url.append("request="); url.append(params.getRequest()); url.append("&");
+		url.append("maprequestpart="); url.append(params.getMapRequestPart()); url.append("&");
+		url.append("querylayers="); url.append(params.getQueryLayers()); url.append("&");
+		url.append("infoformat="); url.append(params.getInfoFormat()); url.append("&");
+		url.append("i="); url.append(params.getI()); url.append("&");
+		url.append("j="); url.append(params.getJ());
+		
+		// opcionales: featureCount, exceptions
+		if (params.getFeatureCount() != 0){
+			url.append("&featurecount="); url.append(params.getFeatureCount());
+		}
+		if ((params.getExceptions() != null) && !params.getExceptions().equals("")){
+			url.append("&exceptions="); url.append(params.getExceptions());
+		}
+		
 		RESTInvoker invoker = new RESTInvoker();
 		return invoker.invokeRestService(url.toString());
 	}
