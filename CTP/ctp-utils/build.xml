@@ -1,4 +1,4 @@
-<project name="ctp-utils" default="esb" basedir=".">
+<project name="ctp-utils" default="jar" basedir=".">
 
 	<description> 
 			${ant.project.name}
@@ -7,7 +7,7 @@
 				
 		
 		
-	    <target name="esb">
+	    <target name="jar">
 	        <!-- Overriden from the target of the same name in base-build.xml. -->
 	        <!-- Called by the "deploy" target.  Don't call directly!! -->
 
