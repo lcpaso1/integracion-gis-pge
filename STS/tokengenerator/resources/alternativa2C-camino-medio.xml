@@ -1,0 +1,57 @@
+<!-- supertoken alt3 (camino medio): alternativa con subject=rolOrquestacionX, y con delegate intermediarioOrquestaciones-->
+<saml2:Assertion xmlns:saml2="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:del="urn:oasis:names:tc:SAML:2.0:conditions:delegation" Version="2.0">
+    <saml2:Issuer>urn:agesic:sts</saml2:Issuer>
+    <!--firma del STS de la PGE -->
+    <ds:Signature xmlns:ds="http://www.w3.org/2000/09/xmldsig#">...</ds:Signature>
+    <saml2:Subject>
+        <saml2:NameID>CN=rolOrquestacionCompras, O=motorOrquestaciones, O=agesic</saml2:NameID>
+        <saml2:SubjectConfirmation Method="urn:oasis:names:tc:SAML:2.0:cm:sender-vouches">
+            <saml2:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">CN=intermediarioOrquestaciones, O=agesic</saml2:NameID>
+            <!-- para proteger el super token, en lugar del address podria usarse el token SAML auxiliar T1 -->
+            <saml2:SubjectConfirmationData Address="192.168.10.10"/> 
+        </saml2:SubjectConfirmation>
+    </saml2:Subject>
+    <saml2:Conditions>
+        <saml2:AudienceRestriction>
+            <saml2:Audience>http://pge/ServicioA</saml2:Audience>
+            <saml2:Audience>http://pge/ServicioB</saml2:Audience>
+            <saml2:Audience>http://pge/ServicioC</saml2:Audience>
+        </saml2:AudienceRestriction>
+        <saml2:Condition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="del:DelegationRestrictionType">
+            <del:Delegate>
+                <saml2:NameID Format="urn:oasis:names:tc:SAML:2.0:nameid-format:entity">CN=intermediarioOrquestaciones, O=agesic</saml2:NameID>
+            </del:Delegate>
+        </saml2:Condition>
+    </saml2:Conditions>
+    <saml2:AttributeStatement>
+        <saml2:Attribute Name="User">
+            <saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">JuanPedroElDoctor</saml2:AttributeValue>
+        </saml2:Attribute>
+        <!-- propago en un atributo el rol original del cliente-->
+	<saml2:Attribute Name="ConsumerRole">
+            <saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">CN=rolDoctor,O=BPS</saml2:AttributeValue>
+        </saml2:Attribute>        
+        <saml2:Attribute Name="PolicyName">
+            <saml2:AttributeValue xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:type="xs:string">urn:agesic:intermediarioOrquestaciones</saml2:AttributeValue>
+        </saml2:Attribute>
+    </saml2:AttributeStatement>
+</saml2:Assertion>
+
+<!--
+    ctx.getIssuer
+    ctx.getSubject
+  
+-->
+
+<!--
+se solicita con un Token intermedio T1, generado por el intermediario de procesos
+en el RST se solicita Token OnBehalfOf(T1)
+
+T1: 
+Subject CN=rolOrquestacionCompras, O=motorOrquestaciones, O=agesic
+Attribute userName JuanPedroElDoctor
+Attribute PolicyName urn:intermediarioOrquestaciones
+Attribute consumerRole CN=rolDoctor,O=BPS 
+Firma del intermediarioOrquestaciones
+
+ -->

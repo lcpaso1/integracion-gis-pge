@@ -1,0 +1,35 @@
+<project name="ctp-utils" default="esb" basedir=".">
+
+	<description> 
+			${ant.project.name}
+			${line.separator}
+		</description>
+				
+		
+		
+	    <target name="esb">
+	        <!-- Overriden from the target of the same name in base-build.xml. -->
+	        <!-- Called by the "deploy" target.  Don't call directly!! -->
+
+	        <!-- Build the webservice... -->
+	    	<war destfile="C:/jbossesb-server-4.9/server/default/lib/${ant.project.name}.jar">
+	    		<fileset dir="${basedir}/bin">
+	    			<include name="**/*" />
+	    		</fileset>
+	    	</war>
+	    	<!--
+	        <war warfile="D:/ProyectoDeGrado/jbossesb-server-4.12/server/default/deploy/${ant.project.name}.esb"
+	             webxml="${basedir}/esbcontent/WEB-INF/web.xml">
+				<webinf dir="${basedir}/esbcontent/WEB-INF">
+	                <include name="jboss-web.xml"/>
+	            </webinf>
+	            <fileset dir="${basedir}/esbcontent/WEB-INF/view">
+	                <include name="**/*"/>
+	            </fileset>
+	        </war>
+	        -->
+	    </target>
+	
+	
+	
+</project>

@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
+
+    
+    <bean id="chains" class="uy.edu.fing.pgrad.sts.server.util.TrustChainContainer">
+        
+        <property name="stsName" value="STS-PGE" />
+        <property name="timeOut" value="900" />  <!-- el valor es en sgundos -->
+        <property name="keyStoreInfo" ref="storebean-pge" />
+
+
+        <property name="chains">
+            <list>
+
+                <!-- ******************************************************** -->
+                <!-- CADENA TOKEN ORGANIZMO --> 
+                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+
+                    <property name="name" value="chain-token-org" />
+
+                    <property name="keyStoreInfo" ref="storebean-pge" />
+                    
+                    <property name="appliesTo" value="http://pge/sts" />
+                    <property name="tokenType" ref="saml1_tokenType" />
+                    <property name="issuer" value="urn:simpletoken" />
+                    <property name="rstrIssuer" value="STS-BPS" />
+
+                    <property name="mappinglist" >
+                        <list>
+                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleORG" />
+                        </list>
+                    </property>
+
+                    <property name="tokenProvider" >
+                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                    </property> 
+
+                </bean>                                
+
+                                
+                <!-- ******************************************************** -->
+                <!-- CADENA TOKEN PGE --> 
+                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+
+                    <property name="name" value="chain-token-pge" />
+
+                    <property name="tokenType" ref="saml1_tokenType" />
+                    <property name="issuer" value="urn:tokensimple" />
+
+                    <property name="mappinglist" >
+                        <list>
+                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleBase2Context" />
+                        </list>
+                    </property>
+
+                    <property name="tokenProvider" >
+                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                    </property> 
+
+                </bean>                                
+
+
+                <!-- ******************************************************** -->
+                <!-- CADENA TOKEN PGE (INTERMEDIARIO PROCESOS-TEM) --> 
+                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+
+                    <property name="name" value="chain-token-pge-intermediarioProcesos-tem" />
+                    <property name="tokenType" ref="saml1_tokenType" />
+                    <property name="issuer" value="urn:intermediarioProcesos" />
+
+                    <property name="mappinglist" >
+                        <list>
+                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleBase2Context" />
+                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModulePolicyName" />
+                        </list>
+                    </property>
+
+                    <property name="tokenProvider" >
+                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                    </property> 
+
+                </bean>                                
+
+
+                <!-- ******************************************************** -->
+                <!-- CADENA TOKEN GENERATOR --> 
+                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+
+                    <property name="name" value="chain-token-generator" />
+                    <property name="keyStoreInfo" ref="storebean-pge-tokengenerator" />
+                    <property name="appliesTo" value="http://pge/sts" />
+                    <property name="tokenType" ref="saml1_tokenType" />
+                    <property name="issuer" value="urn:intermediarioOrquestaciones:tokenGenerator" />
+
+                    <property name="tokenProvider" >
+                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                    </property> 
+
+                </bean>                                
+
+
+                <!-- ******************************************************** -->
+                <!-- CADENA TOKEN 1TPS-MW --> 
+                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+
+                    <property name="name" value="chain-1tps-mw" />
+                    <property name="tokenType" ref="saml2_tokenType" />
+                    <property name="issuer" value="urn:intermediarioOrquestaciones:tokenGenerator" />
+
+                    
+                    <property name="mappinglist" >
+                        <list>
+                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleBase2Context" />
+                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleDelegateFromTokenSignature" />
+                        </list>
+                    </property>
+
+
+                    <property name="tokenValidator">
+                        <bean class="uy.edu.fing.pgrad.sts.server.validator.TokenValidatorImpl" />
+                    </property>
+                        
+                    
+                    <property name="tokenProvider" >
+                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAML2TokenProvider" />
+                    </property> 
+
+                </bean>                                
+                                
+                
+                
+                
+                
+                
+            </list>
+        </property>
+    </bean>
+    
+    <!-- informacion del key store para firma de tokens -->
+    <bean id="storebean-pge" class="uy.gub.agesic.beans.StoreBean">
+        <property name="alias" value="stskey1" /> 
+        <property name="storeFilePath" value="/etc/mystsconfig/stskeystore1" /> 
+        <property name="storePwd" value="changeit" /> 
+    </bean>
+
+    <bean id="storebean-pge-tokengenerator" class="uy.gub.agesic.beans.StoreBean">
+        <property name="alias" value="pge_tokengen" /> 
+        <property name="storeFilePath" value="/etc/mystsconfig/pge_tokengen.keystore" /> 
+        <property name="storePwd" value="cambiar" /> 
+    </bean>
+    
+    <bean name="saml1_tokenType" class="java.lang.String">
+        <constructor-arg value="http://docs.oasis-open.org/wss/oasis-wss-saml-token-profile-1.1#SAMLV1.1" />
+    </bean>
+
+    <bean name="saml2_tokenType" class="java.lang.String">
+        <constructor-arg value="http://docs.oasis-open.org/wss/oasis-wss-saml-token-profile-1.1#SAMLV2.0" />
+    </bean>
+    
+    
+    
+    
+</beans>
