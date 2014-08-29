@@ -12,7 +12,7 @@
 	        <!-- Called by the "deploy" target.  Don't call directly!! -->
 
 	        <!-- Build the webservice... -->
-	        <war warfile="D:/ProyectoDeGrado/jbossesb-server-4.9/server/default/deploy/${ant.project.name}.war"
+	        <war warfile="C:/jbossesb-server-4.9/server/default/deploy/${ant.project.name}.war"
 	             webxml="${basedir}/esbcontent/WEB-INF/web.xml">
 	        	<classes dir="${basedir}/build/classes" />
 				<webinf dir="${basedir}/esbcontent/WEB-INF">

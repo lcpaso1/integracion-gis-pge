@@ -13,3 +13,4 @@ CTP/ctp-soapConnector/build.xml
 CTP/ctp-utils/build.xml
 PGE/pge-service/.classpath
 PGE/proveedor-war/.classpath
+*.xml
