@@ -4,5 +4,4 @@ class MetodoController {
 
 	static scaffold = true
 	
-    def index() { }
 }
