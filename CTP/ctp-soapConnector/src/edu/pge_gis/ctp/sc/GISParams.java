@@ -22,9 +22,7 @@ public class GISParams implements Serializable {
 	 * 	opcionales: featureCount, exceptions
 	 */
 	
-	private String version; //ej: 1.3.0
-	private String service; //ejs: WMS WFS
-	private String request; //ejs: getCapabilities getMap getFeatureInfo
+	/*private String version; //ej: 1.3.0
 	private String format; //MIME_type: text/xml
 	private String updateSequence; //??????
 	private String layers;  //comma-separated list of one or more valid layer names
@@ -44,16 +42,12 @@ public class GISParams implements Serializable {
 	private String infoFormat; //??????
 	private int featureCount; //??????
 	private int i; //i coordinate in pixels of feature in Map CS
-	private int j; //j coordinate in pixels of feature in Map CS
+	private int j; //j coordinate in pixels of feature in Map CS*/
 	
-	// faltan parametros de los metodos de WFS
+	private String params;
+	private String service; //ejs: WMS WFS
+	private String request; //ejs: getCapabilities getMap getFeatureInfo
 	
-	public String getVersion() {
-		return version;
-	}
-	public void setVersion(String version) {
-		this.version = version;
-	}
 	public String getService() {
 		return service;
 	}
@@ -65,6 +59,19 @@ public class GISParams implements Serializable {
 	}
 	public void setRequest(String request) {
 		this.request = request;
+	}
+	public String getParams() {
+		return params;
+	}
+	public void setParams(String params) {
+		this.params = params;
+	}
+		
+	/*public String getVersion() {
+		return version;
+	}
+	public void setVersion(String version) {
+		this.version = version;
 	}
 	public String getFormat() {
 		return format;
@@ -186,7 +193,7 @@ public class GISParams implements Serializable {
 	public void setJ(int j) {
 		this.j = j;
 	}
-	
+	*/
 
 	
 	

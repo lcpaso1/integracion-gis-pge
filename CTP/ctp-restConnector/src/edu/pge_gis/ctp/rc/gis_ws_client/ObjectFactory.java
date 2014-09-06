@@ -49,115 +49,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCapabilitiesResponse }
-     * 
-     */
-    public GetCapabilitiesResponse createGetCapabilitiesResponse() {
-        return new GetCapabilitiesResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetMapResponse }
-     * 
-     */
-    public GetMapResponse createGetMapResponse() {
-        return new GetMapResponse();
-    }
-
-    /**
-     * Create an instance of {@link LockFeatureResponse }
-     * 
-     */
-    public LockFeatureResponse createLockFeatureResponse() {
-        return new LockFeatureResponse();
-    }
-
-    /**
      * Create an instance of {@link GetMap }
      * 
      */
     public GetMap createGetMap() {
         return new GetMap();
-    }
-
-    /**
-     * Create an instance of {@link GetCapabilities }
-     * 
-     */
-    public GetCapabilities createGetCapabilities() {
-        return new GetCapabilities();
-    }
-
-    /**
-     * Create an instance of {@link Transaction }
-     * 
-     */
-    public Transaction createTransaction() {
-        return new Transaction();
-    }
-
-    /**
-     * Create an instance of {@link GetFeatureInfoResponse }
-     * 
-     */
-    public GetFeatureInfoResponse createGetFeatureInfoResponse() {
-        return new GetFeatureInfoResponse();
-    }
-
-    /**
-     * Create an instance of {@link TransactionResponse }
-     * 
-     */
-    public TransactionResponse createTransactionResponse() {
-        return new TransactionResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetFeatureResponse }
-     * 
-     */
-    public GetFeatureResponse createGetFeatureResponse() {
-        return new GetFeatureResponse();
-    }
-
-    /**
-     * Create an instance of {@link LockFeature }
-     * 
-     */
-    public LockFeature createLockFeature() {
-        return new LockFeature();
-    }
-
-    /**
-     * Create an instance of {@link GetFeatureInfo }
-     * 
-     */
-    public GetFeatureInfo createGetFeatureInfo() {
-        return new GetFeatureInfo();
-    }
-
-    /**
-     * Create an instance of {@link GetFeature }
-     * 
-     */
-    public GetFeature createGetFeature() {
-        return new GetFeature();
-    }
-
-    /**
-     * Create an instance of {@link GetGmlObject }
-     * 
-     */
-    public GetGmlObject createGetGmlObject() {
-        return new GetGmlObject();
-    }
-
-    /**
-     * Create an instance of {@link GisParams }
-     * 
-     */
-    public GisParams createGisParams() {
-        return new GisParams();
     }
 
     /**
@@ -169,11 +65,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetGmlObjectResponse }
+     * Create an instance of {@link GetCapabilities }
      * 
      */
-    public GetGmlObjectResponse createGetGmlObjectResponse() {
-        return new GetGmlObjectResponse();
+    public GetCapabilities createGetCapabilities() {
+        return new GetCapabilities();
+    }
+
+    /**
+     * Create an instance of {@link GetMapResponse }
+     * 
+     */
+    public GetMapResponse createGetMapResponse() {
+        return new GetMapResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetFeature }
+     * 
+     */
+    public GetFeature createGetFeature() {
+        return new GetFeature();
+    }
+
+    /**
+     * Create an instance of {@link GetFeatureResponse }
+     * 
+     */
+    public GetFeatureResponse createGetFeatureResponse() {
+        return new GetFeatureResponse();
+    }
+
+    /**
+     * Create an instance of {@link Transaction }
+     * 
+     */
+    public Transaction createTransaction() {
+        return new Transaction();
+    }
+
+    /**
+     * Create an instance of {@link GetFeatureInfo }
+     * 
+     */
+    public GetFeatureInfo createGetFeatureInfo() {
+        return new GetFeatureInfo();
     }
 
     /**
@@ -182,6 +118,70 @@ public class ObjectFactory {
      */
     public DescribeFeatureType createDescribeFeatureType() {
         return new DescribeFeatureType();
+    }
+
+    /**
+     * Create an instance of {@link TransactionResponse }
+     * 
+     */
+    public TransactionResponse createTransactionResponse() {
+        return new TransactionResponse();
+    }
+
+    /**
+     * Create an instance of {@link LockFeature }
+     * 
+     */
+    public LockFeature createLockFeature() {
+        return new LockFeature();
+    }
+
+    /**
+     * Create an instance of {@link GetCapabilitiesResponse }
+     * 
+     */
+    public GetCapabilitiesResponse createGetCapabilitiesResponse() {
+        return new GetCapabilitiesResponse();
+    }
+
+    /**
+     * Create an instance of {@link GisParams }
+     * 
+     */
+    public GisParams createGisParams() {
+        return new GisParams();
+    }
+
+    /**
+     * Create an instance of {@link GetGmlObject }
+     * 
+     */
+    public GetGmlObject createGetGmlObject() {
+        return new GetGmlObject();
+    }
+
+    /**
+     * Create an instance of {@link LockFeatureResponse }
+     * 
+     */
+    public LockFeatureResponse createLockFeatureResponse() {
+        return new LockFeatureResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetFeatureInfoResponse }
+     * 
+     */
+    public GetFeatureInfoResponse createGetFeatureInfoResponse() {
+        return new GetFeatureInfoResponse();
+    }
+
+    /**
+     * Create an instance of {@link GetGmlObjectResponse }
+     * 
+     */
+    public GetGmlObjectResponse createGetGmlObjectResponse() {
+        return new GetGmlObjectResponse();
     }
 
     /**

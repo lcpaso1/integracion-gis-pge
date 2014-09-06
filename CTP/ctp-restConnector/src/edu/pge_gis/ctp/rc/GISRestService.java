@@ -32,6 +32,8 @@ public class GISRestService implements ActionPipelineProcessor {
 	@Override
 	public Message process(Message msg) throws ActionProcessingException {
 		// Este toma el request http y carga los parametros en el mensaje para usarlos a posteriori
+		// obtener ip, sevicio, metodo
+		// to=dir logica, action=metodo a partir de lo anterior 
 		HttpRequest request = HttpRequest.getRequest(msg);
 		GisParams params = parsearParametros(request);
 		
@@ -54,7 +56,16 @@ public class GISRestService implements ActionPipelineProcessor {
 			return getCapabilities(request);
 		else if (request.getQueryParams().get("request")[0].toString().equalsIgnoreCase("GetFeatureInfo"))
 			return getFeatureInfo(request);
-		
+		else if (request.getQueryParams().get("request")[0].toString().equalsIgnoreCase("DescribeFeatureType"))
+			return describeFeatureType(request);
+		else if (request.getQueryParams().get("request")[0].toString().equalsIgnoreCase("GetFeature"))
+			return getFeature(request);
+		else if (request.getQueryParams().get("request")[0].toString().equalsIgnoreCase("GetGmlObject"))
+			return getGmlObject(request);
+		else if (request.getQueryParams().get("request")[0].toString().equalsIgnoreCase("Transaction"))
+			return transaction(request);
+		else if (request.getQueryParams().get("request")[0].toString().equalsIgnoreCase("LockFeature"))
+			return lockFeature(request);
 		else
 			return null;
 	}
@@ -70,83 +81,60 @@ public class GISRestService implements ActionPipelineProcessor {
 
 	}
 	
-	private GisParams getMap(HttpRequest request){
+	private GisParams createParams(String service, String method, String parameters){
 		GisParams params = new GisParams();
-		
-		//obligatorios: service, version, request, layers, styles, srs, bbox, width, heigth, format
-		params.setService(request.getQueryParams().get("service")[0].toString());
-		params.setVersion(request.getQueryParams().get("version")[0].toString());
-		params.setRequest("GetMap");
-		params.setLayers(request.getQueryParams().get("layers")[0].toString());
-		params.setStyles(request.getQueryParams().get("styles")[0].toString());
-		params.setSrs(request.getQueryParams().get("srs")[0].toString());
-		params.setBbox(request.getQueryParams().get("bbox")[0].toString());
-		params.setWidth(Integer.parseInt(request.getQueryParams().get("width")[0].toString()));
-		params.setHeigth(Integer.parseInt(request.getQueryParams().get("height")[0].toString()));
-		params.setFormat(request.getQueryParams().get("format")[0].toString());
-		
-		//opcionales: transparent, bgcolor, exceptions, time, elevation, otherSampleDimensions
-		if (request.getQueryParams().get("transparent") != null){
-			params.setTransparent(request.getQueryParams().get("transparent")[0].toString());
-		}
-		if (request.getQueryParams().get("bgcolor") != null){
-			params.setBgcolor(request.getQueryParams().get("bgcolor")[0].toString());
-		}
-		if (request.getQueryParams().get("exceptions") != null){
-			params.setExceptions(request.getQueryParams().get("exceptions")[0].toString());
-		}
-		if (request.getQueryParams().get("time") != null){
-			params.setTime(request.getQueryParams().get("time")[0].toString());
-		}
-		if (request.getQueryParams().get("elevation") != null){
-			params.setElevation(request.getQueryParams().get("elevation")[0].toString());
-		}
+		params.setRequest(method);
+		params.setService(service);
+		params.setParams(parameters);
 		
 		return params;
+	}
+	
+	private GisParams getMap(HttpRequest request){
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"GetMap", 
+				request.getQueryString());
 	}
 	
 	private GisParams getCapabilities(HttpRequest request){
-		GisParams params = new GisParams();
-		
-		// obligatorios: service, request
-		params.setService(request.getQueryParams().get("service")[0].toString());
-		params.setRequest("GetCapabilities");
-				
-		// opcionales: version, format, updateSequence
-		if (request.getQueryParams().get("version") != null){
-			params.setVersion(request.getQueryParams().get("version")[0].toString());
-		}
-		if (request.getQueryParams().get("format") != null){
-			params.setFormat(request.getQueryParams().get("format")[0].toString());
-		}
-		if (request.getQueryParams().get("updatesequence") != null){
-			params.setUpdateSequence(request.getQueryParams().get("updatesequence")[0].toString());
-		}
-		
-		return params;
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"GetCapabilities", 
+				request.getQueryString());
 	}
 	
 	private GisParams getFeatureInfo(HttpRequest request){
-		GisParams params = new GisParams();
-		
-		// obligatorios: version, request, mapRequestPart, queryLayers, infoFormat, i, j
-		params.setVersion(request.getQueryParams().get("version")[0].toString());
-		params.setRequest("GetFeatureInfo");
-		params.setMapRequestPart(request.getQueryParams().get("maprequestpart")[0].toString());
-		params.setQueryLayers(request.getQueryParams().get("querylayers")[0].toString());
-		params.setInfoFormat(request.getQueryParams().get("infoformat")[0].toString());
-		params.setI(Integer.parseInt(request.getQueryParams().get("i")[0].toString()));
-		params.setJ(Integer.parseInt(request.getQueryParams().get("j")[0].toString()));
-		
-		// opcionales: featureCount, exceptions
-		if (request.getQueryParams().get("featurecount") != null){
-			params.setFeatureCount(Integer.parseInt(request.getQueryParams().get("version")[0].toString()));
-		}
-		if (request.getQueryParams().get("exceptions") != null){
-			params.setExceptions(request.getQueryParams().get("exceptions")[0].toString());
-		}
-		
-		return params;
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"GetFeatureInfo", 
+				request.getQueryString());
+	}
+	
+	private GisParams describeFeatureType(HttpRequest request){
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"DescribeFeatureType", 
+				request.getQueryString());
 	}
 
+	private GisParams getFeature(HttpRequest request){
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"GetFeature", 
+				request.getQueryString());
+	}
+	
+	private GisParams getGmlObject(HttpRequest request){
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"GetGmlObject", 
+				request.getQueryString());
+	}
+	
+	private GisParams transaction(HttpRequest request){
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"Transaction", 
+				request.getQueryString());
+	}
+	
+	private GisParams lockFeature(HttpRequest request){
+		return createParams(request.getQueryParams().get("service")[0].toString(), 
+				"LockFeature", 
+				request.getQueryString());
+	}
 }

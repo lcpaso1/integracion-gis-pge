@@ -64,7 +64,11 @@ public class ClienteHttp {
 			int httpStatusCode = httpClient.executeMethod(method);
 			assert (httpStatusCode == 200 || httpStatusCode == 204);
 			//logHTTPStatusCode(httpStatusCode);
-			return method.getResponseBody();
+			if(method.getResponseHeader("Content-Type").getValue().equals("image/png"))
+				return method.getResponseBody();
+			
+			throw new Exception(new String(IOUtils.toByteArray(method.getResponseBodyAsStream()),
+					method.getResponseCharSet()));
 
 		} catch (Exception e) {
 			e.printStackTrace();
