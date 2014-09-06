@@ -1,6 +1,5 @@
 package edu.pge_gis.ctp.sc;
 
-import edu.pge_gis.ctp.sc.exceptions.GISException;
 import edu.pge_gis.utils.ClienteHttp;
 
 public class RESTInvoker {

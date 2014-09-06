@@ -4,8 +4,6 @@ import javax.jws.HandlerChain;
 import javax.jws.WebMethod;
 import javax.jws.WebService;
 
-import edu.pge_gis.ctp.sc.exceptions.GISException;
-
 @WebService(name="GISWS")
 @HandlerChain(file="soap-handlers.xml")
 public class GISWSwmsYwfs {
