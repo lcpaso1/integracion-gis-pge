@@ -26,6 +26,26 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 SET search_path = public, pg_catalog;
 
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: conf_seguridad_publica; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE conf_seguridad_publica (
+    id bigint NOT NULL,
+    version bigint NOT NULL,
+    perfil character varying(255) NOT NULL,
+    rol character varying(255) NOT NULL,
+    servicio_gis_id bigint,
+    usuario character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.conf_seguridad_publica OWNER TO postgres;
+
 --
 -- Name: hibernate_sequence; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -40,10 +60,6 @@ CREATE SEQUENCE hibernate_sequence
 
 ALTER TABLE public.hibernate_sequence OWNER TO postgres;
 
-SET default_tablespace = '';
-
-SET default_with_oids = false;
-
 --
 -- Name: metodo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
@@ -51,7 +67,9 @@ SET default_with_oids = false;
 CREATE TABLE metodo (
     id bigint NOT NULL,
     version bigint NOT NULL,
-    nombre character varying(255) NOT NULL
+    nombre character varying(255) NOT NULL,
+    nombre_xml character varying(255) NOT NULL,
+    seguridad_id bigint NOT NULL
 );
 
 
@@ -109,6 +127,25 @@ CREATE TABLE rol (
 ALTER TABLE public.rol OWNER TO postgres;
 
 --
+-- Name: seguridad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE seguridad (
+    id bigint NOT NULL,
+    version bigint NOT NULL,
+    ip character varying(255) NOT NULL,
+    password character varying(255) NOT NULL,
+    perfil character varying(255) NOT NULL,
+    roles character varying(255) NOT NULL,
+    servicio_gis_id bigint,
+    token character varying(255) NOT NULL,
+    usuario character varying(255) NOT NULL
+);
+
+
+ALTER TABLE public.seguridad OWNER TO postgres;
+
+--
 -- Name: servicio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -124,6 +161,22 @@ CREATE TABLE servicio (
 ALTER TABLE public.servicio OWNER TO postgres;
 
 --
+-- Name: servicio_gis; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
+--
+
+CREATE TABLE servicio_gis (
+    id bigint NOT NULL,
+    version bigint NOT NULL,
+    direccion_logica character varying(255) NOT NULL,
+    direccion_proxy character varying(255) NOT NULL,
+    nombre character varying(255) NOT NULL,
+    publico boolean NOT NULL
+);
+
+
+ALTER TABLE public.servicio_gis OWNER TO postgres;
+
+--
 -- Name: servicio_metodo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -136,19 +189,25 @@ CREATE TABLE servicio_metodo (
 ALTER TABLE public.servicio_metodo OWNER TO postgres;
 
 --
+-- Data for Name: conf_seguridad_publica; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY conf_seguridad_publica (id, version, perfil, rol, servicio_gis_id, usuario) FROM stdin;
+\.
+
+
+--
 -- Name: hibernate_sequence; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('hibernate_sequence', 10, true);
+SELECT pg_catalog.setval('hibernate_sequence', 1, true);
 
 
 --
 -- Data for Name: metodo; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY metodo (id, version, nombre) FROM stdin;
-7	1	Met1XXXX
-9	0	madm_1
+COPY metodo (id, version, nombre, nombre_xml, seguridad_id) FROM stdin;
 \.
 
 
@@ -170,10 +229,6 @@ COPY metodo_perfil (metodo_perfiles_id, perfil_id) FROM stdin;
 --
 
 COPY perfil (id, version, nombre, rol_id) FROM stdin;
-4	0	Perf1	2
-5	0	Admin1	1
-6	0	Admin2	2
-8	0	perfrol2	2
 \.
 
 
@@ -190,9 +245,15 @@ COPY perfil_metodos (metodo_id, perfil_id) FROM stdin;
 --
 
 COPY rol (id, version, nombre) FROM stdin;
-1	0	rol1
-2	0	rol2
-3	0	rol3
+\.
+
+
+--
+-- Data for Name: seguridad; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY seguridad (id, version, ip, password, perfil, roles, servicio_gis_id, token, usuario) FROM stdin;
+1	0	10.200.44.3	pepe	perico	blasfemus	\N	pdaiodjaoisdjioa	bradpitt
 \.
 
 
@@ -201,7 +262,14 @@ COPY rol (id, version, nombre) FROM stdin;
 --
 
 COPY servicio (id, version, dir_fisica, dir_logica, nombre) FROM stdin;
-10	0	12.100.2.1	webiss	to->webis
+\.
+
+
+--
+-- Data for Name: servicio_gis; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY servicio_gis (id, version, direccion_logica, direccion_proxy, nombre, publico) FROM stdin;
 \.
 
 
@@ -210,9 +278,15 @@ COPY servicio (id, version, dir_fisica, dir_logica, nombre) FROM stdin;
 --
 
 COPY servicio_metodo (servicio_metodos_id, metodo_id) FROM stdin;
-10	9
-10	7
 \.
+
+
+--
+-- Name: conf_seguridad_publica_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY conf_seguridad_publica
+    ADD CONSTRAINT conf_seguridad_publica_pkey PRIMARY KEY (id);
 
 
 --
@@ -248,6 +322,22 @@ ALTER TABLE ONLY rol
 
 
 --
+-- Name: seguridad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY seguridad
+    ADD CONSTRAINT seguridad_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: servicio_gis_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
+--
+
+ALTER TABLE ONLY servicio_gis
+    ADD CONSTRAINT servicio_gis_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
 --
 
@@ -272,35 +362,19 @@ ALTER TABLE ONLY perfil
 
 
 --
--- Name: fk_5w72ayoccpyqpdsnnr2xq62oj; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fk_6ohleqtwh10vfqq4yqvw4yb37; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY metodo_perfil
-    ADD CONSTRAINT fk_5w72ayoccpyqpdsnnr2xq62oj FOREIGN KEY (perfil_id) REFERENCES perfil(id);
-
-
---
--- Name: fk_c1gyrr7p11v20l59i5lmnrlw2; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY perfil_metodos
-    ADD CONSTRAINT fk_c1gyrr7p11v20l59i5lmnrlw2 FOREIGN KEY (perfil_id) REFERENCES perfil(id);
+ALTER TABLE ONLY conf_seguridad_publica
+    ADD CONSTRAINT fk_6ohleqtwh10vfqq4yqvw4yb37 FOREIGN KEY (servicio_gis_id) REFERENCES servicio_gis(id);
 
 
 --
--- Name: fk_ce50fdtpqrwdu2yeatyryemik; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fk_ieax7ai74elnioieajwuuimym; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
-ALTER TABLE ONLY perfil_metodos
-    ADD CONSTRAINT fk_ce50fdtpqrwdu2yeatyryemik FOREIGN KEY (metodo_id) REFERENCES metodo(id);
-
-
---
--- Name: fk_d35p1flwrjjgyepwdtq3etw0e; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY metodo_perfil
-    ADD CONSTRAINT fk_d35p1flwrjjgyepwdtq3etw0e FOREIGN KEY (metodo_perfiles_id) REFERENCES metodo(id);
+ALTER TABLE ONLY seguridad
+    ADD CONSTRAINT fk_ieax7ai74elnioieajwuuimym FOREIGN KEY (servicio_gis_id) REFERENCES servicio_gis(id);
 
 
 --
@@ -309,6 +383,14 @@ ALTER TABLE ONLY metodo_perfil
 
 ALTER TABLE ONLY servicio_metodo
     ADD CONSTRAINT fk_m8hk5lapukg9qrrv0et6rko88 FOREIGN KEY (metodo_id) REFERENCES metodo(id);
+
+
+--
+-- Name: fk_nkks5ptia28071jmoj5jrxwf1; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY metodo
+    ADD CONSTRAINT fk_nkks5ptia28071jmoj5jrxwf1 FOREIGN KEY (seguridad_id) REFERENCES seguridad(id);
 
 
 --
