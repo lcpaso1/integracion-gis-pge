@@ -1,7 +1,6 @@
 package ctp.config
 
-class PerfilController {
+class SeguridadController {
 
 	static scaffold = true
-
 }

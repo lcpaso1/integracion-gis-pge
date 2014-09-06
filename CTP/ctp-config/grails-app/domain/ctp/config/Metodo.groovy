@@ -2,9 +2,10 @@ package ctp.config
 
 class Metodo {
 
-	String nombre;
+	String nombre
+	String nombreXml
 
-    static hasMany = [perfiles:Perfil]
+	static belongsTo = [seguridad:Seguridad]
 
     static constraints = {
     }
