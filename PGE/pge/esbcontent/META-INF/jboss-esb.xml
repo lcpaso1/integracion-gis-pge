@@ -36,9 +36,9 @@
 			<actions mep="RequestResponse">
 			
 				<action class="edu.pge_gis.pge.PGEXmlValidator" name="pge_xml_val" process="process" />
+				<action class="edu.pge_gis.pge.PGECatalog" name="pge_cat" process="process" />
 				<action class="edu.pge_gis.pge.PGEAuthenticate" name="pge_auth" process="process" />
 				<action class="edu.pge_gis.pge.PGEAuthority" name="pge_perm" process="process" />
-				<action class="edu.pge_gis.pge.PGECatalog" name="pge_cat" process="process" />
 				<action class="edu.pge_gis.pge.PGESOAPClient" name="pge_soap" process="process" />
 				
 			</actions>

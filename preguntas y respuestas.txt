@@ -1,0 +1,17 @@
+preguntas:
+	-se puede mockear invocacion a sts para que devuelva token de seguridad a usar en la pge, para en una etapa
+	de puesta en produccion sustituir el mock por la utilizacion de la libreria de la pge que lo resuelve?
+
+	-responsabilidad de cabezales addressing en la respuesta, lo tiene la pge o el proveedor? la pge no exige el 
+	soporte de addressing a los pge.
+
+	-
+
+respuesta
+	to y action llegan al proveedor
+	cabezal addr puede configurarse opcional.	
+
+	se puede crear una instancia de ctp por cada servicio, lo que facilita el mapeo entre direccion logica
+	y direccion real del map server. esta opcion elimina el mapeo tanto en pge como en ctp
+
+	

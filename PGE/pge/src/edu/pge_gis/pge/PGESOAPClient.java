@@ -2,6 +2,7 @@ package edu.pge_gis.pge;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.HashMap;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
@@ -45,8 +46,9 @@ public class PGESOAPClient implements ActionPipelineProcessor {
 				//ahora hacemos invocacion http hacia el verdadero endpoint del webservice, o sea el proveedor.
 				
 				HttpClient httpClient = new HttpClient();
-				/* TODO esta url la debe tomar desde lo que dice el PGEcatalog */
-				PostMethod method = new PostMethod(msg.getBody().get("urlProvider").toString());
+				/*traigo la configuracion */
+				HashMap<String, String> serv = (HashMap<String, String>)msg.getBody().get("servicio");
+				PostMethod method = new PostMethod(serv.get("urlProvider"));
 				int httpStatusCode;
 				try {
 					//antes de ejecutar, ponemos en el body el xml del soap
