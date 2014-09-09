@@ -12,7 +12,7 @@ import org.jboss.soa.esb.http.HttpRequest;
 import org.jboss.soa.esb.message.Message;
 
 import edu.pge_gis.ctp.database.SeguridadRepo;
-import edu.pge_gis.ctp.database.ServicioGis;
+import edu.pge_gis.ctp.database.dominio.ServicioGis;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
 
 public class GISRestService implements ActionPipelineProcessor {
@@ -52,7 +52,7 @@ public class GISRestService implements ActionPipelineProcessor {
 		String nombreServicio = uri[uri.length-1];
 		try {
 			// obtener los datos del servicio llamando a la bd.
-			ServicioGis servicio = SeguridadRepo.getServicioGIS(nombreServicio);
+			ServicioGis servicio = SeguridadRepo.getServicioGISConMetodos(nombreServicio);
 			// guardar los datos en un mapa.
 			Map<String,String> datosServicio = new HashMap<String,String>();
 			datosServicio.put("nombre", servicio.getNombre());

@@ -1,17 +1,18 @@
-package edu.pge_gis.ctp.database.dominio;
+package edu.pge_gis.ctp.database;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import edu.pge_gis.ctp.database.dominio.Metodo;
+
+@Deprecated
 public class ServicioGis {
 
 	private String nombre;
 	private String direccionLogica;
 	private String direccionProxy;
 	private boolean publico;
-	
-	private List<Metodo> metodos = null;
-	
+		
 	public ServicioGis(){
 		
 	}
@@ -48,15 +49,4 @@ public class ServicioGis {
 		this.publico = publico;
 	}
 
-	public List<Metodo> getMetodos() {
-		if (metodos==null) {
-			metodos = new ArrayList<Metodo>();
-		}
-		return metodos;
-	}
-
-	public void setMetodos(List<Metodo> metodos) {
-		this.metodos = metodos;
-	}
-	
 }
