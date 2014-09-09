@@ -1,5 +1,7 @@
 package edu.pge_gis.ctp.rc;
 
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.jboss.soa.esb.actions.ActionLifecycleException;
@@ -9,6 +11,8 @@ import org.jboss.soa.esb.helpers.ConfigTree;
 import org.jboss.soa.esb.http.HttpRequest;
 import org.jboss.soa.esb.message.Message;
 
+import edu.pge_gis.ctp.database.SeguridadRepo;
+import edu.pge_gis.ctp.database.ServicioGis;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
 
 public class GISRestService implements ActionPipelineProcessor {
@@ -43,6 +47,30 @@ public class GISRestService implements ActionPipelineProcessor {
 		/**DEFINIMOS QUE los dos ultimos son el metodo y el servicio*/
 		//servidor:puerto/ctp-restConnector/http/ctp/SERVICIO/METODO
 		//localhost:8080/ctp-restConnector/http/ctp/meteorologia/getMap
+		
+		// obtener el nombre del servicio como el ultimo token en la url.
+		String nombreServicio = uri[uri.length-1];
+		try {
+			// obtener los datos del servicio llamando a la bd.
+			ServicioGis servicio = SeguridadRepo.getServicioGIS(nombreServicio);
+			// guardar los datos en un mapa.
+			Map<String,String> datosServicio = new HashMap<String,String>();
+			datosServicio.put("nombre", servicio.getNombre());
+			datosServicio.put("direccionLogica", servicio.getDireccionLogica());
+			datosServicio.put("direccionProxy", servicio.getDireccionProxy());
+			datosServicio.put("publico", String.valueOf(servicio.isPublico()));
+			
+			// TODO : obtener datos del método , de request
+			
+			// TODO : obtener datos de seguridad a partid de la IP, si es publico hay que devolver ConfSeguridadPublica
+			
+			// incluir el mapa en el body
+			msg.getBody().add("servicio",datosServicio);
+		} catch (SQLException e) {
+			// TODO Hacer algo cuando hay excepcion!!!!!!!
+			e.printStackTrace();
+		}
+		
 		msg.getBody().add("method", uri[uri.length-1]);
 		msg.getBody().add("serviceName", uri[uri.length-2]);
 		return msg;
