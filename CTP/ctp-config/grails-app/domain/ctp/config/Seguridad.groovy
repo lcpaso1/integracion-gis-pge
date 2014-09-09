@@ -14,4 +14,8 @@ class Seguridad {
     static constraints = {
     	servicioGis(nullable:true)
     }
+
+    String toString() {
+    	return ip;
+    }
 }
