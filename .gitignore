@@ -14,3 +14,6 @@ CTP/ctp-utils/build.xml
 PGE/pge-service/.classpath
 PGE/proveedor-war/.classpath
 *.xml
+CTP/ctp-utils/build.xml
+PGE/pge-conf/target-eclipse/*
+PGE/pge-conf/target/*

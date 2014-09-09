@@ -32,20 +32,17 @@ public class PGECatalog implements ActionPipelineProcessor {
 		//en base a los cabezales addressing, sacamos la url del proveedor
 		String xml = msg.getBody().get("xmlSoap").toString();
 		System.out.println(xml);
-		//chanchada usar xpath
-		int ini_to = xml.indexOf("<wsa:To>");
-		int fin_to = xml.indexOf("</wsa:To>");
-		String dir_logica = xml.substring(ini_to+8, fin_to);
-		System.out.println(dir_logica);
-		HashMap<String, String> serv = SQLUtils.getServicio(dir_logica);
+		HashMap<String, String> params = (HashMap<String, String>)msg.getBody().get("params");
+		//busco el servicio por la dir logica
+		HashMap<String, String> serv = SQLUtils.getServicio(params.get("dir_logica"));
 		System.out.println(serv.get("urlProvider"));
-		//mando tambien el metodo
-		ini_to = xml.indexOf("<wsa:Action>");
-		fin_to = xml.indexOf("</wsa:Action>");
-		serv.put("metodo", xml.substring(ini_to+12, fin_to));
+		//busco el metodo
+		HashMap<String, String> metodo = SQLUtils.getMetodo(serv.get("id"), params.get("metodo"));
+		
 		//obtener metodo
 		//por ahora solo agrego una
 		msg.getBody().add("servicio", serv);
+		msg.getBody().add("metodo", metodo);
 		return msg;
 	}
 
