@@ -4,6 +4,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.xml.ws.handler.Handler;
 import javax.xml.ws.BindingProvider;
@@ -55,10 +56,12 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 		GISWSwmsYwfsService ws = new GISWSwmsYwfsService();
 		GISWS port = ws.getGISWSPort();
 		String metodo = msg.getBody().get("method").toString();
-		port = agregarCabezalesAddressing(msg.getBody().get("serviceName").toString(), metodo, port);
+		String metodoURI = msg.getBody().get("methodURI").toString();
+		Map<String,String> datosServicio =(Map<String,String>)msg.getBody().get("servicio");
+		port = agregarCabezalesAddressing(datosServicio.get("direccionLogica"), metodoURI, port);
 		//este siempre va a la pge, pasar url pge a property
 		BindingProvider bp = (BindingProvider)port;
-        bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, pge_endpointURL);
+        bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, datosServicio.get("direccionProxy"));
         //solo hay diferencia en el getMap, que es binario, el resto es string.
         try {
         	//magia de reflection, una vez todo configurado, en base al nombre invoco el metodo, sin tener que hacer

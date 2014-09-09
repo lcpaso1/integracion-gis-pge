@@ -71,8 +71,8 @@ public class GISRestService implements ActionPipelineProcessor {
 			e.printStackTrace();
 		}
 		
-		msg.getBody().add("method", uri[uri.length-1]);
-		msg.getBody().add("serviceName", uri[uri.length-2]);
+		msg.getBody().add("method", "getMap");
+		msg.getBody().add("methodURI", "http://meteo.gub.uy/serviciosGis/Lluvias/getMap");
 		return msg;
 	}
 
