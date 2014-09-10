@@ -12,6 +12,9 @@ import org.jboss.soa.esb.http.HttpRequest;
 import org.jboss.soa.esb.message.Message;
 
 import edu.pge_gis.ctp.database.SeguridadRepo;
+import edu.pge_gis.ctp.database.dominio.ConfSeguridadPublica;
+import edu.pge_gis.ctp.database.dominio.Metodo;
+import edu.pge_gis.ctp.database.dominio.Seguridad;
 import edu.pge_gis.ctp.database.dominio.ServicioGis;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
 
@@ -59,16 +62,29 @@ public class GISRestService implements ActionPipelineProcessor {
 			datosServicio.put("direccionLogica", servicio.getDireccionLogica());
 			datosServicio.put("direccionProxy", servicio.getDireccionProxy());
 			datosServicio.put("publico", String.valueOf(servicio.isPublico()));
+
+			for (Metodo metodo : servicio.getMetodos() ) {
+				System.out.println(" Metodo : (" + metodo.getNombre() + "," + metodo.getNombreXml() + ") " );
+			}
 			
-			// TODO : obtener datos del método , de request
 			
-			// TODO : obtener datos de seguridad a partid de la IP, si es publico hay que devolver ConfSeguridadPublica
+			// obtener datos de seguridad a partid de la IP, si es publico hay que devolver ConfSeguridadPublica
+			String requestIp = request.getRemoteAddr();
+			if (servicio.isPublico()) {
+				ConfSeguridadPublica sp = SeguridadRepo.getSeguridadPublicaParaServicio(nombreServicio);
+				System.out.println("Seguridad publica : " + sp.getPerfil() + " , " + sp.getRol() + " , " + sp.getUsuario()); 
+				msg.getBody().add("seguridadPublica",sp);
+			} else {
+				Seguridad seguridad = SeguridadRepo.getSeguridad(requestIp);
+				msg.getBody().add("seguridad",seguridad);
+			}
+			
 			
 			// incluir el mapa en el body
 			msg.getBody().add("servicio",datosServicio);
 		} catch (SQLException e) {
-			// TODO Hacer algo cuando hay excepcion!!!!!!!
 			e.printStackTrace();
+			throw new ActionProcessingException("Error al acceder al repositorio de seguridad.");
 		}
 		
 		msg.getBody().add("method", "getMap");
