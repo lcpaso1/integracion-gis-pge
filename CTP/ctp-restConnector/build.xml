@@ -16,9 +16,6 @@
 	    		<fileset dir="${basedir}/bin">
 	    			<include name="**/*" />
 	    		</fileset>
-	    		<fileset dir="C:/ProyectoDeGrado/CTP/ctp-utils/bin">
-	    			<include name="**/*" />
-	    		</fileset>
 	    	</jar>
 	    	<!--
 	        <war warfile="D:/ProyectoDeGrado/jbossesb-server-4.12/server/default/deploy/${ant.project.name}.esb"
