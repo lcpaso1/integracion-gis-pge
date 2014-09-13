@@ -38,10 +38,10 @@ public class SeguridadRepo {
 			servicio.setDireccionProxy(rs.getString("direccion_proxy"));
 			servicio.setPublico(rs.getBoolean("publico"));
 			
-			Integer metodoId = rs.getInt("metid");
-			if (metodoId!=null) {
+			String metnombre = rs.getString("metnombre");
+			if (metnombre!=null) {
 				Metodo metodo = new Metodo();
-				metodo.setNombre(rs.getString("metnombre"));
+				metodo.setNombre(metnombre);
 				metodo.setNombreXml(rs.getString("nombre_xml"));
 				servicio.getMetodos().add(metodo);
 			}

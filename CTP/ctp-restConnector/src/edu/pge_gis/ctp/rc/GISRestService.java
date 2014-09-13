@@ -63,22 +63,42 @@ public class GISRestService implements ActionPipelineProcessor {
 			datosServicio.put("direccionProxy", servicio.getDireccionProxy());
 			datosServicio.put("publico", String.valueOf(servicio.isPublico()));
 
+			String nombreMetodo = params.getRequest();
+			Metodo metodoSeleccionado = null;
 			for (Metodo metodo : servicio.getMetodos() ) {
 				System.out.println(" Metodo : (" + metodo.getNombre() + "," + metodo.getNombreXml() + ") " );
+				if (metodo.getNombre().equals(nombreMetodo)) {
+					metodoSeleccionado = metodo;
+				}
 			}
-			
+			if (metodoSeleccionado==null) {
+				String errmsg = nombreMetodo==null ? "No especificó método en la url" : "Método '" + nombreMetodo + "' desconocido.";
+				throw new ActionProcessingException(errmsg);
+			} else {
+				msg.getBody().add("metodo",metodoSeleccionado.getNombreXml());
+			}
 			
 			// obtener datos de seguridad a partid de la IP, si es publico hay que devolver ConfSeguridadPublica
 			String requestIp = request.getRemoteAddr();
 			if (servicio.isPublico()) {
 				ConfSeguridadPublica sp = SeguridadRepo.getSeguridadPublicaParaServicio(nombreServicio);
 				System.out.println("Seguridad publica : " + sp.getPerfil() + " , " + sp.getRol() + " , " + sp.getUsuario()); 
-				msg.getBody().add("seguridadPublica",sp);
+				// mapear seguridad publica
+				msg.getBody().add("publico","true");
+				//msg.getBody().add("seguridadPublica",sp);
+				msg.getBody().add("sp_perfil",sp.getPerfil());
+				msg.getBody().add("sp_rol",sp.getRol());
+				msg.getBody().add("sp_usuario",sp.getUsuario());
 			} else {
 				Seguridad seguridad = SeguridadRepo.getSeguridad(requestIp);
-				msg.getBody().add("seguridad",seguridad);
+				msg.getBody().add("publico","true");
+				// mapear seguridad
+				msg.getBody().add("seguridad_Ip",seguridad.getIp());
+				msg.getBody().add("seguridad_pass",seguridad.getPassword());
+				msg.getBody().add("seguridad_roles",seguridad.getRoles());
+				msg.getBody().add("seguridad_token",seguridad.getToken());
+				msg.getBody().add("seguridad_token",seguridad.getUsuario());
 			}
-			
 			
 			// incluir el mapa en el body
 			msg.getBody().add("servicio",datosServicio);
