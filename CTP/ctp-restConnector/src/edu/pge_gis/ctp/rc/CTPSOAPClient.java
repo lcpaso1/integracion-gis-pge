@@ -29,6 +29,8 @@ import edu.pge_gis.ctp.rc.gis_ws_client.GISWS;
 import edu.pge_gis.ctp.rc.gis_ws_client.GISWSwmsYwfsService;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
 
+import static edu.pge_gis.ctp.dto.InfoServicio.*;
+
 public class CTPSOAPClient implements ActionPipelineProcessor {
 
 	/** OJOTA!!!!  todos los procesadores necesitan este constructor, pero hay que agregarlo a mano*/
@@ -59,10 +61,10 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 		String metodo = msg.getBody().get("method").toString();
 		String metodoURI = msg.getBody().get("methodURI").toString();
 		Map<String,String> datosServicio =((InfoServicio)msg.getBody().get("servicio")).datos;
-		port = agregarCabezalesAddressing(datosServicio.get("direccionLogica"), metodoURI, port);
+		port = agregarCabezalesAddressing(datosServicio.get(DIRECCION_LOGICA), metodoURI, port);
 		//este siempre va a la pge, pasar url pge a property
 		BindingProvider bp = (BindingProvider)port;
-        bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, datosServicio.get("direccionProxy"));
+        bp.getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, datosServicio.get(DIRECCION_PROXY));
         //solo hay diferencia en el getMap, que es binario, el resto es string.
         try {
         	//magia de reflection, una vez todo configurado, en base al nombre invoco el metodo, sin tener que hacer
