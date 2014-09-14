@@ -5,6 +5,7 @@ import java.util.List;
 
 public class ServicioGis {
 
+	private int id;
 	private String nombre;
 	private String direccionLogica;
 	private String direccionProxy;
@@ -57,6 +58,14 @@ public class ServicioGis {
 
 	public void setMetodos(List<Metodo> metodos) {
 		this.metodos = metodos;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }

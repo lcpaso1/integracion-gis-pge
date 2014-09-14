@@ -68,7 +68,10 @@ public class GISRestService implements ActionPipelineProcessor {
 			datosServicio.datos.put(DIRECCION_PROXY, servicio.getDireccionProxy());
 			datosServicio.datos.put(SERVICIO_PUBLICO, String.valueOf(servicio.isPublico()));
 
+			datosServicio.showInfo();
+			
 			String nombreMetodo = params.getRequest().toLowerCase();
+
 			Metodo metodoSeleccionado = null;
 			for (Metodo metodo : servicio.getMetodos() ) {
 				if (metodo.getNombre().equals(nombreMetodo)) {
@@ -93,7 +96,7 @@ public class GISRestService implements ActionPipelineProcessor {
 				datosServicio.datos.put(SEG_PUBLICA_ROL, sp.getRol());
 				datosServicio.datos.put(SEG_PUBLICA_USUARIO, sp.getUsuario());
 			} else {
-				Seguridad seguridad = SeguridadRepo.getSeguridad(requestIp);
+				Seguridad seguridad = SeguridadRepo.getSeguridad(requestIp, servicio.getId(), metodoSeleccionado.getId());
 				// mapear seguridad
 				datosServicio.datos.put(SEGURIDAD_IP, seguridad.getIp());
 				datosServicio.datos.put(SEGURIDAD_PASS, seguridad.getPassword());
@@ -102,11 +105,13 @@ public class GISRestService implements ActionPipelineProcessor {
 				datosServicio.datos.put(SEGURIDAD_USUARIO, seguridad.getUsuario());
 			}
 			
+			datosServicio.showInfo();
+			
 			// incluir el mapa en el body
 			msg.getBody().add(INFO_SERVICIO,datosServicio);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new ActionProcessingException("Error al acceder al repositorio de seguridad.");
+			throw new ActionProcessingException("Error al acceder al repositorio de seguridad. " + e.getMessage());
 		}
 		
 		return msg;

@@ -2,6 +2,7 @@ package edu.pge_gis.ctp.database.dominio;
 
 public class Metodo {
 
+	private int id;
 	private String nombre;
 	private String nombreXml;
 	
@@ -23,6 +24,14 @@ public class Metodo {
 
 	public void setNombreXml(String nombreXml) {
 		this.nombreXml = nombreXml;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 }
