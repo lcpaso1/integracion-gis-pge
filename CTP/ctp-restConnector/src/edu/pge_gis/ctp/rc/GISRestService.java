@@ -91,7 +91,7 @@ public class GISRestService implements ActionPipelineProcessor {
 				msg.getBody().add("sp_usuario",sp.getUsuario());
 			} else {
 				Seguridad seguridad = SeguridadRepo.getSeguridad(requestIp);
-				msg.getBody().add("publico","true");
+				msg.getBody().add("publico","false");
 				// mapear seguridad
 				msg.getBody().add("seguridad_Ip",seguridad.getIp());
 				msg.getBody().add("seguridad_pass",seguridad.getPassword());
