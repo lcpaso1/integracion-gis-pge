@@ -2,16 +2,17 @@ package edu.pge_gis.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Map;
 
 public class DAOUtils {
 
-	private static Connection conn = null;
+	private static Map<String,Connection> conns = null;
 	
 	public static Connection getConnection(String url, String usr, String pwd) throws SQLException{
+		Connection conn = conns.get(url);
+		
 		if(conn != null) return conn;
 		// Load the database driver
 	      try {
@@ -19,9 +20,9 @@ public class DAOUtils {
 			// Get a connection to the database
 			//jdbc:postgresql:database
 		    conn = DriverManager.getConnection( url,usr,pwd ) ;
+		    conns.put(url,conn);
 		    return conn;
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			throw new SQLException(e);
 		} 
