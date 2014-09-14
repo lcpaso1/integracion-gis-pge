@@ -4,11 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.HashMap;
 import java.util.Map;
 
 public class DAOUtils {
 
-	private static Map<String,Connection> conns = null;
+	private static Map<String,Connection> conns = new HashMap<String, Connection>();
 	
 	public static Connection getConnection(String url, String usr, String pwd) throws SQLException{
 		Connection conn = conns.get(url);
