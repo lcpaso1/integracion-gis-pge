@@ -24,6 +24,7 @@ import org.jboss.ws.extensions.addressing.AttributedURIImpl;
 
 import org.jboss.ws.extensions.addressing.jaxws.WSAddressingClientHandler;
 
+import edu.pge_gis.ctp.dto.InfoServicio;
 import edu.pge_gis.ctp.rc.gis_ws_client.GISWS;
 import edu.pge_gis.ctp.rc.gis_ws_client.GISWSwmsYwfsService;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
@@ -57,7 +58,7 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 		GISWS port = ws.getGISWSPort();
 		String metodo = msg.getBody().get("method").toString();
 		String metodoURI = msg.getBody().get("methodURI").toString();
-		Map<String,String> datosServicio =(Map<String,String>)msg.getBody().get("servicio");
+		Map<String,String> datosServicio =((InfoServicio)msg.getBody().get("servicio")).datos;
 		port = agregarCabezalesAddressing(datosServicio.get("direccionLogica"), metodoURI, port);
 		//este siempre va a la pge, pasar url pge a property
 		BindingProvider bp = (BindingProvider)port;

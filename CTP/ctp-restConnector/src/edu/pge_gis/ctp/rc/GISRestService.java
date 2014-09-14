@@ -16,7 +16,9 @@ import edu.pge_gis.ctp.database.dominio.ConfSeguridadPublica;
 import edu.pge_gis.ctp.database.dominio.Metodo;
 import edu.pge_gis.ctp.database.dominio.Seguridad;
 import edu.pge_gis.ctp.database.dominio.ServicioGis;
+import edu.pge_gis.ctp.dto.InfoServicio;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
+import static edu.pge_gis.ctp.dto.InfoServicio.*;
 
 public class GISRestService implements ActionPipelineProcessor {
 
@@ -53,20 +55,21 @@ public class GISRestService implements ActionPipelineProcessor {
 		
 		// obtener el nombre del servicio como el ultimo token en la url.
 		String nombreServicio = uri[uri.length-1];
+		
+		InfoServicio datosServicio = new InfoServicio();
+		
 		try {
 			// obtener los datos del servicio llamando a la bd.
 			ServicioGis servicio = SeguridadRepo.getServicioGISConMetodos(nombreServicio);
 			// guardar los datos en un mapa.
-			Map<String,String> datosServicio = new HashMap<String,String>();
-			datosServicio.put("nombre", servicio.getNombre());
-			datosServicio.put("direccionLogica", servicio.getDireccionLogica());
-			datosServicio.put("direccionProxy", servicio.getDireccionProxy());
-			datosServicio.put("publico", String.valueOf(servicio.isPublico()));
+			datosServicio.datos.put(NOMBRE_SERVICIO, servicio.getNombre());
+			datosServicio.datos.put(DIRECCION_LOGICA, servicio.getDireccionLogica());
+			datosServicio.datos.put(DIRECCION_PROXY, servicio.getDireccionProxy());
+			datosServicio.datos.put(SERVICIO_PUBLICO, String.valueOf(servicio.isPublico()));
 
 			String nombreMetodo = params.getRequest();
 			Metodo metodoSeleccionado = null;
 			for (Metodo metodo : servicio.getMetodos() ) {
-				System.out.println(" Metodo : (" + metodo.getNombre() + "," + metodo.getNombreXml() + ") " );
 				if (metodo.getNombre().equals(nombreMetodo)) {
 					metodoSeleccionado = metodo;
 				}
@@ -75,7 +78,7 @@ public class GISRestService implements ActionPipelineProcessor {
 				String errmsg = nombreMetodo==null ? "No especificó método en la url" : "Método '" + nombreMetodo + "' desconocido.";
 				throw new ActionProcessingException(errmsg);
 			} else {
-				msg.getBody().add("metodo",metodoSeleccionado.getNombreXml());
+				datosServicio.datos.put(NOMBRE_METODO, metodoSeleccionado.getNombreXml());
 			}
 			
 			// obtener datos de seguridad a partid de la IP, si es publico hay que devolver ConfSeguridadPublica
@@ -84,20 +87,17 @@ public class GISRestService implements ActionPipelineProcessor {
 				ConfSeguridadPublica sp = SeguridadRepo.getSeguridadPublicaParaServicio(nombreServicio);
 				System.out.println("Seguridad publica : " + sp.getPerfil() + " , " + sp.getRol() + " , " + sp.getUsuario()); 
 				// mapear seguridad publica
-				msg.getBody().add("publico","true");
-				//msg.getBody().add("seguridadPublica",sp);
-				msg.getBody().add("sp_perfil",sp.getPerfil());
-				msg.getBody().add("sp_rol",sp.getRol());
-				msg.getBody().add("sp_usuario",sp.getUsuario());
+				datosServicio.datos.put(SEG_PUBLICA_PERFIL, sp.getPerfil());
+				datosServicio.datos.put(SEG_PUBLICA_ROL, sp.getRol());
+				datosServicio.datos.put(SEG_PUBLICA_USUARIO, sp.getUsuario());
 			} else {
 				Seguridad seguridad = SeguridadRepo.getSeguridad(requestIp);
-				msg.getBody().add("publico","false");
 				// mapear seguridad
-				msg.getBody().add("seguridad_Ip",seguridad.getIp());
-				msg.getBody().add("seguridad_pass",seguridad.getPassword());
-				msg.getBody().add("seguridad_roles",seguridad.getRoles());
-				msg.getBody().add("seguridad_token",seguridad.getToken());
-				msg.getBody().add("seguridad_token",seguridad.getUsuario());
+				datosServicio.datos.put(SEGURIDAD_IP, seguridad.getIp());
+				datosServicio.datos.put(SEGURIDAD_PASS, seguridad.getPassword());
+				datosServicio.datos.put(SEGURIDAD_ROLES, seguridad.getRoles());
+				datosServicio.datos.put(SEGURIDAD_TOKEN, seguridad.getToken());
+				datosServicio.datos.put(SEGURIDAD_USUARIO, seguridad.getUsuario());
 			}
 			
 			// incluir el mapa en el body
