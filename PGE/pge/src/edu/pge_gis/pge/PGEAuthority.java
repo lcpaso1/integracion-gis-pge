@@ -8,6 +8,9 @@ import org.jboss.soa.esb.actions.ActionProcessingException;
 import org.jboss.soa.esb.helpers.ConfigTree;
 import org.jboss.soa.esb.message.Message;
 
+import edu.pge_gis.pge.utils.PGEConstants;
+import edu.pge_gis.pge.utils.SQLUtils;
+
 public class PGEAuthority implements ActionPipelineProcessor {
 
 	/** OJOTA!!!!  todos los procesadores necesitan este constructor, pero hay que agregarlo a mano*/
@@ -29,9 +32,9 @@ public class PGEAuthority implements ActionPipelineProcessor {
 	@Override
 	public Message process(Message msg) throws ActionProcessingException {
 		// este define si el usuario tiene autorizacion para acceder a ese recurso
-		HashMap<String, String> params = (HashMap<String, String>)msg.getBody().get("params");
-		HashMap<String, String> idmetodo = (HashMap<String, String>)msg.getBody().get("metodo");
-		boolean puede = SQLUtils.tienePermiso(params.get("id_rol"), idmetodo.get("id"));
+		HashMap<String, String> params = (HashMap<String, String>)msg.getBody().get(PGEConstants.KEY_params);
+		HashMap<String, String> idmetodo = (HashMap<String, String>)msg.getBody().get(PGEConstants.KEY_metodo);
+		boolean puede = SQLUtils.tienePermiso(params.get(PGEConstants.KEY_id_rol), idmetodo.get(PGEConstants.KEY_id));
 		return msg;
 	}
 

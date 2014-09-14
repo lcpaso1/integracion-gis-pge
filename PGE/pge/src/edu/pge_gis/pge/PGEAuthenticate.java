@@ -8,6 +8,9 @@ import org.jboss.soa.esb.actions.ActionProcessingException;
 import org.jboss.soa.esb.helpers.ConfigTree;
 import org.jboss.soa.esb.message.Message;
 
+import edu.pge_gis.pge.utils.PGEConstants;
+import edu.pge_gis.pge.utils.SQLUtils;
+
 public class PGEAuthenticate implements ActionPipelineProcessor {
 
 	/** OJOTA!!!!  todos los procesadores necesitan este constructor, pero hay que agregarlo a mano*/
@@ -29,9 +32,9 @@ public class PGEAuthenticate implements ActionPipelineProcessor {
 	@Override
 	public Message process(Message msg) throws ActionProcessingException {
 		// este verifica con el sts el token del cabezal saml del soap y obtiene los permisos del usuario
-		HashMap<String, String> params = (HashMap<String, String>)msg.getBody().get("params");
-		long rol = SQLUtils.getIdRol(params.get("rol"));
-		params.put("id_rol", ""+rol);
+		HashMap<String, String> params = (HashMap<String, String>)msg.getBody().get(PGEConstants.KEY_params);
+		long rol = SQLUtils.getIdRol(params.get(PGEConstants.KEY_rol));
+		params.put(PGEConstants.KEY_id_rol, ""+rol);
 		return msg;
 	}
 

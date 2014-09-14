@@ -16,6 +16,8 @@ import org.jboss.soa.esb.helpers.ConfigTree;
 import org.jboss.soa.esb.http.HttpRequest;
 import org.jboss.soa.esb.message.Message;
 
+import edu.pge_gis.pge.utils.PGEConstants;
+
 public class PGESOAPClient implements ActionPipelineProcessor {
 
 	/** OJOTA!!!!  todos los procesadores necesitan este constructor, pero hay que agregarlo a mano*/
@@ -40,15 +42,15 @@ public class PGESOAPClient implements ActionPipelineProcessor {
 		// obtenemos el request, o sea el request http del cliente
 				HttpRequest request = HttpRequest.getRequest(msg);
 				//por ahora ese request no sirve para nada, el body del reuqest http viene cargado en el body del mensaje esb
-				String xml = msg.getBody().get("xmlSoap").toString();
+				String xml = msg.getBody().get(PGEConstants.KEY_xmlSoap).toString();
 				System.out.println(request.getMethod());
 				System.out.println(xml); //excelente funciona!!!
 				//ahora hacemos invocacion http hacia el verdadero endpoint del webservice, o sea el proveedor.
 				
 				HttpClient httpClient = new HttpClient();
 				/*traigo la configuracion */
-				HashMap<String, String> serv = (HashMap<String, String>)msg.getBody().get("servicio");
-				PostMethod method = new PostMethod(serv.get("urlProvider"));
+				HashMap<String, String> serv = (HashMap<String, String>)msg.getBody().get(PGEConstants.KEY_servicio);
+				PostMethod method = new PostMethod(serv.get(PGEConstants.KEY_urlProvider));
 				int httpStatusCode;
 				try {
 					//antes de ejecutar, ponemos en el body el xml del soap

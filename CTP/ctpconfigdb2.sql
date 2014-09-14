@@ -75,56 +75,6 @@ CREATE TABLE metodo (
 
 ALTER TABLE public.metodo OWNER TO postgres;
 
---
--- Name: metodo_perfil; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE metodo_perfil (
-    metodo_perfiles_id bigint,
-    perfil_id bigint
-);
-
-
-ALTER TABLE public.metodo_perfil OWNER TO postgres;
-
---
--- Name: perfil; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE perfil (
-    id bigint NOT NULL,
-    version bigint NOT NULL,
-    nombre character varying(255) NOT NULL,
-    rol_id bigint NOT NULL
-);
-
-
-ALTER TABLE public.perfil OWNER TO postgres;
-
---
--- Name: perfil_metodos; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE perfil_metodos (
-    metodo_id bigint NOT NULL,
-    perfil_id bigint NOT NULL
-);
-
-
-ALTER TABLE public.perfil_metodos OWNER TO postgres;
-
---
--- Name: rol; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE rol (
-    id bigint NOT NULL,
-    version bigint NOT NULL,
-    nombre character varying(255) NOT NULL
-);
-
-
-ALTER TABLE public.rol OWNER TO postgres;
 
 --
 -- Name: seguridad; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -144,21 +94,6 @@ CREATE TABLE seguridad (
 
 
 ALTER TABLE public.seguridad OWNER TO postgres;
-
---
--- Name: servicio; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
---
-
-CREATE TABLE servicio (
-    id bigint NOT NULL,
-    version bigint NOT NULL,
-    dir_fisica character varying(255) NOT NULL,
-    dir_logica character varying(255) NOT NULL,
-    nombre character varying(255) NOT NULL
-);
-
-
-ALTER TABLE public.servicio OWNER TO postgres;
 
 --
 -- Name: servicio_gis; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -226,42 +161,6 @@ COPY metodo (id, version, nombre, nombre_xml, seguridad_id, servicio_gis_id) FRO
 \.
 
 
---
--- Data for Name: metodo_perfil; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY metodo_perfil (metodo_perfiles_id, perfil_id) FROM stdin;
-7	5
-7	4
-7	6
-9	5
-9	4
-\.
-
-
---
--- Data for Name: perfil; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY perfil (id, version, nombre, rol_id) FROM stdin;
-\.
-
-
---
--- Data for Name: perfil_metodos; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY perfil_metodos (metodo_id, perfil_id) FROM stdin;
-\.
-
-
---
--- Data for Name: rol; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY rol (id, version, nombre) FROM stdin;
-\.
-
 
 --
 -- Data for Name: seguridad; Type: TABLE DATA; Schema: public; Owner: postgres
@@ -271,13 +170,6 @@ COPY seguridad (id, version, ip, password, perfil, roles, servicio_gis_id, token
 1	0	20.100.7.3	pepe	admin	a=administrorer	\N	e$osieSSPppss122	brad
 \.
 
-
---
--- Data for Name: servicio; Type: TABLE DATA; Schema: public; Owner: postgres
---
-
-COPY servicio (id, version, dir_fisica, dir_logica, nombre) FROM stdin;
-\.
 
 
 --
@@ -321,29 +213,6 @@ ALTER TABLE ONLY metodo
     ADD CONSTRAINT metodo_pkey PRIMARY KEY (id);
 
 
---
--- Name: perfil_metodos_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY perfil_metodos
-    ADD CONSTRAINT perfil_metodos_pkey PRIMARY KEY (perfil_id, metodo_id);
-
-
---
--- Name: perfil_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY perfil
-    ADD CONSTRAINT perfil_pkey PRIMARY KEY (id);
-
-
---
--- Name: rol_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY rol
-    ADD CONSTRAINT rol_pkey PRIMARY KEY (id);
-
 
 --
 -- Name: seguridad_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
@@ -362,27 +231,11 @@ ALTER TABLE ONLY servicio_gis
 
 
 --
--- Name: servicio_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres; Tablespace: 
---
-
-ALTER TABLE ONLY servicio
-    ADD CONSTRAINT servicio_pkey PRIMARY KEY (id);
-
-
---
 -- Name: fk_2a0c39uxwrl244bd0ddwvd134; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY servicio_metodo
     ADD CONSTRAINT fk_2a0c39uxwrl244bd0ddwvd134 FOREIGN KEY (servicio_metodos_id) REFERENCES servicio(id);
-
-
---
--- Name: fk_54njvm9mfmkkv1fix1ptxpe7l; Type: FK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE ONLY perfil
-    ADD CONSTRAINT fk_54njvm9mfmkkv1fix1ptxpe7l FOREIGN KEY (rol_id) REFERENCES rol(id);
 
 
 --
