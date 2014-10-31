@@ -2,6 +2,6 @@
     <depends>jboss.esb:deployment=soap.esb</depends>
     <depends>jboss.esb.quickstart.destination:service=Queue,name=Aggregator_ToWS</depends>
     <depends>jboss.esb.quickstart.destination:service=Queue,name=Aggregator_ToNoDestination</depends>
-    <depends>jboss.esb.quickstart.destination:service=Queue,name=Aggregator_Service
-    </depends>
+    <depends>jboss.esb.quickstart.destination:service=Queue,name=Aggregator_Service</depends>
+    <depends>jboss.esb.quickstart.destination:service=Queue,name=ErrorQueue</depends>
 </jbossesb-deployment>

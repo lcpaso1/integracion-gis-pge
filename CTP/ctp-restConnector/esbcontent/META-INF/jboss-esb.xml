@@ -19,6 +19,9 @@
 				<jms-message-filter dest-type="QUEUE"
 					dest-name="queue/Aggregator_Service" />
 			</jms-bus>
+			<jms-bus busid="ErrorBus">
+		    	<jms-message-filter dest-type="QUEUE" dest-name="queue/ErrorQueue" transacted="true"/>
+		   	</jms-bus>
 		</jms-provider>
 		 
 	</providers>
@@ -34,6 +37,8 @@
 			</listeners>
 			<actions mep="RequestResponse">
 				
+				<action class="edu.pge_gis.ctp.rc.errors.ManejoErroresRC" name="ManejoDeErrores" process="process" />
+				
 				<action class="edu.pge_gis.ctp.rc.GISRestService" name="gisRest" process="process" />
 				
 				<action class="edu.pge_gis.ctp.rc.SecurityAggregator" name="sec_Aggr" process="process" />
@@ -42,6 +47,14 @@
 				
 			</actions>
 		</service>
-		
+		 <service category="Utility" name="ServeErrorService" description="">
+			 <listeners>
+			 	<jms-listener name="error-channel" busidref="ErrorBus"/>
+			 </listeners>
+			 
+			 <actions mep="RequestResponse">
+			 	<action class="edu.pge_gis.ctp.rc.errors.ManejoErroresRC" name="ManejoDeErrores" process="processErrors" />
+			 </actions>
+		 </service>
 	</services>
 </jbossesb>
