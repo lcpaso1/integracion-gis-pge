@@ -48,9 +48,14 @@ public class GISWSwmsYwfs {
 		return invokeText(params, isWms);
 	}
 	
+	private void lanzarExceptionDePrueba(){
+		throw new RuntimeException("prueba error desde ctp sc");
+	}
+	
 	// response es una imagen
 	@WebMethod
 	public byte[] getMap(GISParams params){
+		//lanzarExceptionDePrueba();
 		//service=WMS&version=1.1.0&request=GetMap&layers=integraciongispge:ine_ccz_mvd&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg
 		//http://localhost:8080/ctp/http/ctp/meteorologia/getMap?service=WMS&version=1.1.0&request=GetMap&layers=integraciongispge:ine_ccz_mvd&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg
 		//http://localhost:82/cgi-bin/mapserv.exe?map=mapfile.map&service=WMS&version=1.1.0&request=GetMap&layers=ine_ccz_mvd&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg

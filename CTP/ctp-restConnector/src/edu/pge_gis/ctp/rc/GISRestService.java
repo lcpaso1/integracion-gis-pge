@@ -18,6 +18,7 @@ import edu.pge_gis.ctp.database.dominio.Metodo;
 import edu.pge_gis.ctp.database.dominio.Seguridad;
 import edu.pge_gis.ctp.database.dominio.ServicioGis;
 import edu.pge_gis.ctp.dto.InfoServicio;
+import edu.pge_gis.ctp.rc.errors.CTPServiceException;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
 import static edu.pge_gis.ctp.dto.InfoServicio.*;
 
@@ -80,7 +81,7 @@ public class GISRestService implements ActionPipelineProcessor {
 			}
 			if (metodoSeleccionado==null) {
 				String errmsg = nombreMetodo==null ? "No especificó método en la url" : "Método '" + nombreMetodo + "' desconocido.";
-				throw new ActionProcessingException(errmsg);
+				throw new CTPServiceException(errmsg);
 			} else {
 				datosServicio.datos.put(NOMBRE_METODO, nombreMetodo);
 				datosServicio.datos.put(NOMBRE_METODO_XML, metodoSeleccionado.getNombreXml());
@@ -111,7 +112,7 @@ public class GISRestService implements ActionPipelineProcessor {
 			msg.getBody().add(INFO_SERVICIO,datosServicio);
 		} catch (SQLException e) {
 			e.printStackTrace();
-			throw new ActionProcessingException("Error al acceder al repositorio de seguridad. " + e.getMessage());
+			throw new CTPServiceException(500,"Error al acceder al repositorio de seguridad. ");
 		}
 		
 		return msg;
@@ -119,30 +120,35 @@ public class GISRestService implements ActionPipelineProcessor {
 
 	private GisParams parsearParametros(HttpRequest request) {
 		//cambiamos claves a minusculas
-		Map<String, String[]> qsMinusculas = new HashMap<>();
-		for(Entry<String, String[]> e : request.getQueryParams().entrySet()){
-			qsMinusculas.put(e.getKey().toLowerCase(), e.getValue());
+		try{
+			Map<String, String[]> qsMinusculas = new HashMap<>();
+			for(Entry<String, String[]> e : request.getQueryParams().entrySet()){
+				qsMinusculas.put(e.getKey().toLowerCase(), e.getValue());
+			}
+			System.out.println(qsMinusculas);
+			/////
+			if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetMap"))
+				return getMap(request,qsMinusculas);
+			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetCapabilities"))
+				return getCapabilities(request,qsMinusculas);
+			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeatureInfo"))
+				return getFeatureInfo(request,qsMinusculas);
+			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("DescribeFeatureType"))
+				return describeFeatureType(request,qsMinusculas);
+			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeature"))
+				return getFeature(request,qsMinusculas);
+			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetGmlObject"))
+				return getGmlObject(request,qsMinusculas);
+			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("Transaction"))
+				return transaction(request,qsMinusculas);
+			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("LockFeature"))
+				return lockFeature(request,qsMinusculas);
+			else
+				return null;
+		}catch (Exception e) {
+			//bad request
+			throw new CTPServiceException(400,"Error en la invocacion, faltan parametros obligatorios");
 		}
-		System.out.println(qsMinusculas);
-		/////
-		if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetMap"))
-			return getMap(request,qsMinusculas);
-		else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetCapabilities"))
-			return getCapabilities(request,qsMinusculas);
-		else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeatureInfo"))
-			return getFeatureInfo(request,qsMinusculas);
-		else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("DescribeFeatureType"))
-			return describeFeatureType(request,qsMinusculas);
-		else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeature"))
-			return getFeature(request,qsMinusculas);
-		else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetGmlObject"))
-			return getGmlObject(request,qsMinusculas);
-		else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("Transaction"))
-			return transaction(request,qsMinusculas);
-		else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("LockFeature"))
-			return lockFeature(request,qsMinusculas);
-		else
-			return null;
 	}
 	@Override
 	public void processException(Message arg0, Throwable arg1) {

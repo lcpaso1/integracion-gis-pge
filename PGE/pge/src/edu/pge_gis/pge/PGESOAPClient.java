@@ -63,23 +63,32 @@ public class PGESOAPClient implements ActionPipelineProcessor {
 					System.out.println(" contenido mime:---"+method.getResponseHeaders());
 					xml = new String(IOUtils.toByteArray(response),	method.getResponseCharSet());
 					//ahora imprimo el resultado de la llamada al ws
-					System.out.println(xml);//excelente funcionó de prima!!!
+					System.out.println("RESPUESTA PROVEEDOR: "+xml);//excelente funcionó de prima!!!
 					//ahora ponemos el resultado en el msg para que el esb se lo mande al soapui
 					msg.getBody().add(xml);
 				} catch (HttpException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					armarMsgRespuesta(msg, "Error interno del servicio, ref: "+e.getMessage());
 				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					armarMsgRespuesta(msg, "El servicio no esta disponible: "+e.getMessage());
 				}
+				//throw new ActionProcessingException("mensaje a llegar en soap");
 		return msg;
 	}
 
+	private void armarMsgRespuesta(Message msg, String error) {
+		// TODO Auto-generated method stub
+		String xmlFault = "<env:Envelope xmlns:env='http://schemas.xmlsoap.org/soap/envelope/'><env:Header></env:Header><env:Body><env:Fault xmlns:env='http://schemas.xmlsoap.org/soap/envelope/'><faultcode>env:Server</faultcode><faultstring>"
+				+ error +"</faultstring></env:Fault></env:Body></env:Envelope>";
+		msg.getBody().add(xmlFault);
+	}
 	@Override
 	public void processException(Message arg0, Throwable arg1) {
 		// TODO Auto-generated method stub
-
+		System.out.println("SOY pge soap client "+arg1.getClass().getCanonicalName());
 	}
 
 	@Override

@@ -75,6 +75,10 @@ public class ManejoErroresRC implements ActionPipelineProcessor {
 	public void processException(Message msg, Throwable t) {
 		System.out.println("soy manejoErrores procesando excpecion");
 		if( msg != null ) {
+			//primero borro todo
+			for(String s : msg.getBody().getNames())
+				msg.getBody().remove(s);
+			//luego agrego la excepcion
 			msg.getBody().add("exceptionTrace",t);
 			try {
 				Service errorService = new Service("Utility", "ServeErrorService");

@@ -8,6 +8,7 @@ import edu.pge_gis.ctp.database.dominio.ConfSeguridadPublica;
 import edu.pge_gis.ctp.database.dominio.Metodo;
 import edu.pge_gis.ctp.database.dominio.Seguridad;
 import edu.pge_gis.ctp.database.dominio.ServicioGis;
+import edu.pge_gis.ctp.rc.errors.CTPServiceException;
 import edu.pge_gis.utils.DAOUtils;
 
 public class SeguridadRepo {	
@@ -48,7 +49,7 @@ public class SeguridadRepo {
 		}
 		
 		if (servicio == null ) {
-			throw new SQLException("No existe el servicio '" + identificador + "'");
+			throw new CTPServiceException("No existe el servicio '" + identificador + "'");
 		}
 		
 		return servicio;
@@ -71,9 +72,11 @@ public class SeguridadRepo {
 				Seguridad seguridad = mapSeguridad(rs);
 				return seguridad;
 			}
+				
 		}
 		
-		throw new SQLException("No se encontró seguridad configurada para IP:" + ip + " servicio:" + idServicio + " y metodo:" + idMetodo);
+		//throw new SQLException("No se encontró seguridad configurada para IP:" + ip + " servicio:" + idServicio + " y metodo:" + idMetodo);
+		throw new CTPServiceException(403,"Acceso denegado al servicio por falta de credenciales para la IP:" + ip);
 	}
 
 	private static Seguridad mapSeguridad(ResultSet rs) throws SQLException {
@@ -99,8 +102,8 @@ public class SeguridadRepo {
 			seguridad.setPerfil(rs.getString("perfil"));
 			return seguridad;
 		}
-		
-		return null;
+		else
+			throw new CTPServiceException(403,"Acceso denegado por falta de credenciales publicas");
 	
 		
 	}

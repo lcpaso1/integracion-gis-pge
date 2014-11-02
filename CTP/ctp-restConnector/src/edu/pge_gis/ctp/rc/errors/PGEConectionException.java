@@ -8,4 +8,7 @@ public class PGEConectionException extends RuntimeException implements HTTPStatu
 		return 502;
 	}
 //lanzada si no hay conectividad de la pge
+	public PGEConectionException(String msg){
+		super(msg);
+	}
 }

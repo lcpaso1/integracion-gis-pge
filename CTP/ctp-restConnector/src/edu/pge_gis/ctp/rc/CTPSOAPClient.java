@@ -5,6 +5,7 @@ import static edu.pge_gis.ctp.dto.InfoServicio.DIRECCION_PROXY;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.net.ConnectException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,9 @@ import javax.xml.ws.addressing.JAXWSAConstants;
 import javax.xml.ws.addressing.soap.SOAPAddressingBuilder;
 import javax.xml.ws.addressing.soap.SOAPAddressingProperties;
 import javax.xml.ws.handler.Handler;
+import javax.xml.ws.soap.SOAPFaultException;
 
+import org.jboss.remoting.CannotConnectException;
 import org.jboss.soa.esb.actions.ActionLifecycleException;
 import org.jboss.soa.esb.actions.ActionPipelineProcessor;
 import org.jboss.soa.esb.actions.ActionProcessingException;
@@ -26,6 +29,8 @@ import org.jboss.ws.extensions.addressing.jaxws.WSAddressingClientHandler;
 
 import uy.gub.agesic.beans.SAMLAssertion;
 import edu.pge_gis.ctp.dto.InfoServicio;
+import edu.pge_gis.ctp.rc.errors.PGEConectionException;
+import edu.pge_gis.ctp.rc.errors.SOAPInvocationException;
 import edu.pge_gis.ctp.rc.gis_ws_client.GISWS;
 import edu.pge_gis.ctp.rc.gis_ws_client.GISWSwmsYwfsService;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
@@ -88,8 +93,24 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvocationTargetException e) {
-			// TODO Auto-generated catch block
+			// aca entran las soapfaultexception
 			e.printStackTrace();
+			Throwable error = e.getCause();
+			if (error instanceof SOAPFaultException)
+				throw new SOAPInvocationException(error.getMessage());
+			while(error != null){
+				if(error instanceof ConnectException || error instanceof CannotConnectException)
+					throw new PGEConectionException(error.getMessage());
+				//voy poniendo if para tirar la excepcion correcta
+				//sigo iterando
+				error = error.getCause();
+			}
+			//sino tiro esta
+			throw new RuntimeException(e.getCause().getMessage());
+		}
+        catch (Throwable t) {
+			t.printStackTrace();
+			throw new PGEConectionException(t.getMessage());
 		}
 		return msg;
 	}
