@@ -134,7 +134,7 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 		bindingProvider.getRequestContext().put(JAXWSAConstants.CLIENT_ADDRESSING_PROPERTIES, addrProps);
 		bindingProvider.getBinding().setHandlerChain(customHandlerChain);
 		
-		// TODO : agregar securityToken a SOAP message.  
+		// TODO : agregar securityToken a SOAP message. 
 		// bindingProvider.getRequestContext().put("uy.gub.agesic.security.saml", securityToken); 
 
 		
