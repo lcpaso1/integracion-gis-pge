@@ -4,8 +4,8 @@
        xsi:schemaLocation="
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd">
 
-    
-    <bean id="chains" class="uy.edu.fing.pgrad.sts.server.util.TrustChainContainer">
+                             
+    <bean id="chains" class="edu.pge_gis.pge.sts.server.util.TrustChainContainer">
         
         <property name="stsName" value="STS-PGE" />
         <property name="timeOut" value="900" />  <!-- el valor es en sgundos -->
@@ -17,7 +17,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
                 <!-- ******************************************************** -->
                 <!-- CADENA TOKEN ORGANIZMO --> 
-                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+                <bean class="edu.pge_gis.pge.sts.server.TrustChain">
 
                     <property name="name" value="chain-token-org" />
 
@@ -30,12 +30,12 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
                     <property name="mappinglist" >
                         <list>
-                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleORG" />
+                            <bean class="edu.pge_gis.pge.sts.server.mappingmodule.MappingModuleORG" />
                         </list>
                     </property>
 
                     <property name="tokenProvider" >
-                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                        <bean class="edu.pge_gis.pge.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
                     </property> 
 
                 </bean>                                
@@ -43,7 +43,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                                 
                 <!-- ******************************************************** -->
                 <!-- CADENA TOKEN PGE --> 
-                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+                <bean class="edu.pge_gis.pge.sts.server.TrustChain">
 
                     <property name="name" value="chain-token-pge" />
 
@@ -52,12 +52,12 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
                     <property name="mappinglist" >
                         <list>
-                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleBase2Context" />
+                            <bean class="edu.pge_gis.pge.sts.server.mappingmodule.MappingModuleBase2Context" />
                         </list>
                     </property>
 
                     <property name="tokenProvider" >
-                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                        <bean class="edu.pge_gis.pge.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
                     </property> 
 
                 </bean>                                
@@ -65,7 +65,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
                 <!-- ******************************************************** -->
                 <!-- CADENA TOKEN PGE (INTERMEDIARIO PROCESOS-TEM) --> 
-                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+                <bean class="edu.pge_gis.pge.sts.server.TrustChain">
 
                     <property name="name" value="chain-token-pge-intermediarioProcesos-tem" />
                     <property name="tokenType" ref="saml1_tokenType" />
@@ -73,13 +73,13 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
                     <property name="mappinglist" >
                         <list>
-                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleBase2Context" />
-                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModulePolicyName" />
+                            <bean class="edu.pge_gis.pge.sts.server.mappingmodule.MappingModuleBase2Context" />
+                            <bean class="edu.pge_gis.pge.sts.server.mappingmodule.MappingModulePolicyName" />
                         </list>
                     </property>
 
                     <property name="tokenProvider" >
-                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                        <bean class="edu.pge_gis.pge.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
                     </property> 
 
                 </bean>                                
@@ -87,7 +87,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
                 <!-- ******************************************************** -->
                 <!-- CADENA TOKEN GENERATOR --> 
-                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+                <bean class="edu.pge_gis.pge.sts.server.TrustChain">
 
                     <property name="name" value="chain-token-generator" />
                     <property name="keyStoreInfo" ref="storebean-pge-tokengenerator" />
@@ -96,7 +96,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                     <property name="issuer" value="urn:intermediarioOrquestaciones:tokenGenerator" />
 
                     <property name="tokenProvider" >
-                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
+                        <bean class="edu.pge_gis.pge.sts.server.tokenprovider.SAMLTokenProviderBasic1" />
                     </property> 
 
                 </bean>                                
@@ -104,7 +104,7 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
 
                 <!-- ******************************************************** -->
                 <!-- CADENA TOKEN 1TPS-MW --> 
-                <bean class="uy.edu.fing.pgrad.sts.server.TrustChain">
+                <bean class="edu.pge_gis.pge.sts.server.TrustChain">
 
                     <property name="name" value="chain-1tps-mw" />
                     <property name="tokenType" ref="saml2_tokenType" />
@@ -113,19 +113,19 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
                     
                     <property name="mappinglist" >
                         <list>
-                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleBase2Context" />
-                            <bean class="uy.edu.fing.pgrad.sts.server.mappingmodule.MappingModuleDelegateFromTokenSignature" />
+                            <bean class="edu.pge_gis.pge.sts.server.mappingmodule.MappingModuleBase2Context" />
+                            <bean class="edu.pge_gis.pge.sts.server.mappingmodule.MappingModuleDelegateFromTokenSignature" />
                         </list>
                     </property>
 
 
                     <property name="tokenValidator">
-                        <bean class="uy.edu.fing.pgrad.sts.server.validator.TokenValidatorImpl" />
+                        <bean class="edu.pge_gis.pge.sts.server.validator.TokenValidatorImpl" />
                     </property>
                         
                     
                     <property name="tokenProvider" >
-                        <bean class="uy.edu.fing.pgrad.sts.server.tokenprovider.SAML2TokenProvider" />
+                        <bean class="edu.pge_gis.pge.sts.server.tokenprovider.SAML2TokenProvider" />
                     </property> 
 
                 </bean>                                

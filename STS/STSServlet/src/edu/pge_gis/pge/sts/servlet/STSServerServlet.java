@@ -79,9 +79,12 @@ public class STSServerServlet extends HttpServlet {
             // Handle soapReqest ANTES
             // SOAPMessage soapResponse = soapProcessor.handleSOAPRequest(soapRequest);
 
+            System.out.println("Antes de handleRequest");
             // Nuevo con pl
             SOAPMessage soapResponse = handleRequest(soapRequest, req);
+            System.out.println("Despues de handleRequest");
 
+            
             // Write to HttpServeltResponse
             resp.setStatus(HttpServletResponse.SC_OK);
             resp.setContentType("text/xml;charset=\"utf-8\"");
@@ -90,6 +93,7 @@ public class STSServerServlet extends HttpServlet {
 //            soapResponse.writeTo(new LogOutputStream(log, "info"));
             os.flush();
         } catch (SOAPException e) {
+        	System.out.println("Excepcion SOAPException!!! " + e.getMessage());
             throw new IOException("Exception while creating SOAP message.", e);
         }
     }
@@ -107,6 +111,7 @@ public class STSServerServlet extends HttpServlet {
                 headers.addHeader(headerName, values.nextToken().trim());
             }
         }
+        System.out.println("STSServerServlet::getHeaders END !!!");
         return headers;
     }
 

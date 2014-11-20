@@ -17,6 +17,9 @@
     		<fileset dir="C:/ProyectoDeGrado/STS/tokengenerator/bin">
     			<include name="**/*" />
     		</fileset>
+    		<fileset dir="C:/ProyectoDeGrado/STS/tokengenerator/resources">
+    			<include name="**/*" />
+    		</fileset>    		
     	</jar>
 		
 		
@@ -28,6 +31,8 @@
 		   <lib dir="target/libs/"></lib>
 		   <lib dir="C:/ProyectoDeGrado/STS/tokengenerator/lib/">
 			   	<exclude name="slf4j-api.jar"/>
+		   </lib>
+		   <lib dir="C:/ProyectoDeGrado/STS/tokengenerator/newlibs/">
 		   </lib>
 		   <lib dir="C:/ProyectoDeGrado/STS/STSCommons/lib/">
 	   			<exclude name="servlet-api.jar"/>

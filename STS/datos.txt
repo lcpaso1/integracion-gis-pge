@@ -4,3 +4,7 @@ keystore password ?
 key password : proy2014
 
 url : http://localhost:8080/STSServer/NewSTSWizardService?wsdl
+
+
+Error al cargar configuracion : IOException parsing XML document from class path resource [sts-config.xml]; nested exception is java.io.FileNotFoundException: class path resource [sts-config.xml] cannot be opened because it does not exist
+
