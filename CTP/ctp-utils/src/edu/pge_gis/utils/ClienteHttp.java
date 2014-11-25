@@ -1,9 +1,11 @@
 package edu.pge_gis.utils;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
 import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
@@ -20,17 +22,26 @@ public class ClienteHttp {
 			HttpClient httpClient = new HttpClient();
 			method = new GetMethod(url);
 			int httpStatusCode = httpClient.executeMethod(method);
-			assert (httpStatusCode == 200 || httpStatusCode == 204);
-			//logHTTPStatusCode(httpStatusCode);
-			InputStream response = method.getResponseBodyAsStream();
-			System.out.println(" contenido mime:---"+method.getResponseHeaders());
-			xml = new String(IOUtils.toByteArray(response),	method.getResponseCharSet());
-		} catch (Exception e) {
+			if (httpStatusCode == 200 || httpStatusCode == 204){
+				//logHTTPStatusCode(httpStatusCode);
+				InputStream response = method.getResponseBodyAsStream();
+				System.out.println(" contenido mime:---"+method.getResponseHeaders());
+				xml = new String(IOUtils.toByteArray(response),	method.getResponseCharSet());
+				return xml;
+			}
+			else{
+				throw new RuntimeException("HTTP code: "+httpStatusCode);
+			}
+		} catch (HttpException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Error de http: "+e.getMessage(), e);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error de conexion: "+e.getMessage(), e);
 		} finally {
 			method.releaseConnection();
 		}
-		return xml;
+		
 	}
 
 	public static byte[] executeGetBinario(String url) {
@@ -39,16 +50,22 @@ public class ClienteHttp {
 			HttpClient httpClient = new HttpClient();
 			method = new GetMethod(url);
 			int httpStatusCode = httpClient.executeMethod(method);
-			assert (httpStatusCode == 200 || httpStatusCode == 204);
+			if (httpStatusCode == 200 || httpStatusCode == 204){
 			//logHTTPStatusCode(httpStatusCode);
-			return method.getResponseBody();
-
-		} catch (Exception e) {
+				return method.getResponseBody();
+			}
+			else{
+				throw new RuntimeException("HTTP code: "+httpStatusCode);
+			}
+		} catch (HttpException e) {
 			e.printStackTrace();
+			throw new RuntimeException("Error de http: "+e.getMessage(), e);
+		} catch (IOException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error de conexion: "+e.getMessage(), e);
 		} finally {
 			method.releaseConnection();
 		}
-		return null;
 	}
 	
 	public static byte[] executeGetBinario(String url,	HashMap<String, String> parameters) {
