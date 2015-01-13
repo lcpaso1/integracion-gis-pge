@@ -1,0 +1,25 @@
+Pendientes:
+-STS
+	-mergear codigo invocacion sts
+	-falta terminar y probar invocacion sts pedir token
+	-meter token en soap usando handlers ws-security
+
+-manejo de error cuando el esb da timeout porque el servidor de mapas demora en responder. revisar. 
+ver con raquel.
+
+-getcapabilities en mapserver se corta en 4kb, como configurar o hacer el pedido para evitar esto.
+ver con raquel
+
+-reemplazar urls en respuesta getcapabilities
+	-parametro del ws en gisparams agregar la url del ctp rc
+	-reemplazar urls, primero toda (url+props) y luego solo la url del servidor.
+
+-testing wms y wfs de geoserver y mapserver tanto de browser como de gvsig
+-getfeatureinfo de mapserver.... ver con raquel
+ 
+-diseñar caso de estudio. 
+
+-documentacion
+
+-presentacion: ppt y demo
+
