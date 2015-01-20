@@ -44,11 +44,36 @@ public class GISWSwmsYwfs {
 	// response es un documento XML
 	@WebMethod
 	public String getCapabilities(GISParams params){
+		//lanzarExceptionDePrueba();
+		//http://localhost:82/cgi-bin/mapserv.exe?map=padronesmvd.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities
+		//http://localhost:8080/ctp/http/ctp/catastro?service=WMS&version=1.1.0&request=getcapabilities
+		//http://localhost:8080/ctp/http/ctp/catastro?service=WFS&version=1.1.0&request=getcapabilities
 		boolean isWms = params.getService().equalsIgnoreCase("wms");
-		return invokeText(params, isWms);
+		String result = invokeText(params, isWms);
+		
+		String replacement = ""; // falta pasar como parametro soap
+		
+		PropertiesHandler prop = PropertiesHandler.getInstance();
+		StringBuffer url = new StringBuffer(prop.getProperty("url"));
+		// primero se remplaza la opcion mas larga y luego la mas corta 
+		if (isWms){
+			result = result.replaceAll(url+prop.getProperty("propwms"), replacement);
+			result = result.replaceAll(url.toString(), replacement);
+		}else{
+			result = result.replaceAll(url+prop.getProperty("propwfs"), replacement);
+			result = result.replaceAll(url.toString(), replacement);
+		}
+		
+		return result;
 	}
 	
 	private void lanzarExceptionDePrueba(){
+		try {
+			Thread.sleep(35000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		throw new RuntimeException("prueba error desde ctp sc");
 	}
 	
@@ -56,9 +81,8 @@ public class GISWSwmsYwfs {
 	@WebMethod
 	public byte[] getMap(GISParams params){
 		//lanzarExceptionDePrueba();
-		//service=WMS&version=1.1.0&request=GetMap&layers=integraciongispge:ine_ccz_mvd&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg
-		//http://localhost:8080/ctp/http/ctp/meteorologia/getMap?service=WMS&version=1.1.0&request=GetMap&layers=integraciongispge:ine_ccz_mvd&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg
-		//http://localhost:82/cgi-bin/mapserv.exe?map=mapfile.map&service=WMS&version=1.1.0&request=GetMap&layers=ine_ccz_mvd&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg
+		//http://localhost:82/cgi-bin/mapserv.exe?map=padronesmvd.map&service=WMS&version=1.1.1&request=GetMap&layers=padrones-montevideo&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg
+		//http://localhost:8080/ctp/http/ctp/catastro?service=WMS&version=1.1.0&request=GetMap&layers=padrones-montevideo&styles=&bbox=553867.5625,6134514.0,588288.8125,6153362.5&width=602&height=330&srs=EPSG:32721&format=image%2Fjpeg
 		return invokeBinario(params, true);
 	}
 	
