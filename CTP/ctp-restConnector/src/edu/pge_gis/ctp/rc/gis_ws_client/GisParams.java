@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlType;
  *         &lt;element name="params" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="service" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="urlReplace" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -31,13 +32,15 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "gisParams", propOrder = {
     "params",
     "request",
-    "service"
+    "service",
+    "urlReplace"
 })
 public class GisParams {
 
     protected String params;
     protected String request;
     protected String service;
+    protected String urlReplace;
 
     /**
      * Gets the value of the params property.
@@ -109,6 +112,30 @@ public class GisParams {
      */
     public void setService(String value) {
         this.service = value;
+    }
+
+    /**
+     * Gets the value of the urlReplace property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getUrlReplace() {
+        return urlReplace;
+    }
+
+    /**
+     * Sets the value of the urlReplace property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setUrlReplace(String value) {
+        this.urlReplace = value;
     }
 
 }

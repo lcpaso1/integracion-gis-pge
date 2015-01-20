@@ -40,6 +40,9 @@ public class GISRestService implements ActionPipelineProcessor {
 
 	}
 
+	//TODO cargar de property
+	private final static String ctp_endpointURL = "http://localhost:8080/ctp/http/ctp/";
+	
 	@Override
 	public Message process(Message msg) throws ActionProcessingException {
 		// Este toma el request http y carga los parametros en el mensaje para usarlos a posteriori
@@ -167,6 +170,7 @@ public class GISRestService implements ActionPipelineProcessor {
 		params.setRequest(method);
 		params.setService(service);
 		params.setParams(parameters);
+		params.setUrlReplace(ctp_endpointURL);
 		
 		return params;
 	}

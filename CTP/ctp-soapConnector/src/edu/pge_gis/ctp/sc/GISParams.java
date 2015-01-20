@@ -47,6 +47,7 @@ public class GISParams implements Serializable {
 	private String params;
 	private String service; //ejs: WMS WFS
 	private String request; //ejs: getCapabilities getMap getFeatureInfo
+	private String urlReplace;
 	
 	public String getService() {
 		return service;
@@ -65,6 +66,12 @@ public class GISParams implements Serializable {
 	}
 	public void setParams(String params) {
 		this.params = params;
+	}
+	public String getUrlReplace() {
+		return urlReplace;
+	}
+	public void setUrlReplace(String urlReplace) {
+		this.urlReplace = urlReplace;
 	}
 		
 	/*public String getVersion() {
