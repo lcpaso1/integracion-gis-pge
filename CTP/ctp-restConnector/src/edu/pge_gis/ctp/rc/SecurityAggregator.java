@@ -7,6 +7,7 @@ import org.jboss.soa.esb.helpers.ConfigTree;
 import org.jboss.soa.esb.message.Message;
 import org.w3c.dom.Element;
 
+import edu.pge_gis.ctp.rc.errors.CTPServiceException;
 import pgrad.sts.client.RSTBean;
 import pgrad.sts.client.STSClient1;
 import pgrad.sts.server.exceptions.ConfigurationException;
@@ -74,12 +75,15 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 		} catch (ConfigurationException e) {
 			// TODO Lanzar excepcion relativa a STS 
 			e.printStackTrace();
+			throw new CTPServiceException(500,"Error al obtener token de seguridad. ");
 		} catch (WSTrustClientException e) {
 			// TODO Lanzar excepcion relativa a STS 
 			e.printStackTrace();
+			throw new CTPServiceException(500,"Error al conectarse con el servidor de seguridad. ");
 		} catch (ProcessingException e) {
 			// TODO Lanzar excepcion relativa a STS 
 			e.printStackTrace();
+			throw new CTPServiceException(500,"Error al procesar parametros de seguridad. ");
 		}
 		
 		return msg;
