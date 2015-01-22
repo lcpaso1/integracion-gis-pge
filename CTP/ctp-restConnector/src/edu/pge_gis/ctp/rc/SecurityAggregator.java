@@ -5,6 +5,12 @@ import org.jboss.soa.esb.actions.ActionPipelineProcessor;
 import org.jboss.soa.esb.actions.ActionProcessingException;
 import org.jboss.soa.esb.helpers.ConfigTree;
 import org.jboss.soa.esb.message.Message;
+import org.opensaml.DefaultBootstrap;
+import org.opensaml.saml1.core.Assertion;
+import org.opensaml.xml.Configuration;
+import org.opensaml.xml.io.Unmarshaller;
+import org.opensaml.xml.io.UnmarshallerFactory;
+import org.opensaml.xml.io.UnmarshallingException;
 import org.w3c.dom.Element;
 
 import edu.pge_gis.ctp.rc.errors.CTPServiceException;
@@ -62,29 +68,41 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 			
 			if (token==null) {
 				System.out.println("ERROR token == null");
-				// TODO Lanzar excepcion relativa a STS 
+				throw new CTPServiceException(500,"Error al obtener token de seguridad. ");
 			}
 			
 			String token2string = DocumentUtil.getDOMElementAsString(token);
 			
-			// agrego el token de seguridad al mensaje
-			msg.getBody().add("security_token", token2string);
+			// Convertir a ASSertion
+			DefaultBootstrap.bootstrap();
+			UnmarshallerFactory unmarshallerFactory = Configuration.getUnmarshallerFactory();
+			Unmarshaller unmarshaller = unmarshallerFactory.getUnmarshaller(token);
 			
+			Assertion ass = (Assertion) unmarshaller.unmarshall(token);
+			sas.setAssertion(ass);
+			
+			// agrego el token de seguridad al mensaje
+			msg.getBody().add("security_token", sas);
+
 			System.out.println("****** Security token is '" + token2string + "' ******" );
 			
 		} catch (ConfigurationException e) {
-			// TODO Lanzar excepcion relativa a STS 
 			e.printStackTrace();
 			throw new CTPServiceException(500,"Error al obtener token de seguridad. ");
 		} catch (WSTrustClientException e) {
-			// TODO Lanzar excepcion relativa a STS 
 			e.printStackTrace();
 			throw new CTPServiceException(500,"Error al conectarse con el servidor de seguridad. ");
 		} catch (ProcessingException e) {
-			// TODO Lanzar excepcion relativa a STS 
+			e.printStackTrace();
+			throw new CTPServiceException(500,"Error al procesar parametros de seguridad. ");
+		} catch (UnmarshallingException e) {
+			e.printStackTrace();
+			throw new CTPServiceException(500,"Error al procesar parametros de seguridad. ");
+		} catch (org.opensaml.xml.ConfigurationException e) { 
 			e.printStackTrace();
 			throw new CTPServiceException(500,"Error al procesar parametros de seguridad. ");
 		}
+
 		
 		return msg;
 	}
