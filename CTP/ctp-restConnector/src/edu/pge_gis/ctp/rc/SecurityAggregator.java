@@ -102,7 +102,10 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 		} catch (org.opensaml.xml.ConfigurationException e) { 
 			e.printStackTrace();
 			throw new CTPServiceException(500,"Error al procesar parametros de seguridad. ");
-		}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new CTPServiceException(500,"Error al procesar solicitud. ");
+		} 
 
 		
 		return msg;
