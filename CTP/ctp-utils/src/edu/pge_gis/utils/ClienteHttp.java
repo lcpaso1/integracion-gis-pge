@@ -14,7 +14,7 @@ import org.apache.commons.io.IOUtils;
 
 public class ClienteHttp {
 
-	public static String executeGet(String url) {
+	public static String executeGet(String url) throws IOException {
 
 		String xml = null;
 		GetMethod method = null;
@@ -35,16 +35,13 @@ public class ClienteHttp {
 		} catch (HttpException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error de http: "+e.getMessage(), e);
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Error de conexion: "+e.getMessage(), e);
 		} finally {
 			method.releaseConnection();
 		}
 		
 	}
 
-	public static byte[] executeGetBinario(String url) {
+	public static byte[] executeGetBinario(String url) throws IOException  {
 		GetMethod method = null;
 		try {
 			HttpClient httpClient = new HttpClient();
@@ -60,9 +57,6 @@ public class ClienteHttp {
 		} catch (HttpException e) {
 			e.printStackTrace();
 			throw new RuntimeException("Error de http: "+e.getMessage(), e);
-		} catch (IOException e) {
-			e.printStackTrace();
-			throw new RuntimeException("Error de conexion: "+e.getMessage(), e);
 		} finally {
 			method.releaseConnection();
 		}
