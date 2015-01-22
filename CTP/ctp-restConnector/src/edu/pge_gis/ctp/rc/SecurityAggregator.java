@@ -7,7 +7,7 @@ import org.jboss.soa.esb.helpers.ConfigTree;
 import org.jboss.soa.esb.message.Message;
 import org.opensaml.DefaultBootstrap;
 import org.opensaml.saml1.core.Assertion;
-import org.opensaml.xml.Configuration;
+import org.opensaml.Configuration;
 import org.opensaml.xml.io.Unmarshaller;
 import org.opensaml.xml.io.UnmarshallerFactory;
 import org.opensaml.xml.io.UnmarshallingException;
@@ -75,6 +75,7 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 			
 			// Convertir a ASSertion
 			DefaultBootstrap.bootstrap();
+
 			UnmarshallerFactory unmarshallerFactory = Configuration.getUnmarshallerFactory();
 			Unmarshaller unmarshaller = unmarshallerFactory.getUnmarshaller(token);
 			
