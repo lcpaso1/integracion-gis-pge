@@ -51,7 +51,7 @@ public class GISWSwmsYwfs {
 		boolean isWms = params.getService().equalsIgnoreCase("wms");
 		String result = invokeText(params, isWms);
 		
-		String replacement = ""; // falta pasar como parametro soap
+		String replacement = params.getUrlReplace();
 		
 		PropertiesHandler prop = PropertiesHandler.getInstance();
 		StringBuffer url = new StringBuffer(prop.getProperty("url"));
