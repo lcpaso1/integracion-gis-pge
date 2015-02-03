@@ -128,24 +128,27 @@ public class GISRestService implements ActionPipelineProcessor {
 			for(Entry<String, String[]> e : request.getQueryParams().entrySet()){
 				qsMinusculas.put(e.getKey().toLowerCase(), e.getValue());
 			}
-			System.out.println(qsMinusculas);
-			/////
+
+
+			String[] uri = request.getRequestURI().split("/");
+			String nombreServicio = uri[uri.length-1];
+			
 			if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetMap"))
-				return getMap(request,qsMinusculas);
+				return getMap(request,qsMinusculas,nombreServicio);
 			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetCapabilities"))
-				return getCapabilities(request,qsMinusculas);
+				return getCapabilities(request,qsMinusculas,nombreServicio);
 			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeatureInfo"))
-				return getFeatureInfo(request,qsMinusculas);
+				return getFeatureInfo(request,qsMinusculas,nombreServicio);
 			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("DescribeFeatureType"))
-				return describeFeatureType(request,qsMinusculas);
+				return describeFeatureType(request,qsMinusculas,nombreServicio);
 			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeature"))
-				return getFeature(request,qsMinusculas);
+				return getFeature(request,qsMinusculas,nombreServicio);
 			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetGmlObject"))
-				return getGmlObject(request,qsMinusculas);
+				return getGmlObject(request,qsMinusculas,nombreServicio);
 			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("Transaction"))
-				return transaction(request,qsMinusculas);
+				return transaction(request,qsMinusculas,nombreServicio);
 			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("LockFeature"))
-				return lockFeature(request,qsMinusculas);
+				return lockFeature(request,qsMinusculas,nombreServicio);
 			else
 				return null;
 		}catch (Exception e) {
@@ -165,61 +168,69 @@ public class GISRestService implements ActionPipelineProcessor {
 
 	}
 	
-	private GisParams createParams(String service, String method, String parameters){
+	private GisParams createParams(String service, String method, String parameters, String nombreServicio){
 		GisParams params = new GisParams();
 		params.setRequest(method);
 		params.setService(service);
 		params.setParams(parameters);
-		params.setUrlReplace(ctp_endpointURL);
+		params.setUrlReplace(ctp_endpointURL+"/"+nombreServicio);
 		
 		return params;
 	}
 	
-	private GisParams getMap(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams getMap(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 	
-	private GisParams getCapabilities(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams getCapabilities(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 	
-	private GisParams getFeatureInfo(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams getFeatureInfo(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 	
-	private GisParams describeFeatureType(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams describeFeatureType(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 
-	private GisParams getFeature(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams getFeature(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 	
-	private GisParams getGmlObject(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams getGmlObject(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 	
-	private GisParams transaction(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams transaction(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 	
-	private GisParams lockFeature(HttpRequest request, Map<String, String[]> qsMinusculas){
+	private GisParams lockFeature(HttpRequest request, Map<String, String[]> qsMinusculas, String nombreServicio){
 		return createParams(qsMinusculas.get("service")[0].toString(), 
 				qsMinusculas.get("request")[0], 
-				request.getQueryString());
+				request.getQueryString(),
+				nombreServicio);
 	}
 }

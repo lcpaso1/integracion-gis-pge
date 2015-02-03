@@ -52,15 +52,19 @@ public class GISWSwmsYwfs {
 		String result = invokeText(params, isWms);
 		
 		String replacement = params.getUrlReplace();
-		
 		PropertiesHandler prop = PropertiesHandler.getInstance();
 		StringBuffer url = new StringBuffer(prop.getProperty("url"));
+		String propows = prop.getProperty("propows");
+		
 		// primero se remplaza la opcion mas larga y luego la mas corta 
 		if (isWms){
 			result = result.replaceAll(url+prop.getProperty("propwms"), replacement);
+			result = (propows != null) && !propows.equals("") ? result.replaceAll(url+propows, replacement) : result;
 			result = result.replaceAll(url.toString(), replacement);
+			
 		}else{
 			result = result.replaceAll(url+prop.getProperty("propwfs"), replacement);
+			result = (propows != null) && !propows.equals("") ? result.replaceAll(url+propows, replacement) : result;
 			result = result.replaceAll(url.toString(), replacement);
 		}
 		
