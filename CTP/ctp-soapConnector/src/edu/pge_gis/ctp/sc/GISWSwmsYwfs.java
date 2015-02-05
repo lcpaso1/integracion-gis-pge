@@ -44,7 +44,6 @@ public class GISWSwmsYwfs {
 	// response es un documento XML
 	@WebMethod
 	public String getCapabilities(GISParams params){
-		//lanzarExceptionDePrueba();
 		//http://localhost:82/cgi-bin/mapserv.exe?map=padronesmvd.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities
 		//http://localhost:8080/ctp/http/ctp/catastro?service=WMS&version=1.1.0&request=getcapabilities
 		//http://localhost:8080/ctp/http/ctp/catastro?service=WFS&version=1.1.0&request=getcapabilities
@@ -84,8 +83,6 @@ public class GISWSwmsYwfs {
 	// response es una imagen
 	@WebMethod
 	public byte[] getMap(GISParams params){
-		//lanzarExceptionDePrueba();
-		//http://localhost:82/cgi-bin/mapserv.exe?map=padronesmvd.map&service=WMS&version=1.1.1&request=GetMap&layers=padrones-montevideo&styles=&bbox=551994.287963867,6133494.37103271,589199.424,6159798.69390869&width=512&height=361&srs=EPSG:32721&format=image%2Fjpeg
 		//http://localhost:8080/ctp/http/ctp/catastro?service=WMS&version=1.1.0&request=GetMap&layers=padrones-montevideo&styles=&bbox=553867.5625,6134514.0,588288.8125,6153362.5&width=602&height=330&srs=EPSG:32721&format=image%2Fjpeg
 		return invokeBinario(params, true);
 	}
@@ -98,6 +95,7 @@ public class GISWSwmsYwfs {
 	//metodos de wfs
 	@WebMethod
 	public String describeFeatureType(GISParams params){
+		//http://localhost:8080/ctp/http/ctp/catastro?service=wfs&version=2.0.0&request=DescribeFeatureType
 		return invokeText(params, false);
 	}
 	
