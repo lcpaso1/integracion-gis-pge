@@ -4,20 +4,20 @@ Pendientes:
 	-falta terminar y probar invocacion sts pedir token
 	-meter token en soap usando handlers ws-security
 
--manejo de error cuando el esb da timeout porque el servidor de mapas demora en responder. revisar. 
-ver con raquel.
-
--getcapabilities en mapserver se corta en 4kb, como configurar o hacer el pedido para evitar esto.
-ver con raquel
-
 -testing wms y wfs de geoserver y mapserver tanto de browser como de gvsig
--getfeatureinfo de mapserver.... ver con raquel
  
 -diseñar caso de estudio. 
 
 -documentacion
 
 -presentacion: ppt y demo
+
+Para ver con Raquel
+-Controlar el token en la pge???
+-getcapabilities en mapserver se corta en 4kb, como configurar o hacer el pedido para evitar esto.
+-manejo de error cuando el esb da timeout porque el servidor de mapas demora en responder. revisar. 
+-getfeatureinfo de mapserver
+-al cerrar gvsig se pierde getfeatureinfo
 
 
 #################### LISTO ################################
