@@ -21,10 +21,15 @@ import pgrad.sts.server.exceptions.ProcessingException;
 import pgrad.sts.server.exceptions.WSTrustClientException;
 import pgrad.sts.server.util.DocumentUtil;
 import uy.gub.agesic.beans.SAMLAssertion;
+import uy.gub.agesic.beans.StoreBean;
+import uy.gub.agesic.exceptions.RequestSecurityTokenException;
+import uy.gub.agesic.sts.client.PGEClient;
 
 
 public class SecurityAggregator implements ActionPipelineProcessor {
 
+	private static final boolean USAR_CLIENTE_JAVA = false;
+	
 	/** OJOTA!!!!  todos los procesadores necesitan este constructor, pero hay que agregarlo a mano*/
 	public SecurityAggregator(ConfigTree config){
 		
@@ -44,12 +49,14 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 	@Override
 	public Message process(Message msg) throws ActionProcessingException {
 		// Este toma los parametros para ver que usuario usa para pedir el token de seguridad
-
-		// TODO: obtener el token de seguridad del STS 
-		String securityToken = "&&&&&&&&&&&&&&&&_dummy_security_token_&&&&&&&&&&&&&&&&&&&";
 		
-		// Dummy SAMLAssertion 
+		return USAR_CLIENTE_JAVA ? processUsingClienteJava(msg) : processUsingSTSClient(msg);
+	}
 
+	
+	public Message processUsingSTSClient(Message msg) throws ActionProcessingException {
+		// Este toma los parametros para ver que usuario usa para pedir el token de seguridad
+		
 		SAMLAssertion sas = new SAMLAssertion();
 		sas.setAssertion(null);
 	
@@ -111,6 +118,60 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 		return msg;
 	}
 
+
+	public Message processUsingClienteJava(Message msg) throws ActionProcessingException {
+		// Este toma los parametros para ver que usuario usa para pedir el token de seguridad
+		
+		String userName = "Juan"; 
+		String role = "CN=user0,OU=TEST_TUTORIAL,O=TEST_PE"; 
+		// TODO: No hardcodear url.
+//		String service = "http://localhost:8080/STSServer/STSServerServlet"; 
+		String service = "http://test_agesic.red.uy/Servicio";
+		String policyName = "urn:tokensimple"; 
+		String issuer = "BPS";  
+
+		
+		uy.gub.agesic.beans.RSTBean bean = new uy.gub.agesic.beans.RSTBean(); 
+		bean.setUserName(userName); 
+		bean.setRole(role); 
+		bean.setService(service); 
+		bean.setPolicyName(policyName); 
+		bean.setIssuer(issuer);
+		
+		// Datos de trust store y keystore. TODO : usar properties.
+		String alias = "key1"; 
+		String keyStoreFilePath = "c:/ProyectoDeGrado/STS/keystore/keystore.jks"; 
+		String keyStorePwd = "changeit";    
+		String trustStoreFilePath = "c:/ProyectoDeGrado/STS/keystore/keystore.jks"; 
+		String trustStorePwd = "changeit";   
+		
+		StoreBean keyStore = new StoreBean(); 
+		keyStore.setAlias(alias); 
+		keyStore.setStoreFilePath(keyStoreFilePath); 
+		keyStore.setStorePwd(keyStorePwd);     
+		StoreBean trustStore = new StoreBean(); 
+		trustStore.setStoreFilePath(trustStoreFilePath); 
+		trustStore.setStorePwd(trustStorePwd); 
+		
+		PGEClient client = new PGEClient(); 
+		try {
+			SAMLAssertion token = client.requestSecurityToken(bean, keyStore, keyStore, trustStore, "http://localhost:8080/STSServer/STSServerServlet"); 
+
+			
+			// agrego el token de seguridad al mensaje
+				msg.getBody().add("security_token", token);
+				
+				System.out.println("****** Security token is '" + token.toString() + "' ******" );
+		} catch (RequestSecurityTokenException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return msg;
+	}
+
+
+	
 	@Override
 	public void processException(Message arg0, Throwable arg1) {
 		// TODO Auto-generated method stub
