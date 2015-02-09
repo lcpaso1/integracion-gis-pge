@@ -16,6 +16,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.apache.log4j.Logger;
 import org.joda.time.DateTime;
 import org.opensaml.Configuration;
@@ -59,6 +63,8 @@ import org.opensaml.xml.signature.Signer;
 import org.opensaml.xml.signature.X509Data;
 import org.opensaml.xml.signature.impl.KeyInfoBuilder;
 import org.opensaml.xml.util.XMLHelper;
+import org.w3c.dom.Attr;
+import org.w3c.dom.DOMException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
@@ -73,6 +79,9 @@ import uy.gub.agesic.exceptions.AssertionException;
 import uy.gub.agesic.exceptions.NoAssertionFoundException;
 import uy.gub.agesic.exceptions.ParserException;
 import uy.gub.agesic.exceptions.UnmarshalException;
+
+import com.sun.org.apache.xml.internal.serialize.OutputFormat;
+import com.sun.org.apache.xml.internal.serialize.XMLSerializer;
 
 /**
  * 
@@ -308,7 +317,7 @@ public class AssertionManagerImpl implements AssertionManager {
 			assertion.setIssuer(strIssuer);
 			assertion.setIssueInstant(issueInstant);
 			assertion.setVersion(SAMLVersion.VERSION_10);
-
+			
 			assertion.getAuthenticationStatements().add(authnStatement);
 			assertion.getAttributeStatements().add(attrStatement);
 			assertion.setConditions(conditions);
@@ -338,9 +347,22 @@ public class AssertionManagerImpl implements AssertionManager {
 			MarshallerFactory marshallerFactory = Configuration.getMarshallerFactory();
 
 			// Get the Subject marshaller and generate assertion's dom representation
-			Marshaller marshaller = marshallerFactory.getMarshaller(assertion);			
+			Marshaller marshaller = marshallerFactory.getMarshaller(assertion);
 			Element element = marshaller.marshall(assertion);
 
+			Attr idAttr = element.getAttributeNode("AssertionID");
+			element.setIdAttributeNode(idAttr, true);
+			
+			try {
+				OutputFormat format = new OutputFormat(element.getOwnerDocument());
+				format.setIndenting(true);
+				XMLSerializer serializer = new XMLSerializer(System.out, format);
+				serializer.serialize(element.getOwnerDocument());
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			//Sign SAML Assertion
 			Signer.signObject(signature);
 

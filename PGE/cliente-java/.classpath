@@ -13,7 +13,6 @@
 	<classpathentry kind="lib" path="lib/jbossws/jaxb-impl.jar"/>
 	<classpathentry kind="lib" path="lib/jbossws/jboss-xml-binding.jar"/>
 	<classpathentry kind="lib" path="lib/jbossws/jbossall-client.jar"/>
-	<classpathentry kind="lib" path="lib/jbossws/jbossws-common.jar"/>
 	<classpathentry kind="lib" path="lib/jbossws/jbossws-native-client.jar"/>
 	<classpathentry kind="lib" path="lib/jbossws/jbossws-native-core.jar"/>
 	<classpathentry kind="lib" path="lib/jbossws/jbossws-native-jaxrpc.jar"/>

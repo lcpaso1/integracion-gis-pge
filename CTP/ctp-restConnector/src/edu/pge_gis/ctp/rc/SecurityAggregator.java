@@ -139,10 +139,10 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 		bean.setIssuer(issuer);
 		
 		// Datos de trust store y keystore. TODO : usar properties.
-		String alias = "key1"; 
-		String keyStoreFilePath = "c:/ProyectoDeGrado/STS/keystore/keystore.jks"; 
+		String alias = "stskey1"; 
+		String keyStoreFilePath = "c:/ProyectoDeGrado/STS/keystore/keystore_sts.jks"; 
 		String keyStorePwd = "changeit";    
-		String trustStoreFilePath = "c:/ProyectoDeGrado/STS/keystore/keystore.jks"; 
+		String trustStoreFilePath = "c:/ProyectoDeGrado/STS/keystore/keystore_sts.jks"; 
 		String trustStorePwd = "changeit";   
 		
 		StoreBean keyStore = new StoreBean(); 
