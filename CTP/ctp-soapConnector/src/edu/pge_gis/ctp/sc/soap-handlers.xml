@@ -3,6 +3,9 @@
    <handler-chain> 
       <handler> 
          <handler-class>edu.pge_gis.ctp.sc.handlers.AddressingHandler</handler-class> 
+      </handler>
+      <handler> 
+         <handler-class>edu.pge_gis.ctp.sc.handlers.WSSecurityHandler</handler-class> 
       </handler> 
    </handler-chain>
 </handler-chains>

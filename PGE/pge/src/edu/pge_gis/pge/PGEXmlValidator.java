@@ -54,9 +54,11 @@ public class PGEXmlValidator implements ActionPipelineProcessor {
 	}
 
 	@Override
-	public void processException(Message arg0, Throwable arg1) {
+	public void processException(Message msg, Throwable arg1) {
 		// TODO Auto-generated method stub
-
+		String msgSoap = "<env:Envelope xmlns:env='http://schemas.xmlsoap.org/soap/envelope/'><env:Header></env:Header><env:Body><env:Fault xmlns:env='http://schemas.xmlsoap.org/soap/envelope/'><faultcode>env:Server</faultcode><faultstring>"+
+						arg1.getMessage()+"</faultstring></env:Fault></env:Body></env:Envelope>";
+		msg.getBody().add(msgSoap);
 	}
 
 	@Override

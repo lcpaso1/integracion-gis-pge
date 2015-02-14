@@ -57,7 +57,7 @@ public class PGECatalog implements ActionPipelineProcessor {
 	@Override
 	public void processException(Message arg0, Throwable arg1) {
 		// TODO Auto-generated method stub
-
+		System.out.println("SOY pge catalog "+arg1.getClass().getCanonicalName());
 	}
 
 	@Override

@@ -27,7 +27,9 @@ import org.jboss.soa.esb.message.Message;
 import org.jboss.ws.extensions.addressing.AttributedURIImpl;
 import org.jboss.ws.extensions.addressing.jaxws.WSAddressingClientHandler;
 
+import uy.gub.agesic.AgesicConstants;
 import uy.gub.agesic.beans.SAMLAssertion;
+import uy.gub.agesic.jbossws.SAMLHandler;
 import edu.pge_gis.ctp.dto.InfoServicio;
 import edu.pge_gis.ctp.rc.errors.PGEConectionException;
 import edu.pge_gis.ctp.rc.errors.SOAPInvocationException;
@@ -122,6 +124,7 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 	private GISWS agregarCabezalesAddressing(String serviceName, String method, GISWS port, SAMLAssertion securityToken){
 		List<Handler> customHandlerChain =	new	ArrayList<Handler>();
 		customHandlerChain.add(new	WSAddressingClientHandler());
+		customHandlerChain.add(new SAMLHandler());
 		//Build addressing properties
 		AddressingBuilder addrBuilder =	SOAPAddressingBuilder.getAddressingBuilder();
 		SOAPAddressingProperties addrProps =(SOAPAddressingProperties)addrBuilder.newAddressingProperties();
@@ -134,8 +137,9 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 		bindingProvider.getRequestContext().put(JAXWSAConstants.CLIENT_ADDRESSING_PROPERTIES, addrProps);
 		bindingProvider.getBinding().setHandlerChain(customHandlerChain);
 		
-		// TODO : agregar securityToken a SOAP message. 
-		// bindingProvider.getRequestContext().put("uy.gub.agesic.security.saml", securityToken); 
+		// agregar securityToken a SOAP message. 
+		bindingProvider.getRequestContext().put(AgesicConstants.SAML1_PROPERTY, securityToken);
+		bindingProvider.getBinding().setHandlerChain(customHandlerChain); 
 
 		
 		return port;

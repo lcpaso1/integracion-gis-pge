@@ -13,6 +13,7 @@ import org.opensaml.xml.io.UnmarshallerFactory;
 import org.opensaml.xml.io.UnmarshallingException;
 import org.w3c.dom.Element;
 
+import edu.pge_gis.ctp.dto.InfoServicio;
 import edu.pge_gis.ctp.rc.errors.CTPServiceException;
 import pgrad.sts.client.RSTBean;
 import pgrad.sts.client.STSClient1;
@@ -28,6 +29,8 @@ import uy.gub.agesic.sts.client.PGEClient;
 
 public class SecurityAggregator implements ActionPipelineProcessor {
 
+	private static final String TOKEN_POLICIY = "urn:tokensimple";
+	public static final String STS_SERVER_URL = "http://localhost:8080/STSServer/STSServerServlet";
 	private static final boolean USAR_CLIENTE_JAVA = false;
 	
 	/** OJOTA!!!!  todos los procesadores necesitan este constructor, pero hay que agregarlo a mano*/
@@ -57,18 +60,27 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 	public Message processUsingSTSClient(Message msg) throws ActionProcessingException {
 		// Este toma los parametros para ver que usuario usa para pedir el token de seguridad
 		
+		InfoServicio datosServicio = (InfoServicio)msg.getBody().get(InfoServicio.INFO_SERVICIO);
+		
 		SAMLAssertion sas = new SAMLAssertion();
 		sas.setAssertion(null);
 	
 		STSClient1 cli = new STSClient1();
 		// TODO: No hardcodear url.
-		cli.setStsURL("http://localhost:8080/STSServer/STSServerServlet");
+		cli.setStsURL(STS_SERVER_URL);
 		RSTBean rstBean=new RSTBean();
 
-		rstBean.setPolicyName("urn:tokensimple");
-		rstBean.setRole("CN=user0,OU=TEST_TUTORIAL,O=TEST_PE");
-		rstBean.setUserName("JuanPedro");
-		rstBean.setService("http://test_agesic.red.uy/Servicio");
+		rstBean.setPolicyName(TOKEN_POLICIY);
+		if(Boolean.parseBoolean(datosServicio.datos.get(InfoServicio.SERVICIO_PUBLICO))){
+			rstBean.setRole(datosServicio.datos.get(InfoServicio.SEG_PUBLICA_ROL));
+			rstBean.setUserName(datosServicio.datos.get(InfoServicio.SEG_PUBLICA_USUARIO));
+		}
+		else{
+			rstBean.setRole(datosServicio.datos.get(InfoServicio.SEGURIDAD_ROLES));
+			rstBean.setUserName(datosServicio.datos.get(InfoServicio.SEGURIDAD_USUARIO));
+		}
+		rstBean.setService(datosServicio.datos.get(InfoServicio.DIRECCION_LOGICA));
+		
 		
 		try {
 			Element token = cli.issueToken(rstBean);
@@ -127,7 +139,7 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 		// TODO: No hardcodear url.
 //		String service = "http://localhost:8080/STSServer/STSServerServlet"; 
 		String service = "http://test_agesic.red.uy/Servicio";
-		String policyName = "urn:tokensimple"; 
+		String policyName = TOKEN_POLICIY; 
 		String issuer = "BPS";  
 
 		
@@ -155,7 +167,7 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 		
 		PGEClient client = new PGEClient(); 
 		try {
-			SAMLAssertion token = client.requestSecurityToken(bean, keyStore, keyStore, trustStore, "http://localhost:8080/STSServer/STSServerServlet"); 
+			SAMLAssertion token = client.requestSecurityToken(bean, keyStore, keyStore, trustStore, STS_SERVER_URL); 
 
 			
 			// agrego el token de seguridad al mensaje
