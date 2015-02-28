@@ -20,10 +20,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
 
+import edu.pge_gis.utils.XMLUtils;
 import pgrad.sts.server.util.Util;
 import pgrad.sts.common.MySTSConstants;
 import pgrad.sts.common.RequestSecurityToken;
-
 import pgrad.sts.server.exceptions.ConfigurationException;
 import pgrad.sts.server.exceptions.ParsingException;
 import pgrad.sts.server.exceptions.ProcessingException;
@@ -194,10 +194,13 @@ public class STSClient1 {
 //		rst.setPolicyName(rstBean.getPolicyName());
 		rst.setIssuerAddress(rstBean.getPolicyName());
 		rst.setBase(rstBean.getBase());
-
+		
 		Document rstdom = null;
 		try {
 			rstdom = rst.getDOM();
+			System.out.println("------------token PEDIDO-----------");
+			XMLUtils.prettyPrint(rstdom.getDocumentElement(), System.out);
+			System.out.println("------------FIN token PEDIDO-----------");
 		} catch (ProcessingException e) {
 			e.printStackTrace();
 		}
