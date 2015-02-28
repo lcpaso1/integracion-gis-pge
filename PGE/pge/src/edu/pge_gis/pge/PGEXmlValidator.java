@@ -48,7 +48,12 @@ public class PGEXmlValidator implements ActionPipelineProcessor {
 		fin_to = xml.indexOf("</wsa:Action>");
 		params.put(PGEConstants.KEY_metodo, xml.substring(ini_to+12, fin_to));
 		//parseo el rol
-		params.put(PGEConstants.KEY_rol, "ou:publico");
+		String rol = "ou:publico";
+		ini_to = xml.indexOf("emailAddress");
+		fin_to = xml.indexOf("</saml1:NameIdentifier>");
+		rol = xml.substring(ini_to+66, fin_to);
+		System.out.println("=========PGE========ROL========> "+rol);
+		params.put(PGEConstants.KEY_rol, rol);
 		msg.getBody().add(PGEConstants.KEY_params, params);
 		return msg;
 	}

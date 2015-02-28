@@ -271,15 +271,15 @@ public class SAMLTokenProviderBasic1 implements SecurityTokenProvider {
     @SuppressWarnings("unchecked")
     private Subject getSubjectForSignedToken(WSTrustRequestContext context, XMLObjectBuilderFactory builderFactory) {
 
-        String subjName = context.getPrincipalName();
-
+        String subjName = context.getRst().getSecondaryParametersRol();//context.getPrincipalName();
+        System.out.println("=========================> ROL QUE LLEGA: "+subjName);
         // Create the NameIdentifier
         SAMLObjectBuilder nameIdBuilder = (SAMLObjectBuilder) builderFactory
                 .getBuilder(NameIdentifier.DEFAULT_ELEMENT_NAME);
         NameIdentifier nameId = (NameIdentifier) nameIdBuilder.buildObject();
         nameId.setNameIdentifier(subjName);
         nameId.setFormat(NameIdentifier.EMAIL);
-
+        //nameId.setDOM(nameIdBuilder.);
         // Create the SubjectConfirmation
         SAMLObjectBuilder confirmationMethodBuilder = (SAMLObjectBuilder) builderFactory
                 .getBuilder(ConfirmationMethod.DEFAULT_ELEMENT_NAME);
