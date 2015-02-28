@@ -142,13 +142,13 @@ http://www.springframework.org/schema/beans http://www.springframework.org/schem
     <!-- informacion del key store para firma de tokens -->
     <bean id="storebean-pge" class="uy.gub.agesic.beans.StoreBean">
         <property name="alias" value="stskey1" /> 
-        <property name="storeFilePath" value="/etc/mystsconfig/stskeystore1" /> 
+        <property name="storeFilePath" value="c:/ProyectoDeGrado/STS/keystore/keystore_sts.jks" /> 
         <property name="storePwd" value="changeit" /> 
     </bean>
 
     <bean id="storebean-pge-tokengenerator" class="uy.gub.agesic.beans.StoreBean">
         <property name="alias" value="pge_tokengen" /> 
-        <property name="storeFilePath" value="/etc/mystsconfig/pge_tokengen.keystore" /> 
+        <property name="storeFilePath" value="c:/ProyectoDeGrado/STS/keystore/pge_tokengen.jks" /> 
         <property name="storePwd" value="cambiar" /> 
     </bean>
     

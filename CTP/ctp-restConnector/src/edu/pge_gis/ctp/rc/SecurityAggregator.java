@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 
 import edu.pge_gis.ctp.dto.InfoServicio;
 import edu.pge_gis.ctp.rc.errors.CTPServiceException;
+import edu.pge_gis.utils.XMLUtils;
 import pgrad.sts.client.RSTBean;
 import pgrad.sts.client.STSClient1;
 import pgrad.sts.server.exceptions.ConfigurationException;
@@ -90,7 +91,11 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 				throw new CTPServiceException(500,"Error al obtener token de seguridad. ");
 			}
 			
-			String token2string = DocumentUtil.getDOMElementAsString(token);
+			System.out.println("------------token respuesta-----------");
+			XMLUtils.prettyPrint(token, System.out);
+			System.out.println("------------FIN token respuesta-----------");
+			
+			//String token2string = DocumentUtil.getDOMElementAsString(token);
 			
 			// Convertir a ASSertion
 			DefaultBootstrap.bootstrap();
@@ -104,7 +109,7 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 			// agrego el token de seguridad al mensaje
 			msg.getBody().add("security_token", sas);
 
-			System.out.println("****** Security token is '" + token2string + "' ******" );
+			//System.out.println("****** Security token is '" + token2string + "' ******" );
 			
 		} catch (ConfigurationException e) {
 			e.printStackTrace();
@@ -112,10 +117,10 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 		} catch (WSTrustClientException e) {
 			e.printStackTrace();
 			throw new CTPServiceException(500,"Error al conectarse con el servidor de seguridad. ");
-		} catch (ProcessingException e) {
+		} /*catch (ProcessingException e) {
 			e.printStackTrace();
 			throw new CTPServiceException(500,"Error al procesar parametros de seguridad. ");
-		} catch (UnmarshallingException e) {
+		} */catch (UnmarshallingException e) {
 			e.printStackTrace();
 			throw new CTPServiceException(500,"Error al procesar parametros de seguridad. ");
 		} catch (org.opensaml.xml.ConfigurationException e) { 

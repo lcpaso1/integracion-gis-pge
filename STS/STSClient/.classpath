@@ -6,5 +6,6 @@
 	<classpathentry kind="lib" path="lib/http-components/httpclient-4.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/http-components/httpcore-4.1.1.jar"/>
 	<classpathentry kind="lib" path="lib/log4j-1.2.12.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/ctp-utils"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

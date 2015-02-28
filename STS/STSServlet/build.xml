@@ -8,38 +8,41 @@
 		
 	<target name="sts-war">
     	<jar destfile="target/libs/STSCommons.jar">
-    		<fileset dir="C:/ProyectoDeGrado/STS/STSCommons/bin">
+    		<fileset dir="${basedir}/../STSCommons/bin">
     			<include name="**/*" />
     		</fileset>
     	</jar>
 		
     	<jar destfile="target/libs/tokengenerator.jar">
-    		<fileset dir="C:/ProyectoDeGrado/STS/tokengenerator/bin">
+    		<fileset dir="${basedir}/../tokengenerator/bin">
     			<include name="**/*" />
     		</fileset>
-    		<fileset dir="C:/ProyectoDeGrado/STS/tokengenerator/resources">
+    		<fileset dir="${basedir}/../tokengenerator/resources">
     			<include name="**/*" />
     		</fileset>    		
     	</jar>
 		
 		
-		<war destfile="target/STSService.war" webxml="${basedir}/WebContent/WEB-INF/web.xml">
+		<war destfile="target/STSServer.war" webxml="${basedir}/WebContent/WEB-INF/web.xml">
 		   <fileset dir="${basedir}/WebContent">
 		      <include name="**/*.*"/>
 		   </fileset>
 		   <lib dir="lib"></lib>
 		   <lib dir="target/libs/"></lib>
-		   <lib dir="C:/ProyectoDeGrado/STS/tokengenerator/lib/">
+		   <lib dir="${basedir}/../tokengenerator/lib/">
 			   	<exclude name="slf4j-api.jar"/>
 		   </lib>
-		   <lib dir="C:/ProyectoDeGrado/STS/tokengenerator/newlibs/">
+		   <lib dir="${basedir}/../tokengenerator/newlibs/">
 		   </lib>
-		   <lib dir="C:/ProyectoDeGrado/STS/STSCommons/lib/">
+		   <lib dir="${basedir}/../STSCommons/lib/">
 	   			<exclude name="servlet-api.jar"/>
 		   		<exclude name="slf4j-api.jar"/>
 			</lib>
 		   <classes dir="${basedir}/bin"/>
 		</war>
+		
+		<copyfile dest="D:/ProyectoDeGrado/jbossesb-server-4.12/server/default/deploy" src="target/STSServer.war" 
+			forceoverwrite="true"/>
     </target>
 	
 	    <target name="esb">
@@ -47,7 +50,7 @@
 	        <!-- Called by the "deploy" target.  Don't call directly!! -->
 
 	        <!-- Build the webservice... -->
-	    	<jar destfile="C:/jbossesb-server-4.9/server/default/lib/${ant.project.name}.jar">
+	    	<jar destfile="D:/ProyectoDeGrado/jbossesb-server-4.9/server/default/lib/${ant.project.name}.jar">
 	    		<fileset dir="${basedir}/bin">
 	    			<include name="**/*" />
 	    		</fileset>
