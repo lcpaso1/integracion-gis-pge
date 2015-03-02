@@ -14,3 +14,9 @@ Si da el tiempo
 -Controlar la firma del token en la pge
 -Usuario y contraseña en geoserver
 
+
+
+
+Documentacion -
+- CU : Agregar diagrama de secuencia xa cada CU. 
+- Corregir titulos de los CU porque no queda claro cuando terminan los actores y empiezan los CU.
