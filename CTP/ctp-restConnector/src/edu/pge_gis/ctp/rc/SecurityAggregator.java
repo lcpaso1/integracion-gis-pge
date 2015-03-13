@@ -15,6 +15,7 @@ import org.w3c.dom.Element;
 
 import edu.pge_gis.ctp.dto.InfoServicio;
 import edu.pge_gis.ctp.rc.errors.CTPServiceException;
+import edu.pge_gis.utils.PropertiesUtils;
 import edu.pge_gis.utils.XMLUtils;
 import pgrad.sts.client.RSTBean;
 import pgrad.sts.client.STSClient1;
@@ -68,7 +69,7 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 	
 		STSClient1 cli = new STSClient1();
 		// TODO: No hardcodear url.
-		cli.setStsURL(STS_SERVER_URL);
+		cli.setStsURL(PropertiesUtils.getProp("url.sts", STS_SERVER_URL));
 		RSTBean rstBean=new RSTBean();
 
 		rstBean.setPolicyName(TOKEN_POLICIY);

@@ -55,7 +55,7 @@ public class CTPSOAPClient implements ActionPipelineProcessor {
 
 	}
 
-	private final static String pge_endpointURL = "http://localhost:8080/pge/http/pge/";
+	//private final static String pge_endpointURL = "http://localhost:8080/pge/http/pge/";
 	// la forma de esta url es: [ip y puerto]/[nombre del .esb]/[protocolo del listener]/[uri del servicio]/
 	
 	@Override
