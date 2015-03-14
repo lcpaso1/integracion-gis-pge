@@ -20,6 +20,7 @@ import edu.pge_gis.ctp.database.dominio.ServicioGis;
 import edu.pge_gis.ctp.dto.InfoServicio;
 import edu.pge_gis.ctp.rc.errors.CTPServiceException;
 import edu.pge_gis.ctp.rc.gis_ws_client.GisParams;
+import edu.pge_gis.utils.PropertiesUtils;
 import static edu.pge_gis.ctp.dto.InfoServicio.*;
 
 public class GISRestService implements ActionPipelineProcessor {
@@ -173,7 +174,7 @@ public class GISRestService implements ActionPipelineProcessor {
 		params.setRequest(method);
 		params.setService(service);
 		params.setParams(parameters);
-		params.setUrlReplace(ctp_endpointURL+"/"+nombreServicio);
+		params.setUrlReplace(PropertiesUtils.getProp("url.ctp.rc", ctp_endpointURL)+"/"+nombreServicio);
 		
 		return params;
 	}
