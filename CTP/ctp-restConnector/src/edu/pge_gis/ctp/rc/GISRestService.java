@@ -50,6 +50,12 @@ public class GISRestService implements ActionPipelineProcessor {
 		// obtener ip, sevicio, metodo
 		// to=dir logica, action=metodo a partir de lo anterior 
 		HttpRequest request = HttpRequest.getRequest(msg);
+		
+		System.out.println("=========================================================================================");
+		System.out.println(request.getMethod()); 
+		System.out.println(msg.getBody().get().toString());
+		System.out.println("=========================================================================================");
+		
 		GisParams params = parsearParametros(request);
 		
 		msg.getBody().add("params",params);
