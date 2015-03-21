@@ -13,7 +13,6 @@ import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.httpclient.util.URIUtil;
 import org.apache.commons.io.IOUtils;
-import org.apache.http.message.BasicNameValuePair;
 
 public class ClienteHttp {
 
