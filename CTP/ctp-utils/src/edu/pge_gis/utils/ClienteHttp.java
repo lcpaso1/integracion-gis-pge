@@ -9,11 +9,41 @@ import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
 import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.GetMethod;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
 import org.apache.commons.httpclient.util.URIUtil;
 import org.apache.commons.io.IOUtils;
+import org.apache.http.message.BasicNameValuePair;
 
 public class ClienteHttp {
 
+	public static String executePost(String url, String postParams) throws IOException{
+		
+		String xml = null;
+		PostMethod method = null;
+		try {
+			HttpClient httpClient = new HttpClient();
+			method = new PostMethod(url);
+			method.setRequestEntity(new StringRequestEntity(postParams));
+			int httpStatusCode = httpClient.executeMethod(method);
+			if (httpStatusCode == 200 || httpStatusCode == 204){
+				//logHTTPStatusCode(httpStatusCode);
+				InputStream response = method.getResponseBodyAsStream();
+				System.out.println(" contenido mime:---"+method.getResponseHeaders());
+				xml = new String(IOUtils.toByteArray(response),	method.getResponseCharSet());
+				return xml;
+			}
+			else{
+				throw new RuntimeException("HTTP code: "+httpStatusCode);
+			}
+		} catch (HttpException e) {
+			e.printStackTrace();
+			throw new RuntimeException("Error de http: "+e.getMessage(), e);
+		} finally {
+			method.releaseConnection();
+		}
+	}
+	
 	public static String executeGet(String url) throws IOException {
 
 		String xml = null;

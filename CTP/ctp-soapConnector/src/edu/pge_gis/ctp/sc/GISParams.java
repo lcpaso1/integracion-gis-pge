@@ -48,6 +48,8 @@ public class GISParams implements Serializable {
 	private String service; //ejs: WMS WFS
 	private String request; //ejs: getCapabilities getMap getFeatureInfo
 	private String urlReplace;
+	private String metodoHTTP;
+	private String xmlParam;
 	
 	public String getService() {
 		return service;
@@ -72,6 +74,18 @@ public class GISParams implements Serializable {
 	}
 	public void setUrlReplace(String urlReplace) {
 		this.urlReplace = urlReplace;
+	}
+	public String getMetodoHTTP() {
+		return metodoHTTP;
+	}
+	public void setMetodoHTTP(String metodoHTTP) {
+		this.metodoHTTP = metodoHTTP;
+	}
+	public String getXmlParam() {
+		return xmlParam;
+	}
+	public void setXmlParam(String xmlParam) {
+		this.xmlParam = xmlParam;
 	}
 		
 	/*public String getVersion() {

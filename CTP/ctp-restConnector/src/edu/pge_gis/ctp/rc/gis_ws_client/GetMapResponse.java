@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for getMapResponse complex type.
+ * <p>Java class for getmapResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="getMapResponse">
+ * &lt;complexType name="getmapResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getMapResponse", propOrder = {
+@XmlType(name = "getmapResponse", propOrder = {
     "_return"
 })
-public class GetMapResponse {
+public class GetmapResponse {
 
     @XmlElement(name = "return")
     protected byte[] _return;

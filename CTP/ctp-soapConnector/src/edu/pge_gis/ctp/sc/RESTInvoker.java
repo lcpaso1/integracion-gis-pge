@@ -22,4 +22,13 @@ public class RESTInvoker {
 			throw new RuntimeException(e);
 		}
 	}
+	
+	public String invokeRestServiceByPost(String url, String postParams){
+		try {
+			return ClienteHttp.executePost(url, postParams);
+		} catch (IOException e) {
+			// Lanzo dentro de runtime para que el ws funcione, sin pedir declarar la excepcion
+			throw new RuntimeException(e);
+		}
+	}
 }

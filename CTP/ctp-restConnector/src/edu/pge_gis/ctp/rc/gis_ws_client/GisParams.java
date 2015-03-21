@@ -16,10 +16,12 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
+ *         &lt;element name="metodoHTTP" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="params" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="request" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="service" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="urlReplace" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
+ *         &lt;element name="xmlParam" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -30,17 +32,45 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "gisParams", propOrder = {
+    "metodoHTTP",
     "params",
     "request",
     "service",
-    "urlReplace"
+    "urlReplace",
+    "xmlParam"
 })
 public class GisParams {
 
+    protected String metodoHTTP;
     protected String params;
     protected String request;
     protected String service;
     protected String urlReplace;
+    protected String xmlParam;
+
+    /**
+     * Gets the value of the metodoHTTP property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getMetodoHTTP() {
+        return metodoHTTP;
+    }
+
+    /**
+     * Sets the value of the metodoHTTP property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setMetodoHTTP(String value) {
+        this.metodoHTTP = value;
+    }
 
     /**
      * Gets the value of the params property.
@@ -136,6 +166,30 @@ public class GisParams {
      */
     public void setUrlReplace(String value) {
         this.urlReplace = value;
+    }
+
+    /**
+     * Gets the value of the xmlParam property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getXmlParam() {
+        return xmlParam;
+    }
+
+    /**
+     * Sets the value of the xmlParam property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setXmlParam(String value) {
+        this.xmlParam = value;
     }
 
 }

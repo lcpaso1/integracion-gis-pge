@@ -8,12 +8,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for getGmlObjectResponse complex type.
+ * <p>Java class for getgmlobjectResponse complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="getGmlObjectResponse">
+ * &lt;complexType name="getgmlobjectResponse">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -27,10 +27,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getGmlObjectResponse", propOrder = {
+@XmlType(name = "getgmlobjectResponse", propOrder = {
     "_return"
 })
-public class GetGmlObjectResponse {
+public class GetgmlobjectResponse {
 
     @XmlElement(name = "return")
     protected String _return;

@@ -27,8 +27,8 @@ public interface GISWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "describeFeatureType", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.DescribeFeatureType")
-    @ResponseWrapper(localName = "describeFeatureTypeResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.DescribeFeatureTypeResponse")
+    @RequestWrapper(localName = "describefeaturetype", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.Describefeaturetype")
+    @ResponseWrapper(localName = "describefeaturetypeResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.DescribefeaturetypeResponse")
     public String describefeaturetype(
         @WebParam(name = "arg0", targetNamespace = "")
         GisParams arg0);
@@ -41,8 +41,8 @@ public interface GISWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getCapabilities", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetCapabilities")
-    @ResponseWrapper(localName = "getCapabilitiesResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetCapabilitiesResponse")
+    @RequestWrapper(localName = "getcapabilities", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.Getcapabilities")
+    @ResponseWrapper(localName = "getcapabilitiesResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetcapabilitiesResponse")
     public String getcapabilities(
         @WebParam(name = "arg0", targetNamespace = "")
         GisParams arg0);
@@ -55,8 +55,8 @@ public interface GISWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getFeature", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetFeature")
-    @ResponseWrapper(localName = "getFeatureResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetFeatureResponse")
+    @RequestWrapper(localName = "getfeature", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.Getfeature")
+    @ResponseWrapper(localName = "getfeatureResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetfeatureResponse")
     public String getfeature(
         @WebParam(name = "arg0", targetNamespace = "")
         GisParams arg0);
@@ -69,8 +69,8 @@ public interface GISWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getFeatureInfo", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetFeatureInfo")
-    @ResponseWrapper(localName = "getFeatureInfoResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetFeatureInfoResponse")
+    @RequestWrapper(localName = "getfeatureinfo", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.Getfeatureinfo")
+    @ResponseWrapper(localName = "getfeatureinfoResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetfeatureinfoResponse")
     public String getfeatureinfo(
         @WebParam(name = "arg0", targetNamespace = "")
         GisParams arg0);
@@ -83,8 +83,8 @@ public interface GISWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getGmlObject", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetGmlObject")
-    @ResponseWrapper(localName = "getGmlObjectResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetGmlObjectResponse")
+    @RequestWrapper(localName = "getgmlobject", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.Getgmlobject")
+    @ResponseWrapper(localName = "getgmlobjectResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetgmlobjectResponse")
     public String getgmlobject(
         @WebParam(name = "arg0", targetNamespace = "")
         GisParams arg0);
@@ -97,8 +97,8 @@ public interface GISWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getMap", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetMap")
-    @ResponseWrapper(localName = "getMapResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetMapResponse")
+    @RequestWrapper(localName = "getmap", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.Getmap")
+    @ResponseWrapper(localName = "getmapResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.GetmapResponse")
     public byte[] getmap(
         @WebParam(name = "arg0", targetNamespace = "")
         GisParams arg0);
@@ -111,8 +111,8 @@ public interface GISWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "lockFeature", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.LockFeature")
-    @ResponseWrapper(localName = "lockFeatureResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.LockFeatureResponse")
+    @RequestWrapper(localName = "lockfeature", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.Lockfeature")
+    @ResponseWrapper(localName = "lockfeatureResponse", targetNamespace = "http://sc.ctp.pge_gis.edu/", className = "edu.pge_gis.ctp.rc.gis_ws_client.LockfeatureResponse")
     public String lockfeature(
         @WebParam(name = "arg0", targetNamespace = "")
         GisParams arg0);

@@ -24,22 +24,22 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetCapabilities_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getCapabilities");
+    private final static QName _Getmap_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getmap");
+    private final static QName _GetfeatureinfoResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getfeatureinfoResponse");
     private final static QName _TransactionResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "transactionResponse");
-    private final static QName _GetMapResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getMapResponse");
-    private final static QName _GetFeatureResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getFeatureResponse");
+    private final static QName _Getfeatureinfo_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getfeatureinfo");
+    private final static QName _Describefeaturetype_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "describefeaturetype");
+    private final static QName _Getcapabilities_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getcapabilities");
+    private final static QName _Lockfeature_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "lockfeature");
+    private final static QName _Getfeature_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getfeature");
     private final static QName _Transaction_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "transaction");
-    private final static QName _LockFeature_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "lockFeature");
-    private final static QName _GetFeatureInfo_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getFeatureInfo");
-    private final static QName _GetFeatureInfoResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getFeatureInfoResponse");
-    private final static QName _GetGmlObject_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getGmlObject");
-    private final static QName _GetGmlObjectResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getGmlObjectResponse");
-    private final static QName _DescribeFeatureType_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "describeFeatureType");
-    private final static QName _LockFeatureResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "lockFeatureResponse");
-    private final static QName _GetCapabilitiesResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getCapabilitiesResponse");
-    private final static QName _GetFeature_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getFeature");
-    private final static QName _DescribeFeatureTypeResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "describeFeatureTypeResponse");
-    private final static QName _GetMap_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getMap");
+    private final static QName _LockfeatureResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "lockfeatureResponse");
+    private final static QName _GetcapabilitiesResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getcapabilitiesResponse");
+    private final static QName _GetfeatureResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getfeatureResponse");
+    private final static QName _GetgmlobjectResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getgmlobjectResponse");
+    private final static QName _DescribefeaturetypeResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "describefeaturetypeResponse");
+    private final static QName _GetmapResponse_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getmapResponse");
+    private final static QName _Getgmlobject_QNAME = new QName("http://sc.ctp.pge_gis.edu/", "getgmlobject");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: edu.pge_gis.ctp.rc.gis_ws_client
@@ -49,83 +49,51 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetCapabilitiesResponse }
+     * Create an instance of {@link GetfeatureResponse }
      * 
      */
-    public GetCapabilitiesResponse createGetCapabilitiesResponse() {
-        return new GetCapabilitiesResponse();
+    public GetfeatureResponse createGetfeatureResponse() {
+        return new GetfeatureResponse();
     }
 
     /**
-     * Create an instance of {@link GetMap }
+     * Create an instance of {@link GetgmlobjectResponse }
      * 
      */
-    public GetMap createGetMap() {
-        return new GetMap();
+    public GetgmlobjectResponse createGetgmlobjectResponse() {
+        return new GetgmlobjectResponse();
     }
 
     /**
-     * Create an instance of {@link DescribeFeatureType }
+     * Create an instance of {@link DescribefeaturetypeResponse }
      * 
      */
-    public DescribeFeatureType createDescribeFeatureType() {
-        return new DescribeFeatureType();
+    public DescribefeaturetypeResponse createDescribefeaturetypeResponse() {
+        return new DescribefeaturetypeResponse();
     }
 
     /**
-     * Create an instance of {@link GetMapResponse }
+     * Create an instance of {@link GetcapabilitiesResponse }
      * 
      */
-    public GetMapResponse createGetMapResponse() {
-        return new GetMapResponse();
+    public GetcapabilitiesResponse createGetcapabilitiesResponse() {
+        return new GetcapabilitiesResponse();
     }
 
     /**
-     * Create an instance of {@link LockFeature }
+     * Create an instance of {@link Describefeaturetype }
      * 
      */
-    public LockFeature createLockFeature() {
-        return new LockFeature();
+    public Describefeaturetype createDescribefeaturetype() {
+        return new Describefeaturetype();
     }
 
     /**
-     * Create an instance of {@link GetGmlObjectResponse }
+     * Create an instance of {@link Getmap }
      * 
      */
-    public GetGmlObjectResponse createGetGmlObjectResponse() {
-        return new GetGmlObjectResponse();
-    }
-
-    /**
-     * Create an instance of {@link DescribeFeatureTypeResponse }
-     * 
-     */
-    public DescribeFeatureTypeResponse createDescribeFeatureTypeResponse() {
-        return new DescribeFeatureTypeResponse();
-    }
-
-    /**
-     * Create an instance of {@link GetCapabilities }
-     * 
-     */
-    public GetCapabilities createGetCapabilities() {
-        return new GetCapabilities();
-    }
-
-    /**
-     * Create an instance of {@link Transaction }
-     * 
-     */
-    public Transaction createTransaction() {
-        return new Transaction();
-    }
-
-    /**
-     * Create an instance of {@link GetFeatureInfo }
-     * 
-     */
-    public GetFeatureInfo createGetFeatureInfo() {
-        return new GetFeatureInfo();
+    public Getmap createGetmap() {
+        return new Getmap();
     }
 
     /**
@@ -137,43 +105,59 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetFeatureResponse }
+     * Create an instance of {@link Getfeature }
      * 
      */
-    public GetFeatureResponse createGetFeatureResponse() {
-        return new GetFeatureResponse();
+    public Getfeature createGetfeature() {
+        return new Getfeature();
     }
 
     /**
-     * Create an instance of {@link GetGmlObject }
+     * Create an instance of {@link GetmapResponse }
      * 
      */
-    public GetGmlObject createGetGmlObject() {
-        return new GetGmlObject();
+    public GetmapResponse createGetmapResponse() {
+        return new GetmapResponse();
     }
 
     /**
-     * Create an instance of {@link LockFeatureResponse }
+     * Create an instance of {@link Getfeatureinfo }
      * 
      */
-    public LockFeatureResponse createLockFeatureResponse() {
-        return new LockFeatureResponse();
+    public Getfeatureinfo createGetfeatureinfo() {
+        return new Getfeatureinfo();
     }
 
     /**
-     * Create an instance of {@link GetFeatureInfoResponse }
+     * Create an instance of {@link Getgmlobject }
      * 
      */
-    public GetFeatureInfoResponse createGetFeatureInfoResponse() {
-        return new GetFeatureInfoResponse();
+    public Getgmlobject createGetgmlobject() {
+        return new Getgmlobject();
     }
 
     /**
-     * Create an instance of {@link GetFeature }
+     * Create an instance of {@link GetfeatureinfoResponse }
      * 
      */
-    public GetFeature createGetFeature() {
-        return new GetFeature();
+    public GetfeatureinfoResponse createGetfeatureinfoResponse() {
+        return new GetfeatureinfoResponse();
+    }
+
+    /**
+     * Create an instance of {@link LockfeatureResponse }
+     * 
+     */
+    public LockfeatureResponse createLockfeatureResponse() {
+        return new LockfeatureResponse();
+    }
+
+    /**
+     * Create an instance of {@link Transaction }
+     * 
+     */
+    public Transaction createTransaction() {
+        return new Transaction();
     }
 
     /**
@@ -185,12 +169,37 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetCapabilities }{@code >}}
+     * Create an instance of {@link Getcapabilities }
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getCapabilities")
-    public JAXBElement<GetCapabilities> createGetCapabilities(GetCapabilities value) {
-        return new JAXBElement<GetCapabilities>(_GetCapabilities_QNAME, GetCapabilities.class, null, value);
+    public Getcapabilities createGetcapabilities() {
+        return new Getcapabilities();
+    }
+
+    /**
+     * Create an instance of {@link Lockfeature }
+     * 
+     */
+    public Lockfeature createLockfeature() {
+        return new Lockfeature();
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Getmap }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getmap")
+    public JAXBElement<Getmap> createGetmap(Getmap value) {
+        return new JAXBElement<Getmap>(_Getmap_QNAME, Getmap.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetfeatureinfoResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getfeatureinfoResponse")
+    public JAXBElement<GetfeatureinfoResponse> createGetfeatureinfoResponse(GetfeatureinfoResponse value) {
+        return new JAXBElement<GetfeatureinfoResponse>(_GetfeatureinfoResponse_QNAME, GetfeatureinfoResponse.class, null, value);
     }
 
     /**
@@ -203,21 +212,48 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetMapResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Getfeatureinfo }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getMapResponse")
-    public JAXBElement<GetMapResponse> createGetMapResponse(GetMapResponse value) {
-        return new JAXBElement<GetMapResponse>(_GetMapResponse_QNAME, GetMapResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getfeatureinfo")
+    public JAXBElement<Getfeatureinfo> createGetfeatureinfo(Getfeatureinfo value) {
+        return new JAXBElement<Getfeatureinfo>(_Getfeatureinfo_QNAME, Getfeatureinfo.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFeatureResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Describefeaturetype }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getFeatureResponse")
-    public JAXBElement<GetFeatureResponse> createGetFeatureResponse(GetFeatureResponse value) {
-        return new JAXBElement<GetFeatureResponse>(_GetFeatureResponse_QNAME, GetFeatureResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "describefeaturetype")
+    public JAXBElement<Describefeaturetype> createDescribefeaturetype(Describefeaturetype value) {
+        return new JAXBElement<Describefeaturetype>(_Describefeaturetype_QNAME, Describefeaturetype.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Getcapabilities }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getcapabilities")
+    public JAXBElement<Getcapabilities> createGetcapabilities(Getcapabilities value) {
+        return new JAXBElement<Getcapabilities>(_Getcapabilities_QNAME, Getcapabilities.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Lockfeature }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "lockfeature")
+    public JAXBElement<Lockfeature> createLockfeature(Lockfeature value) {
+        return new JAXBElement<Lockfeature>(_Lockfeature_QNAME, Lockfeature.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link Getfeature }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getfeature")
+    public JAXBElement<Getfeature> createGetfeature(Getfeature value) {
+        return new JAXBElement<Getfeature>(_Getfeature_QNAME, Getfeature.class, null, value);
     }
 
     /**
@@ -230,102 +266,66 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LockFeature }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link LockfeatureResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "lockFeature")
-    public JAXBElement<LockFeature> createLockFeature(LockFeature value) {
-        return new JAXBElement<LockFeature>(_LockFeature_QNAME, LockFeature.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "lockfeatureResponse")
+    public JAXBElement<LockfeatureResponse> createLockfeatureResponse(LockfeatureResponse value) {
+        return new JAXBElement<LockfeatureResponse>(_LockfeatureResponse_QNAME, LockfeatureResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFeatureInfo }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetcapabilitiesResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getFeatureInfo")
-    public JAXBElement<GetFeatureInfo> createGetFeatureInfo(GetFeatureInfo value) {
-        return new JAXBElement<GetFeatureInfo>(_GetFeatureInfo_QNAME, GetFeatureInfo.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getcapabilitiesResponse")
+    public JAXBElement<GetcapabilitiesResponse> createGetcapabilitiesResponse(GetcapabilitiesResponse value) {
+        return new JAXBElement<GetcapabilitiesResponse>(_GetcapabilitiesResponse_QNAME, GetcapabilitiesResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFeatureInfoResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetfeatureResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getFeatureInfoResponse")
-    public JAXBElement<GetFeatureInfoResponse> createGetFeatureInfoResponse(GetFeatureInfoResponse value) {
-        return new JAXBElement<GetFeatureInfoResponse>(_GetFeatureInfoResponse_QNAME, GetFeatureInfoResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getfeatureResponse")
+    public JAXBElement<GetfeatureResponse> createGetfeatureResponse(GetfeatureResponse value) {
+        return new JAXBElement<GetfeatureResponse>(_GetfeatureResponse_QNAME, GetfeatureResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetGmlObject }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetgmlobjectResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getGmlObject")
-    public JAXBElement<GetGmlObject> createGetGmlObject(GetGmlObject value) {
-        return new JAXBElement<GetGmlObject>(_GetGmlObject_QNAME, GetGmlObject.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getgmlobjectResponse")
+    public JAXBElement<GetgmlobjectResponse> createGetgmlobjectResponse(GetgmlobjectResponse value) {
+        return new JAXBElement<GetgmlobjectResponse>(_GetgmlobjectResponse_QNAME, GetgmlobjectResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetGmlObjectResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link DescribefeaturetypeResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getGmlObjectResponse")
-    public JAXBElement<GetGmlObjectResponse> createGetGmlObjectResponse(GetGmlObjectResponse value) {
-        return new JAXBElement<GetGmlObjectResponse>(_GetGmlObjectResponse_QNAME, GetGmlObjectResponse.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "describefeaturetypeResponse")
+    public JAXBElement<DescribefeaturetypeResponse> createDescribefeaturetypeResponse(DescribefeaturetypeResponse value) {
+        return new JAXBElement<DescribefeaturetypeResponse>(_DescribefeaturetypeResponse_QNAME, DescribefeaturetypeResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DescribeFeatureType }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetmapResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "describeFeatureType")
-    public JAXBElement<DescribeFeatureType> createDescribeFeatureType(DescribeFeatureType value) {
-        return new JAXBElement<DescribeFeatureType>(_DescribeFeatureType_QNAME, DescribeFeatureType.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getmapResponse")
+    public JAXBElement<GetmapResponse> createGetmapResponse(GetmapResponse value) {
+        return new JAXBElement<GetmapResponse>(_GetmapResponse_QNAME, GetmapResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link LockFeatureResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link Getgmlobject }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "lockFeatureResponse")
-    public JAXBElement<LockFeatureResponse> createLockFeatureResponse(LockFeatureResponse value) {
-        return new JAXBElement<LockFeatureResponse>(_LockFeatureResponse_QNAME, LockFeatureResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetCapabilitiesResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getCapabilitiesResponse")
-    public JAXBElement<GetCapabilitiesResponse> createGetCapabilitiesResponse(GetCapabilitiesResponse value) {
-        return new JAXBElement<GetCapabilitiesResponse>(_GetCapabilitiesResponse_QNAME, GetCapabilitiesResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetFeature }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getFeature")
-    public JAXBElement<GetFeature> createGetFeature(GetFeature value) {
-        return new JAXBElement<GetFeature>(_GetFeature_QNAME, GetFeature.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link DescribeFeatureTypeResponse }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "describeFeatureTypeResponse")
-    public JAXBElement<DescribeFeatureTypeResponse> createDescribeFeatureTypeResponse(DescribeFeatureTypeResponse value) {
-        return new JAXBElement<DescribeFeatureTypeResponse>(_DescribeFeatureTypeResponse_QNAME, DescribeFeatureTypeResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetMap }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getMap")
-    public JAXBElement<GetMap> createGetMap(GetMap value) {
-        return new JAXBElement<GetMap>(_GetMap_QNAME, GetMap.class, null, value);
+    @XmlElementDecl(namespace = "http://sc.ctp.pge_gis.edu/", name = "getgmlobject")
+    public JAXBElement<Getgmlobject> createGetgmlobject(Getgmlobject value) {
+        return new JAXBElement<Getgmlobject>(_Getgmlobject_QNAME, Getgmlobject.class, null, value);
     }
 
 }

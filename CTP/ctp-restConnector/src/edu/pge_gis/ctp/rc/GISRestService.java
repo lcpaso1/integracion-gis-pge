@@ -56,7 +56,7 @@ public class GISRestService implements ActionPipelineProcessor {
 		System.out.println(msg.getBody().get().toString());
 		System.out.println("=========================================================================================");
 		
-		GisParams params = parsearParametros(request);
+		GisParams params = parsearParametros(request, msg);
 		
 		msg.getBody().add("params",params);
 		
@@ -128,40 +128,62 @@ public class GISRestService implements ActionPipelineProcessor {
 		return msg;
 	}
 
-	private GisParams parsearParametros(HttpRequest request) {
+	final String POST = "POST";
+	
+	private GisParams parsearParametros(HttpRequest request, Message msg) {
 		//cambiamos claves a minusculas
 		try{
+			//obtengo el servicio de la url
+			String[] uri = request.getRequestURI().split("/");
+			String nombreServicio = uri[uri.length-1];
+			//formateo los parametros
 			Map<String, String[]> qsMinusculas = new HashMap<>();
 			for(Entry<String, String[]> e : request.getQueryParams().entrySet()){
 				qsMinusculas.put(e.getKey().toLowerCase(), e.getValue());
 			}
-
-
-			String[] uri = request.getRequestURI().split("/");
-			String nombreServicio = uri[uri.length-1];
-			
-			if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetMap"))
-				return getMap(request,qsMinusculas,nombreServicio);
-			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetCapabilities"))
-				return getCapabilities(request,qsMinusculas,nombreServicio);
-			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeatureInfo"))
-				return getFeatureInfo(request,qsMinusculas,nombreServicio);
-			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("DescribeFeatureType"))
-				return describeFeatureType(request,qsMinusculas,nombreServicio);
-			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeature"))
-				return getFeature(request,qsMinusculas,nombreServicio);
-			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetGmlObject"))
-				return getGmlObject(request,qsMinusculas,nombreServicio);
-			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("Transaction"))
-				return transaction(request,qsMinusculas,nombreServicio);
-			else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("LockFeature"))
-				return lockFeature(request,qsMinusculas,nombreServicio);
-			else
-				return null;
+			//primero controlo el metodo http			
+			if(request.getMethod().equalsIgnoreCase(POST)){
+				//asumo que el request no viene en los parametros
+				String postBody = msg.getBody().get().toString();
+				String metodo = parseWFSMethod(postBody,qsMinusculas);
+				GisParams params = createPostParams(qsMinusculas.get("service")[0].toString(), metodo, 
+						request.getQueryString(), nombreServicio, postBody);
+				return params;
+			}
+			else{
+				
+				if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetMap"))
+					return getMap(request,qsMinusculas,nombreServicio);
+				else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetCapabilities"))
+					return getCapabilities(request,qsMinusculas,nombreServicio);
+				else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeatureInfo"))
+					return getFeatureInfo(request,qsMinusculas,nombreServicio);
+				else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("DescribeFeatureType"))
+					return describeFeatureType(request,qsMinusculas,nombreServicio);
+				else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetFeature"))
+					return getFeature(request,qsMinusculas,nombreServicio);
+				else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("GetGmlObject"))
+					return getGmlObject(request,qsMinusculas,nombreServicio);
+				/*else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("Transaction"))
+					return transaction(request,qsMinusculas,nombreServicio);*/
+				else if (qsMinusculas.get("request")[0].toString().equalsIgnoreCase("LockFeature"))
+					return lockFeature(request,qsMinusculas,nombreServicio);
+				else
+					return null;
+			}
 		}catch (Exception e) {
 			//bad request
 			throw new CTPServiceException(400,"Error en la invocacion, faltan parametros obligatorios");
 		}
+	}
+	private String parseWFSMethod(String postBody,
+			Map<String, String[]> qsMinusculas) {
+		String[] reqparam = qsMinusculas.get("request");
+		if(reqparam != null && reqparam.length > 0)
+			return reqparam[0];
+		if(postBody.startsWith("<Transaction") || postBody.startsWith("<transaction"))
+			return "transaction";
+		return null;
 	}
 	@Override
 	public void processException(Message arg0, Throwable arg1) {
@@ -173,6 +195,13 @@ public class GISRestService implements ActionPipelineProcessor {
 	public void processSuccess(Message arg0) {
 		// TODO Auto-generated method stub
 
+	}
+	
+	private GisParams createPostParams(String service, String method, String parameters, String nombreServicio, String postBody){
+		GisParams p = createParams(service, method, parameters, nombreServicio);
+		p.setMetodoHTTP(POST);
+		p.setXmlParam(postBody);
+		return p;
 	}
 	
 	private GisParams createParams(String service, String method, String parameters, String nombreServicio){

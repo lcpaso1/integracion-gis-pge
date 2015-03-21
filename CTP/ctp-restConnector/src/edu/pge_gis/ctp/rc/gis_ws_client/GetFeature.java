@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for getFeature complex type.
+ * <p>Java class for getfeature complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="getFeature">
+ * &lt;complexType name="getfeature">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getFeature", propOrder = {
+@XmlType(name = "getfeature", propOrder = {
     "arg0"
 })
-public class GetFeature {
+public class Getfeature {
 
     protected GisParams arg0;
 

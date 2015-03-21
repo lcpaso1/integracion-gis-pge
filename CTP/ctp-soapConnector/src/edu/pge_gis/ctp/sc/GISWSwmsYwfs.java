@@ -40,9 +40,21 @@ public class GISWSwmsYwfs {
 		return invoker.invokeRestService(url.toString());
 	}
 	
+	private String invokeTextByPost(GISParams params){
+		PropertiesHandler prop = PropertiesHandler.getInstance();
+		StringBuffer url = new StringBuffer(prop.getProperty("url"));
+		
+		url.append(prop.getProperty("propwfs"));
+		
+		url.append(params.getParams());
+		
+		RESTInvoker invoker = new RESTInvoker();
+		return invoker.invokeRestServiceByPost(url.toString(), params.getXmlParam());
+	}
+	
 	//metodos del wms
 	// response es un documento XML
-	@WebMethod
+	@WebMethod(operationName="getcapabilities")
 	public String getCapabilities(GISParams params){
 		//http://localhost:82/cgi-bin/mapserv.exe?map=padronesmvd.map&SERVICE=WMS&VERSION=1.1.1&REQUEST=GetCapabilities
 		//http://localhost:8080/ctp/http/ctp/catastro?service=WMS&version=1.1.0&request=getcapabilities
@@ -81,40 +93,40 @@ public class GISWSwmsYwfs {
 	}
 	
 	// response es una imagen
-	@WebMethod
+	@WebMethod(operationName="getmap")
 	public byte[] getMap(GISParams params){
 		//http://localhost:8080/ctp/http/ctp/catastro?service=WMS&version=1.1.0&request=GetMap&layers=padrones-montevideo&styles=&bbox=553867.5625,6134514.0,588288.8125,6153362.5&width=602&height=330&srs=EPSG:32721&format=image%2Fjpeg
 		return invokeBinario(params, true);
 	}
 	
-	@WebMethod
+	@WebMethod(operationName="getfeatureinfo")
 	public String getFeatureInfo(GISParams params){
 		return invokeText(params, true);
 	}
 	
 	//metodos de wfs
-	@WebMethod
+	@WebMethod(operationName="describefeaturetype")
 	public String describeFeatureType(GISParams params){
 		//http://localhost:8080/ctp/http/ctp/catastro?service=wfs&version=2.0.0&request=DescribeFeatureType
 		return invokeText(params, false);
 	}
 	
-	@WebMethod
+	@WebMethod(operationName="getfeature")
 	public String getFeature(GISParams params){
 		return invokeText(params, false);
 	}
 	
-	@WebMethod
+	@WebMethod(operationName="getgmlobject")
 	public String getGmlObject(GISParams params){
 		return invokeText(params, false);
 	}
 	
 	@WebMethod
 	public String transaction(GISParams params){
-		return invokeText(params, false);
+		return invokeTextByPost(params);
 	}
 	
-	@WebMethod
+	@WebMethod(operationName="lockfeature")
 	public String lockFeature(GISParams params){
 		return invokeText(params, false);
 	}

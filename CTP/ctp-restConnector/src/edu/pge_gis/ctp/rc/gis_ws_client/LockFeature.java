@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for lockFeature complex type.
+ * <p>Java class for lockfeature complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="lockFeature">
+ * &lt;complexType name="lockfeature">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "lockFeature", propOrder = {
+@XmlType(name = "lockfeature", propOrder = {
     "arg0"
 })
-public class LockFeature {
+public class Lockfeature {
 
     protected GisParams arg0;
 

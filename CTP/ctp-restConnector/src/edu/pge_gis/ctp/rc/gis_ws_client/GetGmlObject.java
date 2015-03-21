@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for getGmlObject complex type.
+ * <p>Java class for getgmlobject complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="getGmlObject">
+ * &lt;complexType name="getgmlobject">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,10 +26,10 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "getGmlObject", propOrder = {
+@XmlType(name = "getgmlobject", propOrder = {
     "arg0"
 })
-public class GetGmlObject {
+public class Getgmlobject {
 
     protected GisParams arg0;
 
