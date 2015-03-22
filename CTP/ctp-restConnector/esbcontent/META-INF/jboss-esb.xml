@@ -32,7 +32,9 @@
 		<service category="CTP" description=" invocacion de un servicio soap por http "
 			invmScope="GLOBAL" name="ctp-restConnector_Service">
 			<listeners>
-				<http-gateway name="rc_service" urlPattern="ctp/*" />
+				<http-gateway name="rc_service" urlPattern="ctp/*" >  
+       				<property name="synchronousTimeout" value="1200000"/>  
+   				</http-gateway>
 				
 			</listeners>
 			<actions mep="RequestResponse">

@@ -30,8 +30,9 @@
 		<service category="PGE" description=" invocacion de un servicio soap por http "
 			invmScope="GLOBAL" name="PGE_Service">
 			<listeners>
-				<http-gateway name="pge_service" urlPattern="pge/*" />
-				
+				<http-gateway name="pge_service" urlPattern="pge/*" >  
+       				<property name="synchronousTimeout" value="1200000"/>  
+   				</http-gateway>
 			</listeners>
 			<actions mep="RequestResponse">
 			
