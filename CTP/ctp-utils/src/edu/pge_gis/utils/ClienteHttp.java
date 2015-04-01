@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import org.apache.commons.httpclient.Header;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.HttpMethod;
@@ -24,6 +25,25 @@ public class ClienteHttp {
 			HttpClient httpClient = new HttpClient();
 			method = new PostMethod(url);
 			method.setRequestEntity(new StringRequestEntity(postParams));
+			Header header = new Header("connection", "keep-alive");
+			method.addRequestHeader(header);
+			header = new Header("cache-control", "no-cache");
+			method.addRequestHeader(header);
+			header = new Header("content-length", "1935");
+			method.addRequestHeader(header);
+			header = new Header("origin", "chrome-extension://fdmmgilgnpjigdojojpjoooidkmcomcm");
+			method.addRequestHeader(header);
+			header = new Header("user-agent", "Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2272.101 Safari/537.36");
+			method.addRequestHeader(header);
+			header = new Header("content-type", "text/plain;charset=UTF-8");
+			method.addRequestHeader(header);
+			header = new Header("accept", "*/*");
+			method.addRequestHeader(header);
+			header = new Header("accept-encoding", "gzip, deflate");
+			method.addRequestHeader(header);
+			header = new Header("accept-language", "es-ES,es;q=0.8");
+			method.addRequestHeader(header);
+			
 			int httpStatusCode = httpClient.executeMethod(method);
 			if (httpStatusCode == 200 || httpStatusCode == 204){
 				//logHTTPStatusCode(httpStatusCode);

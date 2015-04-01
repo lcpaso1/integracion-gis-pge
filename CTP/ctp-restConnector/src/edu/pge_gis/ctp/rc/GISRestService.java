@@ -9,6 +9,7 @@ import org.jboss.soa.esb.actions.ActionLifecycleException;
 import org.jboss.soa.esb.actions.ActionPipelineProcessor;
 import org.jboss.soa.esb.actions.ActionProcessingException;
 import org.jboss.soa.esb.helpers.ConfigTree;
+import org.jboss.soa.esb.http.HttpHeader;
 import org.jboss.soa.esb.http.HttpRequest;
 import org.jboss.soa.esb.message.Message;
 
@@ -52,8 +53,9 @@ public class GISRestService implements ActionPipelineProcessor {
 		HttpRequest request = HttpRequest.getRequest(msg);
 		
 		System.out.println("=========================================================================================");
-		System.out.println(request.getMethod()); 
-		System.out.println(msg.getBody().get().toString());
+		for(HttpHeader hh : request.getHeaders()){
+			System.out.println(hh.getName()+": "+hh.getValue());
+		}
 		System.out.println("=========================================================================================");
 		
 		GisParams params = parsearParametros(request, msg);

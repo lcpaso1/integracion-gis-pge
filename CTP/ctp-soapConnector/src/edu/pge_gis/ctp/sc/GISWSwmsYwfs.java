@@ -5,6 +5,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebService;
 
 import edu.pge_gis.ctp.sc.handlers.PropertiesHandler;
+import edu.pge_gis.utils.XMLUtils;
 
 @WebService(name="GISWS")
 @HandlerChain(file="soap-handlers.xml")
@@ -43,6 +44,8 @@ public class GISWSwmsYwfs {
 	private String invokeTextByPost(GISParams params){
 		PropertiesHandler prop = PropertiesHandler.getInstance();
 		StringBuffer url = new StringBuffer(prop.getProperty("url"));
+		
+		XMLUtils.prettyPrint(params.getXmlParam(), System.out);
 		
 		url.append(prop.getProperty("propwfs"));
 		
