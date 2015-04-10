@@ -1,7 +1,12 @@
 package edu.pge_gis.utils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 
 import org.apache.commons.httpclient.Header;
@@ -16,8 +21,40 @@ import org.apache.commons.httpclient.util.URIUtil;
 import org.apache.commons.io.IOUtils;
 
 public class ClienteHttp {
-
+	
 	public static String executePost(String url, String postParams) throws IOException{
+		return executePostJava(url, postParams); 
+	}
+
+	public static String executePostJava(String url, String postParams) throws IOException{
+		URL urlobj = new URL(url);
+		HttpURLConnection conn = (HttpURLConnection) urlobj.openConnection();
+		conn.setRequestMethod("POST");
+		conn.setDoOutput(true);
+		conn.setRequestProperty("Content-Type","application/json");
+		//add request header
+		conn.setRequestProperty("User-Agent", "Mozilla/5.0");
+		OutputStream os = conn.getOutputStream();
+		os.write(postParams.getBytes());
+		os.flush();
+//			if (conn.getResponseCode() != HttpURLConnection.HTTP_CREATED) {
+//			throw new RuntimeException("Failed : HTTP error code : "
+//			+ conn.getResponseCode());
+//			}
+		BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+		String output;
+		String result = "";
+		System.out.println("Output from Server .... \n");
+		while ((output = br.readLine()) != null) {
+			System.out.println(output);
+			result += output;
+		}
+		 
+		conn.disconnect();
+		return result;
+	}
+	
+	public static String executePostApache(String url, String postParams) throws IOException{
 		
 		String xml = null;
 		PostMethod method = null;
