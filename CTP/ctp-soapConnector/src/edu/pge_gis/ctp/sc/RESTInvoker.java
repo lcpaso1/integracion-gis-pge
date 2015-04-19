@@ -25,6 +25,7 @@ public class RESTInvoker {
 	
 	public String invokeRestServiceByPost(String url, String postParams){
 		try {
+			postParams = postParams.replaceAll("xsi:schemaLocation=\".*?\"", "");
 			return ClienteHttp.executePost(url, postParams);
 		} catch (IOException e) {
 			// Lanzo dentro de runtime para que el ws funcione, sin pedir declarar la excepcion
