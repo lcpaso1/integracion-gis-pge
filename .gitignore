@@ -13,12 +13,11 @@ CTP/ctp-soapConnector/build.xml
 CTP/ctp-utils/build.xml
 PGE/pge-service/.classpath
 PGE/proveedor-war/.classpath
-*.xml
 CTP/ctp-utils/build.xml
 PGE/pge-conf/target-eclipse/*
 PGE/pge-conf/target/*
+CTP/ctp-config/target-eclipse/
+CTP/ctp-config/target/
 proyecto.vpp~14
 proyecto.vpp~15
 ~$cumento de arquitectura.docx
-CTP/ctp-config/target-eclipse/*
-CTP/ctp-config/target/*
