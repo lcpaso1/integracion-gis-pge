@@ -5,6 +5,7 @@ import ctp.config.ConfSeguridadPublica
 class BootStrap {
 
     def init = { servletContext ->
+		/*
     	String defaultDirFisica = "http://localhost:8080/GISWSwmsYwfs/GISWSwmsYwfs"
     	ServicioGis gis1 = new ServicioGis([nombre:"meteorologia",direccionLogica:"http://meteo.gub.uy/serviciosGis/Lluvias",direccionProxy:defaultDirFisica,publico:false]);
     	ServicioGis gis2 = new ServicioGis([nombre:"mtop_rutas",direccionLogica:"http://meteo.gub.uy/serviciosGis/Lluvias",direccionProxy:defaultDirFisica,publico:false]);
@@ -17,7 +18,7 @@ class BootStrap {
 
     	ConfSeguridadPublica sp1 = new ConfSeguridadPublica([usuario:"pubmet",rol:"ou:publico",perfil:"Publico_Meteorologia",servicioGis:gis1]);
     	sp1.save();
-
+		*/
     }
     def destroy = {
     }
