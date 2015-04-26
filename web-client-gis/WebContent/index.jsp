@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-	<title>Cliente Openlayers</title>
+	<title>Servicio Público</title>
 	<script type="text/javascript" src="../OpenLayers-2.13/OpenLayers.js"></script>
 	
 	<style type="text/css">
@@ -30,11 +30,18 @@
 		var bounds;
 		var options;
 		var info;
-
+		var servicio;
+		
 		OpenLayers.IMAGE_RELOAD_ATTEMPTS = 5;
         OpenLayers.DOTS_PER_INCH = 25.4 / 0.28;
 						 
-		function showMap(){
+		function showMap(pServicio){
+			if (pServicio == "null"){
+				servicio = 'montevideorural'; 
+			}else {
+				servicio = pServicio;
+			}
+			
 			bounds = new OpenLayers.Bounds(
                 552562.75, 6136575,
                 589047.8125, 6159915
@@ -50,9 +57,9 @@
 
 			layer = new OpenLayers.Layer.WMS( 
 					"",
-				    "http://localhost:8080/ctp/http/ctp/catastro",
+				    "http://localhost:8280/ctp/http/ctp/"+servicio,
 				    {
-                        LAYERS: 'padrones-montevideo',
+                        LAYERS: 'montevideorural',
                         STYLES: '',
                         format: 'image/png'
                     },
@@ -74,7 +81,7 @@
             map.addControl(new OpenLayers.Control.MousePosition({element: document.getElementById('location')}));
 
 			info = new OpenLayers.Control.WMSGetFeatureInfo({
-	            url: "http://localhost:8080/ctp/http/ctp/catastro", 
+	            url: "http://localhost:8280/ctp/http/ctp/"+servicio, 
 	            queryVisible: true,
 	            eventListeners: {
 	                getfeatureinfo: function(event) {
@@ -90,8 +97,8 @@
 	    }
 	</script>
 </head>
-<body  onload="showMap()">
-	CATASTRO - PADRONES DE MONTEVIDEO
+<body  onload="showMap('<%=request.getParameter("servicio")%>')">
+	CATASTRO - MONTEVIDEO RURAL
 	<div id="containerDiv">
 		<div id="infoMapa">
 			<div id="mapDiv"></div>

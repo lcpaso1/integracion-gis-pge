@@ -1,0 +1,24 @@
+<project name="web-client-gis" default="war" basedir=".">
+
+	<description> 
+			${ant.project.name}
+			${line.separator}
+		</description>
+				
+	    <target name="war">
+	        <!-- Overriden from the target of the same name in base-build.xml. -->
+	        <!-- Called by the "deploy" target.  Don't call directly!! -->
+
+	        <!-- Build the webservice... -->
+	        <war warfile="C:/jbossesb-server-4.9-8280/server/default/deploy/${ant.project.name}.war"
+	             webxml="${basedir}/WebContent/WEB-INF/web.xml">
+	        	<classes dir="${basedir}/build/classes" />
+				<webinf dir="${basedir}/Webcontent/WEB-INF">
+	                <include name="web.xml"/>
+	            </webinf>
+	            <fileset dir="${basedir}/WebContent/">
+	                <include name="**/*"/>
+	            </fileset>
+	        </war>
+	    </target>
+</project>
