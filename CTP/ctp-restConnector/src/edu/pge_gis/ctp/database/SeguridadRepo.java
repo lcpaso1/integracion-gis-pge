@@ -10,6 +10,7 @@ import edu.pge_gis.ctp.database.dominio.Seguridad;
 import edu.pge_gis.ctp.database.dominio.ServicioGis;
 import edu.pge_gis.ctp.rc.errors.CTPServiceException;
 import edu.pge_gis.utils.DAOUtils;
+import edu.pge_gis.utils.PropertiesUtils;
 
 public class SeguridadRepo {	
 	
@@ -17,11 +18,16 @@ public class SeguridadRepo {
 	private static String DATABASE_USER = "postgres";
 	private static String DATABASE_PASS = "admin";
 	
+	private static Statement getStatement() throws SQLException{
+		return DAOUtils.prepareStatement(PropertiesUtils.getProp("db.url", DATABASE_URL), 
+				PropertiesUtils.getProp("db.user", DATABASE_USER), PropertiesUtils.getProp("db.pwd", DATABASE_PASS));
+	}
+	
 	public static ServicioGis getServicioGISConMetodos(String identificador) throws SQLException {
 
 		String sql = "Select g.id, g.version, g.direccion_logica, g.direccion_proxy, g.nombre, g.publico,m.id as metid, m.nombre as metnombre, m.nombre_xml "
 				+ "from Servicio_Gis g left outer join metodo m on m.servicio_gis_id=g.id where g.nombre='"+identificador+"'";
-		Statement statement = DAOUtils.prepareStatement(DATABASE_URL, DATABASE_USER, DATABASE_PASS);
+		Statement statement = getStatement();
 		
 		ResultSet rs = statement.executeQuery(sql);
 		ServicioGis servicio = null;
@@ -59,7 +65,7 @@ public class SeguridadRepo {
 	public static Seguridad getSeguridad(String ip, int idServicio, int idMetodo) throws SQLException{
 		String sql = "Select s.* from Seguridad s join metodo m on m.seguridad_id=s.id where s.ip='" + ip + "' and s.servicio_gis_id=" + idServicio + "and m.id=" + idMetodo;
 		System.out.println(" SeguridadRepo::getSeguridad : '" + sql + "'");
-		Statement statement = DAOUtils.prepareStatement(DATABASE_URL, DATABASE_USER, DATABASE_PASS);
+		Statement statement = getStatement();
 		ResultSet rs = statement.executeQuery(sql);
 		
 		if (rs.next()) {
@@ -92,7 +98,7 @@ public class SeguridadRepo {
 	
 	public static ConfSeguridadPublica getSeguridadPublicaParaServicio(String nombreServicio) throws SQLException{
 		String sql = "select c.perfil, c.rol, c.usuario from conf_seguridad_publica c join servicio_gis s on c.servicio_gis_id=s.id where s.nombre='" + nombreServicio + "'";
-		Statement statement = DAOUtils.prepareStatement(DATABASE_URL, DATABASE_USER, DATABASE_PASS);
+		Statement statement = getStatement();
 		ResultSet rs = statement.executeQuery(sql);
 		
 		if (rs.next()) {
