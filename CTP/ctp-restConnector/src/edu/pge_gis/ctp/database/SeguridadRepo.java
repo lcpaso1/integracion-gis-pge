@@ -64,7 +64,7 @@ public class SeguridadRepo {
 
 	public static Seguridad getSeguridad(String ip, int idServicio, int idMetodo) throws SQLException{
 		String sql = "Select s.* from Seguridad s join metodo m on m.seguridad_id=s.id where s.ip='" + ip + "' and s.servicio_gis_id=" + idServicio + "and m.id=" + idMetodo;
-		System.out.println(" SeguridadRepo::getSeguridad : '" + sql + "'");
+		//System.out.println(" SeguridadRepo::getSeguridad : '" + sql + "'");
 		Statement statement = getStatement();
 		ResultSet rs = statement.executeQuery(sql);
 		

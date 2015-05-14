@@ -10,6 +10,7 @@ import org.jboss.soa.esb.message.Message;
 
 import edu.pge_gis.pge.utils.PGEConstants;
 import edu.pge_gis.pge.utils.SQLUtils;
+import edu.pge_gis.utils.XMLUtils;
 
 public class PGECatalog implements ActionPipelineProcessor {
 
@@ -34,14 +35,16 @@ public class PGECatalog implements ActionPipelineProcessor {
 		// Este define el proveedor y agrega o quita cabezales ws-addressing del xml soap
 		//en base a los cabezales addressing, sacamos la url del proveedor
 		String xml = msg.getBody().get(PGEConstants.KEY_xmlSoap).toString();
-		System.out.println(xml);
+		System.out.println("------------SOAP ENVELOPE QUE LLEGA A PGE-----------");
+		XMLUtils.prettyPrint(xml, System.out);
+		System.out.println("------------FIN SOAP ENVELOPE QUE LLEGA A PGE-----------");
 		HashMap<String, String> params = (HashMap<String, String>)msg.getBody().get(PGEConstants.KEY_params);
 		//busco el servicio por la dir logica
 		HashMap<String, String> serv = SQLUtils.getServicio(params.get(PGEConstants.KEY_dir_logica));
 		if(serv == null){
 			throw new ActionProcessingException("No existe el servicio que trata de invocar.");
 		}
-		System.out.println(serv.get(PGEConstants.KEY_urlProvider));
+		//System.out.println(serv.get(PGEConstants.KEY_urlProvider));
 		//busco el metodo
 		HashMap<String, String> metodo = SQLUtils.getMetodo(serv.get(PGEConstants.KEY_id), params.get(PGEConstants.KEY_metodo));
 		if(metodo == null){
@@ -57,7 +60,7 @@ public class PGECatalog implements ActionPipelineProcessor {
 	@Override
 	public void processException(Message arg0, Throwable arg1) {
 		// TODO Auto-generated method stub
-		System.out.println("SOY pge catalog "+arg1.getClass().getCanonicalName());
+		//System.out.println("SOY pge catalog "+arg1.getClass().getCanonicalName());
 	}
 
 	@Override

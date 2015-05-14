@@ -151,7 +151,7 @@ public class STSClient1 {
 			if (debug) logger.debug("invokeSTS RSTR = " + RSTResponseMessage);
 
 			int result = statusLine.getStatusCode();
-			System.out.println("statuscode is " + result);
+			//System.out.println("statuscode is " + result);
 			if (result != org.apache.http.HttpStatus.SC_OK
 					&& result != org.apache.http.HttpStatus.SC_ACCEPTED) {
 				throw new WSTrustClientException("problema en invokeSTS " + RSTResponseMessage);
@@ -198,9 +198,9 @@ public class STSClient1 {
 		Document rstdom = null;
 		try {
 			rstdom = rst.getDOM();
-			System.out.println("------------token PEDIDO-----------");
+			System.out.println("------------STS TOKEN PEDIDO-----------");
 			XMLUtils.prettyPrint(rstdom.getDocumentElement(), System.out);
-			System.out.println("------------FIN token PEDIDO-----------");
+			System.out.println("------------FIN STS TOKEN PEDIDO-----------");
 		} catch (ProcessingException e) {
 			e.printStackTrace();
 		}

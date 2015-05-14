@@ -88,13 +88,13 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 			Element token = cli.issueToken(rstBean);
 			
 			if (token==null) {
-				System.out.println("ERROR token == null");
+				//System.out.println("ERROR token == null");
 				throw new CTPServiceException(500,"Error al obtener token de seguridad. ");
 			}
 			
-			System.out.println("------------token respuesta-----------");
+			System.out.println("------------TOKEN RESPUESTA DEL STS-----------");
 			XMLUtils.prettyPrint(token, System.out);
-			System.out.println("------------FIN token respuesta-----------");
+			System.out.println("------------FIN TOKEN RESPUESTA DEL STS-----------");
 			
 			//String token2string = DocumentUtil.getDOMElementAsString(token);
 			
@@ -179,7 +179,7 @@ public class SecurityAggregator implements ActionPipelineProcessor {
 			// agrego el token de seguridad al mensaje
 				msg.getBody().add("security_token", token);
 				
-				System.out.println("****** Security token is '" + token.toString() + "' ******" );
+				//System.out.println("****** Security token is '" + token.toString() + "' ******" );
 		} catch (RequestSecurityTokenException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

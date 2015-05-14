@@ -44,9 +44,9 @@ public class ClienteHttp {
 		BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
 		String output;
 		String result = "";
-		System.out.println("Output from Server .... \n");
+		//System.out.println("Output from Server .... \n");
 		while ((output = br.readLine()) != null) {
-			System.out.println(output);
+			//System.out.println(output);
 			result += output;
 		}
 		 
@@ -85,7 +85,7 @@ public class ClienteHttp {
 			if (httpStatusCode == 200 || httpStatusCode == 204){
 				//logHTTPStatusCode(httpStatusCode);
 				InputStream response = method.getResponseBodyAsStream();
-				System.out.println(" contenido mime:---"+method.getResponseHeaders());
+				//System.out.println(" contenido mime:---"+method.getResponseHeaders());
 				xml = new String(IOUtils.toByteArray(response),	method.getResponseCharSet());
 				return xml;
 			}
@@ -111,7 +111,7 @@ public class ClienteHttp {
 			if (httpStatusCode == 200 || httpStatusCode == 204){
 				//logHTTPStatusCode(httpStatusCode);
 				InputStream response = method.getResponseBodyAsStream();
-				System.out.println(" contenido mime:---"+method.getResponseHeaders());
+				//System.out.println(" contenido mime:---"+method.getResponseHeaders());
 				xml = new String(IOUtils.toByteArray(response),	method.getResponseCharSet());
 				return xml;
 			}
@@ -190,7 +190,7 @@ public class ClienteHttp {
 			assert (httpStatusCode == 200 || httpStatusCode == 204);
 			//logHTTPStatusCode(httpStatusCode);
 			InputStream response = method.getResponseBodyAsStream();
-			System.out.println(" contenido mime:---"+method.getResponseHeader("contentType"));
+			//System.out.println(" contenido mime:---"+method.getResponseHeader("contentType"));
 			
 			xml = new String(IOUtils.toByteArray(response),
 					method.getResponseCharSet());
@@ -222,7 +222,7 @@ public class ClienteHttp {
 			assert (httpStatusCode == 200 || httpStatusCode == 204);
 			//logHTTPStatusCode(httpStatusCode);
 			InputStream response = method.getResponseBodyAsStream();
-			System.out.println(" contenido mime:---"+method.getResponseHeader("contentType"));
+			//System.out.println(" contenido mime:---"+method.getResponseHeader("contentType"));
 			xml = new String(IOUtils.toByteArray(response),
 					method.getResponseCharSet());
 		} catch (Exception e) {

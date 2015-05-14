@@ -52,11 +52,11 @@ public class GISRestService implements ActionPipelineProcessor {
 		// to=dir logica, action=metodo a partir de lo anterior 
 		HttpRequest request = HttpRequest.getRequest(msg);
 		
-		System.out.println("=========================================================================================");
-		for(HttpHeader hh : request.getHeaders()){
-			System.out.println(hh.getName()+": "+hh.getValue());
-		}
-		System.out.println("=========================================================================================");
+//		System.out.println("=========================================================================================");
+//		for(HttpHeader hh : request.getHeaders()){
+//			System.out.println(hh.getName()+": "+hh.getValue());
+//		}
+//		System.out.println("=========================================================================================");
 		
 		GisParams params = parsearParametros(request, msg);
 		
@@ -81,7 +81,7 @@ public class GISRestService implements ActionPipelineProcessor {
 			datosServicio.datos.put(DIRECCION_PROXY, servicio.getDireccionProxy());
 			datosServicio.datos.put(SERVICIO_PUBLICO, String.valueOf(servicio.isPublico()));
 
-			datosServicio.showInfo();
+			//datosServicio.showInfo();
 			
 			String nombreMetodo = params.getRequest().toLowerCase();
 

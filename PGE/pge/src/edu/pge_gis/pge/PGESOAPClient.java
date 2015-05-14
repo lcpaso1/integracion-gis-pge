@@ -17,6 +17,7 @@ import org.jboss.soa.esb.http.HttpRequest;
 import org.jboss.soa.esb.message.Message;
 
 import edu.pge_gis.pge.utils.PGEConstants;
+import edu.pge_gis.utils.XMLUtils;
 
 public class PGESOAPClient implements ActionPipelineProcessor {
 
@@ -43,8 +44,8 @@ public class PGESOAPClient implements ActionPipelineProcessor {
 				HttpRequest request = HttpRequest.getRequest(msg);
 				//por ahora ese request no sirve para nada, el body del reuqest http viene cargado en el body del mensaje esb
 				String xml = msg.getBody().get(PGEConstants.KEY_xmlSoap).toString();
-				System.out.println(request.getMethod());
-				System.out.println(xml); //excelente funciona!!!
+				//System.out.println(request.getMethod());
+				//System.out.println(xml); //excelente funciona!!!
 				//ahora hacemos invocacion http hacia el verdadero endpoint del webservice, o sea el proveedor.
 				
 				HttpClient httpClient = new HttpClient();
@@ -60,10 +61,13 @@ public class PGESOAPClient implements ActionPipelineProcessor {
 					assert (httpStatusCode == 200 || httpStatusCode == 204);
 					//logHTTPStatusCode(httpStatusCode);
 					InputStream response = method.getResponseBodyAsStream();
-					System.out.println(" contenido mime:---"+method.getResponseHeaders());
+					//System.out.println(" contenido mime:---"+method.getResponseHeaders());
 					xml = new String(IOUtils.toByteArray(response),	method.getResponseCharSet());
 					//ahora imprimo el resultado de la llamada al ws
-					System.out.println("RESPUESTA PROVEEDOR: "+xml);//excelente funcionó de prima!!!
+					System.out.println("------------SOAP ENVELOPE RESPUESTA PROVEEDOR-----------");
+					XMLUtils.prettyPrint(xml, System.out);
+					System.out.println("------------FIN SOAP ENVELOPE RESPUESTA PROVEEDOR-----------");
+					//System.out.println("RESPUESTA PROVEEDOR: "+xml);//excelente funcionó de prima!!!
 					//ahora ponemos el resultado en el msg para que el esb se lo mande al soapui
 					msg.getBody().add(xml);
 				} catch (HttpException e) {
@@ -88,7 +92,7 @@ public class PGESOAPClient implements ActionPipelineProcessor {
 	@Override
 	public void processException(Message arg0, Throwable arg1) {
 		// TODO Auto-generated method stub
-		System.out.println("SOY pge soap client "+arg1.getClass().getCanonicalName());
+		//System.out.println("SOY pge soap client "+arg1.getClass().getCanonicalName());
 	}
 
 	@Override

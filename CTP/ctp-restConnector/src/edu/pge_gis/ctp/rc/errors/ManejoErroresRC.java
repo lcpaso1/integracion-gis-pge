@@ -44,7 +44,7 @@ public class ManejoErroresRC implements ActionPipelineProcessor {
 	 * @throws ActionProcessingException
 	 */
 	public Message processErrors(Message msg) throws ActionProcessingException {
-		System.out.println("soy processErrors me inocaron yupi!");
+		//System.out.println("soy processErrors me inocaron yupi!");
 		// segun la excepcion hago algo diferente si es una soapfault obtengo el contenido y lo mando
 		//sino mando el mensaje
 		Throwable t = (Throwable)msg.getBody().get("exceptionTrace");
@@ -73,7 +73,7 @@ public class ManejoErroresRC implements ActionPipelineProcessor {
 	 */
 	@Override
 	public void processException(Message msg, Throwable t) {
-		System.out.println("soy manejoErrores procesando excpecion");
+		//System.out.println("soy manejoErrores procesando excpecion");
 		if( msg != null ) {
 			//primero borro todo
 			for(String s : msg.getBody().getNames())
