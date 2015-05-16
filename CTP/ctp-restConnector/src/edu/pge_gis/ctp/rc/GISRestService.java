@@ -103,7 +103,7 @@ public class GISRestService implements ActionPipelineProcessor {
 			String requestIp = request.getRemoteAddr();
 			if (servicio.isPublico()) {
 				ConfSeguridadPublica sp = SeguridadRepo.getSeguridadPublicaParaServicio(nombreServicio);
-				System.out.println("Seguridad publica : " + sp.getPerfil() + " , " + sp.getRol() + " , " + sp.getUsuario()); 
+				//System.out.println("Seguridad publica : " + sp.getPerfil() + " , " + sp.getRol() + " , " + sp.getUsuario()); 
 				// mapear seguridad publica
 				datosServicio.datos.put(SEG_PUBLICA_PERFIL, sp.getPerfil());
 				datosServicio.datos.put(SEG_PUBLICA_ROL, sp.getRol());

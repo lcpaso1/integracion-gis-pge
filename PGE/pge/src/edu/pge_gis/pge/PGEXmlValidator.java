@@ -41,7 +41,7 @@ public class PGEXmlValidator implements ActionPipelineProcessor {
 		int ini_to = xml.indexOf("<wsa:To>");
 		int fin_to = xml.indexOf("</wsa:To>");
 		String dir_logica = xml.substring(ini_to+8, fin_to);
-		System.out.println(dir_logica);
+		//System.out.println(dir_logica);
 		params.put(PGEConstants.KEY_dir_logica, dir_logica);
 		//mando tambien el metodo
 		ini_to = xml.indexOf("<wsa:Action>");
@@ -52,7 +52,7 @@ public class PGEXmlValidator implements ActionPipelineProcessor {
 		ini_to = xml.indexOf("emailAddress");
 		fin_to = xml.indexOf("</saml1:NameIdentifier>");
 		rol = xml.substring(ini_to+66, fin_to);
-		System.out.println("=========PGE========ROL========> "+rol);
+		//System.out.println("=========PGE========ROL========> "+rol);
 		params.put(PGEConstants.KEY_rol, rol);
 		msg.getBody().add(PGEConstants.KEY_params, params);
 		return msg;
