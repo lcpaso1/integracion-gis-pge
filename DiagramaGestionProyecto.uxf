@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="12.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.custom.SendSignal</type>
+    <coordinates>
+      <x>180</x>
+      <y>180</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Estado del Arte
+bg=green
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.SendSignal</type>
+    <coordinates>
+      <x>330</x>
+      <y>180</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Análisis
+bg=green
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.SendSignal</type>
+    <coordinates>
+      <x>500</x>
+      <y>180</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Diseño
+bg=green
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.SendSignal</type>
+    <coordinates>
+      <x>650</x>
+      <y>180</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Implementación
+bg=green
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>180</x>
+      <y>330</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Estándares GIS
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>180</x>
+      <y>380</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Estándares SOAP
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>180</x>
+      <y>280</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>PGE
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>180</x>
+      <y>430</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Tecnologías GIS
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>330</x>
+      <y>230</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Escenarios
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>330</x>
+      <y>280</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Integración GIS-PGE
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>330</x>
+      <y>330</y>
+      <w>150</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>CTPs
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>500</x>
+      <y>230</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Arquitectura
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>500</x>
+      <y>280</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Caso de Estudio
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>650</x>
+      <y>230</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Simulador PGE
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>650</x>
+      <y>280</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>CTPs
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>650</x>
+      <y>330</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Caso de Estudio
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>180</x>
+      <y>230</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Tesis de Maestría
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.SendSignal</type>
+    <coordinates>
+      <x>180</x>
+      <y>480</y>
+      <w>600</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Documentación
+fg=black
+bg=green</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>500</x>
+      <y>330</y>
+      <w>130</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>Prototipo
+bg=yellow
+fg=black</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.custom.Systemborder</type>
+    <coordinates>
+      <x>170</x>
+      <y>170</y>
+      <w>620</w>
+      <h>360</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+</diagram>
