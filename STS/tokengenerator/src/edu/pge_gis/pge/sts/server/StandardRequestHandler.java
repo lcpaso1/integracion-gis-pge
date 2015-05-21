@@ -27,7 +27,7 @@ public class StandardRequestHandler implements WSTrustRequestHandler {
 
         RequestSecurityToken rst = context.getRst();
 
-        log.info("WSTrustRequestHandler RST=" + rst);
+        //log.info("WSTrustRequestHandler RST=" + rst);
 
         // ------------------- KEY STORE -------------------------
         StoreBean keyStoreInfoTC = tc.getKeyStoreInfo();
@@ -103,7 +103,7 @@ public class StandardRequestHandler implements WSTrustRequestHandler {
         }
 
 
-        log.info("el tokentype es: {}", context.getTokenType());
+        //log.info("el tokentype es: {}", context.getTokenType());
         rstResponse.setTokenType(context.getTokenType());
 
 //        rstResponse.

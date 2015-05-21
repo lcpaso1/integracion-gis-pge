@@ -43,7 +43,7 @@ public class CheckSignature {
 
                 if (cert != null) {
                     X500Principal subjectX500Principal = cert.getSubjectX500Principal();
-                    log.info("CERT2 " + subjectX500Principal.getName());
+                    //log.info("CERT2 " + subjectX500Principal.getName());
                     
                     boolean isValidSignature = false ;
                     if (doVerify) {

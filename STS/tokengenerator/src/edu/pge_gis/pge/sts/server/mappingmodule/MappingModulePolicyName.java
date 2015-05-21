@@ -24,14 +24,14 @@ public class MappingModulePolicyName implements STSMappingModule {
     @Override
     public void process(WSTrustRequestContext ctx) throws MappingModuleException {
         
-        log.info("MappingModulePolicyName");
+        //log.info("MappingModulePolicyName");
         
         List<TokenAttribute> tokenAttributes = ctx.getTokenAttributes();
         RequestSecurityToken rst = ctx.getRst();
 
         for (TokenAttribute tatt : tokenAttributes) {
             if (tatt.getName().equals("User")) {
-                log.info("se modifico el issuer address");
+                //log.info("se modifico el issuer address");
                 tatt.setNameSpace(rst.getIssuerAddress());
             }
         }

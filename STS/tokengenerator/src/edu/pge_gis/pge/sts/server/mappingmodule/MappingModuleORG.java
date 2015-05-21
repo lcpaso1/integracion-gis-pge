@@ -22,7 +22,7 @@ public class MappingModuleORG implements STSMappingModule {
     @Override
     public void process(WSTrustRequestContext r) {
 
-        log.info("MAPPING MODULE ORG");
+        //log.info("MAPPING MODULE ORG");
 
         RequestSecurityToken rst = r.getRst();
         String principalName = rst.getSecondaryParametersRol();

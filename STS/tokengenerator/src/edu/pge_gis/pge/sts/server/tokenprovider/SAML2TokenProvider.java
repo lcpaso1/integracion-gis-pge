@@ -119,7 +119,7 @@ public class SAML2TokenProvider implements SecurityTokenProvider {
     @SuppressWarnings("unchecked")
     public SAML2Assertion generateSignedAssertion(ClientCredential signingCredential, WSTrustRequestContext context) throws AssertionException {
 
-        log.info(" >>>>>>>>>>>>>>>>>>>>>>>>> generateSignedAssertion");
+        //log.info(" >>>>>>>>>>>>>>>>>>>>>>>>> generateSignedAssertion");
 
         Credential credential = signingCredential.getCredential();
 
@@ -142,7 +142,7 @@ public class SAML2TokenProvider implements SecurityTokenProvider {
 
             Assertion assertion = builder.buildObject();
             assertion.setIssueInstant(issueInstant);
-            log.info("se obtuvo la assertion");
+            //log.info("se obtuvo la assertion");
 
 
             // Issuer ----------------------------------------------------------
@@ -379,7 +379,7 @@ public class SAML2TokenProvider implements SecurityTokenProvider {
         List<TokenAttribute> tokenAttributes = context.getTokenAttributes();
 
         for (TokenAttribute tAttr : tokenAttributes) {
-            log.info("actual att {}", tAttr);
+            //log.info("actual att {}", tAttr);
             Attribute newAttr = attrBuild.buildObject();
             newAttr.setName(tAttr.getName());
 

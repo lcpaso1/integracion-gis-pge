@@ -34,7 +34,7 @@ public class MappingModuleBase2Context implements STSMappingModule {
     @Override
     public void process(WSTrustRequestContext r) throws MappingModuleException {
 
-        log.info("MAPPING MODULE BASE 2 CONTEXT"); 
+        //log.info("MAPPING MODULE BASE 2 CONTEXT"); 
 
         RequestSecurityToken rst = r.getRst();
         Element base = rst.getBase();

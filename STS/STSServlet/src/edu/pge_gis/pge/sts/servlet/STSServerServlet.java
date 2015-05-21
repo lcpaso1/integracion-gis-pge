@@ -40,7 +40,7 @@ public class STSServerServlet extends HttpServlet {
     static MessageFactory messageFactory;
 
     static {
-    	log.info("STSServerServlet::static block");
+    	//log.info("STSServerServlet::static block");
         try {
             messageFactory = MessageFactory.newInstance();
         } catch (Exception ex) {
@@ -62,14 +62,14 @@ public class STSServerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-    	log.info("STSServerServlet::doPost");
+    	//log.info("STSServerServlet::doPost");
         //System.out.println("STSServerServlet - doPost inicio");
 
         try {
             // Get all the headers from the HTTP request
             MimeHeaders headers = getHeaders(req);
 
-            log.info("STSServerServlet INICIO doPost");
+            //log.info("STSServerServlet INICIO doPost");
 
 
             // Construct a SOAPMessage from the XML in the request body

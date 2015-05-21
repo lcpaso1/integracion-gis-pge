@@ -114,7 +114,7 @@ public class STSConfiguration {
             } */
 
 
-            log.info("obteniendo las trust chains");
+            //log.info("obteniendo las trust chains");
             //System.out.println("obteniendo las trust chains");
             ApplicationContext ctx = new ClassPathXmlApplicationContext("sts-config.xml");
             //System.out.println("Despues de ClassPathXmlApplicationContext(sts-config.xml);");
@@ -149,14 +149,14 @@ public class STSConfiguration {
     public TrustChain getTrustChain(RequestSecurityToken rst) throws InvalidRequestException {
 
 
-        log.info("parametros de busqueda rst:  {}", rst);
+        //log.info("parametros de busqueda rst:  {}", rst);
 
         TrustChain tc = TrustChainFilter.getTc(trustChainList, rst.getAppliesToAddress(), rst.getTokenType(), rst.getIssuerAddress());
         if (tc == null) {
             log.error("No se encontro trustChain que matche con el RST");
             throw new InvalidRequestException("No se encontro trustChain que matche con el RST");
         }
-        log.info("cadena seleccionada: {}", tc);
+        //log.info("cadena seleccionada: {}", tc);
         return tc;
     }
     

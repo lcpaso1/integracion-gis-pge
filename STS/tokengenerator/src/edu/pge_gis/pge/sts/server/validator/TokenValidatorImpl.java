@@ -22,7 +22,7 @@ public class TokenValidatorImpl implements TokenValidator {
     @Override
     public boolean isValidToken(WSTrustRequestContext c) {
 
-        log.info("isValidToken");
+        //log.info("isValidToken");
         
         Element base = c.getRst().getBase();
 

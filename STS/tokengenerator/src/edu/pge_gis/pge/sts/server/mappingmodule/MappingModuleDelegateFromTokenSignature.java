@@ -21,7 +21,7 @@ public class MappingModuleDelegateFromTokenSignature implements STSMappingModule
     @Override
     public void process(WSTrustRequestContext r) throws MappingModuleException {
 
-        log.info("MappingModuleDelegateFromTokenSignature");
+        //log.info("MappingModuleDelegateFromTokenSignature");
 
         Element base = r.getRst().getBase();
 

@@ -110,7 +110,7 @@ public class SAMLTokenProviderBasic1 implements SecurityTokenProvider {
 //	public SAMLAssertion generateSignedAssertion(ClientCredential signingCredential, RequestSecurityToken rst, String Issuer)
     public SAMLAssertion generateSignedAssertion(ClientCredential signingCredential, WSTrustRequestContext context) throws AssertionException {
 
-        log.info(" >>>>>>>>>>>>>>>>>>>>>>>>> generateSignedAssertion");
+        //log.info(" >>>>>>>>>>>>>>>>>>>>>>>>> generateSignedAssertion");
 
         Credential credential = signingCredential.getCredential();
 
