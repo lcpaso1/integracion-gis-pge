@@ -63,7 +63,7 @@ public class STSServerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
     	log.info("STSServerServlet::doPost");
-        System.out.println("STSServerServlet - doPost inicio");
+        //System.out.println("STSServerServlet - doPost inicio");
 
         try {
             // Get all the headers from the HTTP request
@@ -79,10 +79,10 @@ public class STSServerServlet extends HttpServlet {
             // Handle soapReqest ANTES
             // SOAPMessage soapResponse = soapProcessor.handleSOAPRequest(soapRequest);
 
-            System.out.println("Antes de handleRequest");
+            //System.out.println("Antes de handleRequest");
             // Nuevo con pl
             SOAPMessage soapResponse = handleRequest(soapRequest, req);
-            System.out.println("Despues de handleRequest");
+            //System.out.println("Despues de handleRequest");
 
             
             // Write to HttpServeltResponse
@@ -93,14 +93,14 @@ public class STSServerServlet extends HttpServlet {
 //            soapResponse.writeTo(new LogOutputStream(log, "info"));
             os.flush();
         } catch (SOAPException e) {
-        	System.out.println("Excepcion SOAPException!!! " + e.getMessage());
+        	//System.out.println("Excepcion SOAPException!!! " + e.getMessage());
             throw new IOException("Exception while creating SOAP message.", e);
         }
     }
 
     @SuppressWarnings("unchecked")
     static MimeHeaders getHeaders(HttpServletRequest req) {
-    	System.out.println("STSServerServlet::getHeaders");
+    	//System.out.println("STSServerServlet::getHeaders");
         Enumeration headerNames = req.getHeaderNames();
         MimeHeaders headers = new MimeHeaders();
         while (headerNames.hasMoreElements()) {
@@ -111,14 +111,14 @@ public class STSServerServlet extends HttpServlet {
                 headers.addHeader(headerName, values.nextToken().trim());
             }
         }
-        System.out.println("STSServerServlet::getHeaders END !!!");
+        //System.out.println("STSServerServlet::getHeaders END !!!");
         return headers;
     }
 
     private static SOAPMessage handleRequest(SOAPMessage soapRequest, HttpServletRequest req) throws ServletException, IOException {
 //    private static Source handleRequest(SOAPMessage soapRequest, HttpServletRequest req) throws ServletException, IOException {
 
-		System.out.println("MYSTS: HANDLE SOAP MESSAGE request=");
+		//System.out.println("MYSTS: HANDLE SOAP MESSAGE request=");
 
         SOAPMessage soapResponse = null;
         Source responseSource = null;

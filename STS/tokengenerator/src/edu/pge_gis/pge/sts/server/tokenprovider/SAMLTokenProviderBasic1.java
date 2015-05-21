@@ -272,7 +272,7 @@ public class SAMLTokenProviderBasic1 implements SecurityTokenProvider {
     private Subject getSubjectForSignedToken(WSTrustRequestContext context, XMLObjectBuilderFactory builderFactory) {
 
         String subjName = context.getRst().getSecondaryParametersRol();//context.getPrincipalName();
-        System.out.println("=========================> ROL QUE LLEGA: "+subjName);
+        //System.out.println("=========================> ROL QUE LLEGA: "+subjName);
         // Create the NameIdentifier
         SAMLObjectBuilder nameIdBuilder = (SAMLObjectBuilder) builderFactory
                 .getBuilder(NameIdentifier.DEFAULT_ELEMENT_NAME);

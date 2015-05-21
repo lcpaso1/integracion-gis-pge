@@ -115,13 +115,13 @@ public class STSConfiguration {
 
 
             log.info("obteniendo las trust chains");
-            System.out.println("obteniendo las trust chains");
+            //System.out.println("obteniendo las trust chains");
             ApplicationContext ctx = new ClassPathXmlApplicationContext("sts-config.xml");
-            System.out.println("Despues de ClassPathXmlApplicationContext(sts-config.xml);");
+            //System.out.println("Despues de ClassPathXmlApplicationContext(sts-config.xml);");
             TrustChainContainer tcc = ctx.getBean("chains", TrustChainContainer.class);
 
             if (tcc==null) {
-            	System.out.println("MYSTS: No se pudo cargar la configuracion (bean id chains)");
+            	//System.out.println("MYSTS: No se pudo cargar la configuracion (bean id chains)");
                 throw new ConfigurationException("MYSTS: No se pudo cargar la configuracion (bean id chains)");
             }
             
@@ -133,11 +133,11 @@ public class STSConfiguration {
             
             // chequeos de configuracion obligatoria
             if (this.STSName == null || this.signingKeystoreInformation == null ) {
-            	System.out.println("MYSTS: Error falta informacion requerida para el keystore");
+            	//System.out.println("MYSTS: Error falta informacion requerida para el keystore");
                 throw new ConfigurationException("MYSTS: Error falta informacion requerida para el keystore");
             }
         } catch (Exception e) {
-        	System.out.println("MYSTS: Error al cargar configuracion : " + e.getMessage());
+        	//System.out.println("MYSTS: Error al cargar configuracion : " + e.getMessage());
             log.error("error", e);
             throw new ConfigurationException("MYSTS: Error al cargar configuracion", e);
         }

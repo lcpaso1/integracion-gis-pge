@@ -9,7 +9,7 @@ public class MappingModuleEdad implements STSMappingModule {
     @Override
     public void process(WSTrustRequestContext r) {
 
-        System.out.println("MAPPING MODULE");
+        //System.out.println("MAPPING MODULE");
 
         //creo atributo de edad
         String principalName = r.getPrincipalName();

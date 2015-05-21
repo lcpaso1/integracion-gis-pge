@@ -41,7 +41,7 @@
 		   <classes dir="${basedir}/bin"/>
 		</war>
 		
-		<copyfile dest="D:/ProyectoDeGrado/jbossesb-server-4.12/server/default/deploy" src="target/STSServer.war" 
+		<copyfile dest="D:/ProyectoDeGrado/jbossesb-server-4.9/server/default/deploy" src="target/STSServer.war" 
 			forceoverwrite="true"/>
     </target>
 	
